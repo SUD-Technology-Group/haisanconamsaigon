@@ -1,0 +1,11 @@
+GET http://localhost:8080/product/dsaf
+
+###
+
+POST http://localhost:8080/product/add
+Content-Type: application/json
+
+{
+    "name": "Trần Khải Hoàng",
+    "age": 20
+}
