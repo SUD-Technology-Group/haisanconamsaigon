@@ -76,10 +76,12 @@ body {
     width: 100%;
     /* box-shadow: inset 0 0 0 1000px rgb(0 0 0 / 30%); */
     height: 100px;
-    
+    border-bottom: 2px solid #0f9ed8;
 }
 
-
+.item {
+  padding: 0 10px;
+}
 
 .header-logo img {
     width: 80%;
@@ -162,10 +164,10 @@ body {
 
   .header-navbar .container {
     background-color: #0f9ed8;
-    border: 2px solid #0f9ed8;
+    border: 3px solid #0f9ed8;
     border-right: none;
     border-bottom: none;
-    border-top-left-radius: 1rem;
+    border-top-left-radius: 4rem;
     /* margin: 0px !important; */
     width: 70%;
     position: absolute;
@@ -181,7 +183,7 @@ body {
   
   .navbar-item {
     line-height: 40px;
-    padding-right: 30px;
+    padding:0 15px;
     position: relative;
   }
   
@@ -214,7 +216,7 @@ body {
   
   .navbar-item .navbar-menu {
     position: absolute;
-    background-color: #e6e7e8;
+    background-color: #6365ec;
     top: 100%;
     left: 0;
     min-width: 100%;
@@ -225,7 +227,7 @@ body {
   }
   
   .navbar-list .navbar-item:nth-child(3) .navbar-menu {
-    width: 280px !important;
+    width: 230px !important;
   }
   
   .navbar-product-item,
@@ -269,9 +271,8 @@ body {
   }
   
   .navbar-product-item:hover,
-  .navbar-menu-item:hover {
-    border-left: 5px solid var(--xanh);
-    background-color: #fff;
+  .navbar-menu-item:hover a {
+    color: yellow !important;
   }
   
   .navbar-product-list {
@@ -399,7 +400,6 @@ body.slider__body {
     justify-content: center;
     width: 100%;
     height: 100vh;
-    border: 2px solid black;
     
     color: black;
 }
@@ -467,7 +467,7 @@ body.slider__body {
     text-transform: uppercase;
 }
 
-img {
+img , .smooth{
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   -webkit-backface-visibility: hidden;
@@ -482,7 +482,7 @@ img {
   display: inline-block;
   position: relative;
   width: 32% !important;
-  height: 330px; 
+  height: 35vh; 
   margin-bottom: 20px;
   padding: 0 20px;
 }
@@ -558,3 +558,59 @@ img {
     height: 100%;
 }
 /* Seafood End */
+
+/* Pagination Start */
+
+.pagination {
+  margin: 0 !important;
+}
+
+.pagination-list li {
+  border: 1px solid #e1e1e1;
+  display: inline-block;
+  margin: 1px;
+  border-radius: 2px;
+}
+
+.pagination-list li.disabled,
+.pagination-list li.active {
+  background: #f5f5f5;
+}
+
+.pagination-list li.disabled a,
+.pagination-list li.active a {
+  color: #555 !important;
+}
+
+.pagination-list li a {
+  padding: 5px 10px;
+  color: var(--xanh);
+  display: inline-block;
+}
+
+.pagination-list li a:hover {
+  background: rgb(240, 232, 122);
+  color: black;
+}
+
+.current {
+  background-color: var(--do);
+}
+
+.current a.sidebar-item-link {
+  color: white !important;
+}
+
+.pagination-list li.current {
+  background: #0f9ed8;
+}
+
+/* Pagination End */
+
+.filter-menu {
+  width: 100%;
+  height: 80px;
+  line-height: 80px;
+  font-size: 30px;
+  border: 2px solid black;
+}
