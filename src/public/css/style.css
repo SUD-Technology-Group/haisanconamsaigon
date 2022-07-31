@@ -1,14 +1,41 @@
 li {
+    list-style: none;
     display: inline-block;
+    text-decoration: none;
+}
+
+ul {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none !important;
+}
+   
+a:hover {
+    text-decoration: none;
+    color: #000;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0f9ed8;
 }
 
 
 /* Header: start */
 #page-header {
+    position: absolute;
     width: 100%;
     color: #000;
     margin-bottom: 20px;
     z-index: 999;
+    background-color: #fff;
 }
 
 .header-top {
@@ -46,8 +73,13 @@ li {
 
 .header-body--content {
     display: flex;
-
+    width: 100%;
+    /* box-shadow: inset 0 0 0 1000px rgb(0 0 0 / 30%); */
+    height: 100px;
+    
 }
+
+
 
 .header-logo img {
     width: 80%;
@@ -57,6 +89,13 @@ li {
 .header-search {
     margin-top: auto;
     margin-bottom: auto;
+    display: inline-block;
+}
+
+.header-right-corner {
+    position: absolute;
+    right: 0;
+    padding: 10px 20px;
 }
 
 .header-search {
@@ -64,6 +103,7 @@ li {
     height: 56px;
     border: 2px solid #000;
     border-radius: 4px;
+    
 }
 
 .header-search input {
@@ -87,5 +127,434 @@ li {
     padding: 1px;
 }
 
+.header-navbar {
+    
+    
+}
+
 
 /* Header: end */
+
+/* Banner: Start */
+
+.banner-full-size {
+    width: 100%;
+    height: auto;
+    
+}
+
+
+.banner-full-size img {
+    height: 75vh;
+    margin-top: 100px;
+}
+/* Banner: End */
+
+
+/* Navbar: Start */
+  
+  .navbar-list {
+    display: flex;
+    justify-content: left;
+    margin-bottom: 0;
+    
+  }
+
+  .header-navbar .container {
+    background-color: #0f9ed8;
+    border: 2px solid #0f9ed8;
+    border-right: none;
+    border-bottom: none;
+    border-top-left-radius: 1rem;
+    /* margin: 0px !important; */
+    width: 70%;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    
+  }
+
+  .header-navbar .container .navbar-list .navbar-item a {
+    color: white
+  }
+  
+  
+  .navbar-item {
+    line-height: 40px;
+    padding-right: 30px;
+    position: relative;
+  }
+  
+  .navbar-item:hover {
+    background-color: var(--do);
+    /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+    cursor: pointer;
+  }
+  
+  .navbar-item a {
+    /* line-height: 50px; */
+    display: block;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 500;
+    color: #000;
+    text-transform: uppercase;
+  }
+
+  
+  
+  .navbar-list>.navbar-item>a:hover {
+    color: yellow !important;
+  }
+  
+  .navbar-item i {
+    font-size: 12px;
+  }
+  
+  
+  .navbar-item .navbar-menu {
+    position: absolute;
+    background-color: #e6e7e8;
+    top: 100%;
+    left: 0;
+    min-width: 100%;
+    z-index: 5;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.1s linear;
+  }
+  
+  .navbar-list .navbar-item:nth-child(3) .navbar-menu {
+    width: 280px !important;
+  }
+  
+  .navbar-product-item,
+  .navbar-list .navbar-item:nth-child(3) .navbar-menu .navbar-menu-item {
+    display: flex;
+    justify-content: space-between;
+  
+  }
+  
+  .navbar-product-item i,
+  .navbar-list .navbar-item:nth-child(3) .navbar-menu .navbar-menu-item i {
+    font-size: 16px;
+    /* line-height: 40px; */
+    margin: 0 12px;
+  }
+  
+  .navbar-item:hover>.navbar-menu {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  .navbar-menu::before {
+    content: '';
+    position: absolute;
+    background-color: transparent;
+    width: 100%;
+    height: 10px;
+    top: -5px;
+  }
+  
+  .navbar-menu-item {
+    border: 1px solid rgba(0, 0, 0, 0.025);
+    position: relative;
+  }
+  
+  .navbar-menu-item a {
+    color: #000;
+    
+    display: block;
+    width: 100%;
+  }
+  
+  .navbar-product-item:hover,
+  .navbar-menu-item:hover {
+    border-left: 5px solid var(--xanh);
+    background-color: #fff;
+  }
+  
+  .navbar-product-list {
+    position: absolute;
+    background-color: #e6e7e8;
+    top: 0;
+    left: 100%;
+    width: 100%;
+    display: none;
+  }
+  
+  .navbar-menu-item:hover .navbar-product-list {
+    display: block;
+  }
+  
+  .navbar-product-list::after {
+    content: '';
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: -5px;
+    background-color: transparent;
+    width: 10px;
+  }
+  
+  .navbar-product-item {
+    border: 1px solid rgba(0, 0, 0, 0.025);
+    position: relative;
+  }
+/* Navbar: ENd  */
+
+
+/* slider-site Start */
+body,
+html {
+  height: 100%;
+}
+
+body.slider__body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.slider__container {
+  position: fixed;
+  display: block;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-transition: -webkit-transform 500ms ease-in-out;
+  transition: -webkit-transform 500ms ease-in-out;
+  -o-transition: transform 500ms ease-in-out;
+  transition: transform 500ms ease-in-out;
+}
+
+.slider__page {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slider__indicators {
+  position: fixed;
+  left: 18px;
+  top: 50%;
+  z-index: 2;
+  margin: 0;
+  padding: 0;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.slider__indicator {
+  display: none;
+  width: 10px;
+  height: 10px;
+  margin: 10px 0;
+  border-radius: 100px;
+  background-color: #fff;
+  cursor: default;
+}
+.slider__indicator--active {
+  opacity: 0.3;
+}
+#norwegian {
+    background: linear-gradient(225deg, #ffc27d, #ff8e93);
+  }
+  #french {
+    background: linear-gradient(#f3defc, #63a3e6);
+  }
+  #spanish {
+    background: linear-gradient(#d2fcad, #22eaeb);
+  }
+  #hindi{
+    background: linear-gradient(#f0bed4, #a163f5);
+  }
+  #mandarin {
+    background: linear-gradient(#65cce1, #6365ec);
+  }
+
+  section > span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 7vw;
+    font-family: sans-serif;
+    text-transform: uppercase;
+    color: #fff;
+  }
+
+/* slider-site End */
+
+/* tool Start */
+
+.box-mid {
+    position: absolute;
+    z-index: 10000;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    border: 2px solid black;
+    
+    color: black;
+}
+
+#bestseller {
+  background: url('../img/background.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#seafood {
+  background: url('../img/background2.png');
+  background-repeat: no-repeat;
+  background-size:contain;
+  background-position: top;
+}
+
+.titleL {
+  width: 50% !important;
+    height: 70px;
+    margin-top: 140px;
+    color: #080a6d;
+    font-size: 50px;
+    text-transform: uppercase;
+    font-weight: 700;
+    border-bottom: 1px dashed #d7d7d7;
+ transform: translateX(50%);
+    /* border: 2px solid black; */
+}
+
+.icon {
+  content: '';
+    width: 120px;
+    height: 85px;
+    background: url('https://giangghe.com/images/giotnuoc.png');
+    position: absolute;
+    right: -35px;
+    bottom: -45px;
+    z-index: 200;
+}
+.head-title {
+  position: relative;
+  align-items: center;
+  
+}
+
+.head-title p{
+  color: #333333;
+    font-size: 14px;
+    letter-spacing: 4px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.food-name {
+    position: fixed;
+    width: 100%;
+    height: 60px;
+    background-color: rgba(0,0,255, 0.5);
+    text-align: center;
+    z-index: 12000;
+    bottom: 0px;
+    padding: 12px 0;
+    color: white;
+    text-transform: uppercase;
+}
+
+img {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* tool End */
+
+
+/* Seafood Start */
+.seafood-box {
+  display: inline-block;
+  position: relative;
+  width: 32% !important;
+  height: 330px; 
+  margin-bottom: 20px;
+  padding: 0 20px;
+}
+
+.seafood-img-box {
+  width: 100%;
+  height: 60%;
+  /* position: absolute; */
+  z-index: 2;
+  overflow: hidden;
+  border-radius: 20px 0 20px 0;
+  /* border: 2px solid black; */
+}
+
+.seafood-img-box img {
+  vertical-align: top;
+  width: 100%;
+  height: 100%;
+}
+
+.seafood-box:hover img {
+  transform: scale(1.07);
+}
+
+.seafood-content-box {
+  width: 100%;
+  height: 40%;
+  padding: 10px 0 10px;
+  overflow: hidden;
+  position: relative;
+  text-align: left;
+}
+
+.seafood-content-box a.seafood-title {
+  font-size: 18px;
+  color: black;
+  font-weight: 600;
+  
+}
+
+.seafood-contact {
+  font-weight: 600;
+}
+.seafood-price {
+  font-weight: 600;
+  margin: 5px 0;
+}
+
+.seafood-buy {
+  position: absolute;
+  width: 50%;
+  right: 0;
+  bottom: 0;
+  border: 2px solid blue;
+  background-color: blue;
+  border-radius: 5rem 0 5rem 0;
+  height: 30px;
+  
+  text-align: center;
+}
+
+.seafood-buy a {
+  color: white;
+}
+
+.seafood-buy:hover a {
+  color: yellow;
+}
+
+.seafood-right-banner {
+  width: 23.5%;
+    float: right;
+    height: 100%;
+}
+/* Seafood End */
