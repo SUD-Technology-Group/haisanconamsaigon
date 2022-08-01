@@ -209,7 +209,7 @@ body {
     /* line-height: 50px; */
     display: block;
     width: 100%;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 500;
     color: #000;
     text-transform: uppercase;
@@ -235,6 +235,7 @@ body {
     z-index: 5;
     visibility: hidden;
     opacity: 0;
+    padding-left: 0;
     transition: visibility 0s, opacity 0.1s linear;
   }
   
@@ -271,8 +272,10 @@ body {
   }
   
   .navbar-menu-item {
-    border: 1px solid rgba(0, 0, 0, 0.025);
+    display: block;
+    width: 100%;
     position: relative;
+    border: 1px solid var(--xanh);
   }
   
   .navbar-menu-item a {
@@ -280,6 +283,8 @@ body {
     
     display: block;
     width: 100%;
+    padding-left: 20px;
+    
   }
   
   .navbar-product-item:hover,
@@ -476,7 +481,7 @@ img , .smooth{
 
 .seafood-img-box {
   width: 100%;
-  height: 60%;
+  height: 50%;
   /* position: absolute; */
   z-index: 2;
   overflow: hidden;
@@ -492,6 +497,14 @@ img , .smooth{
   overflow: hidden;
 }
 
+.news-title-box {
+  height: 65px;
+}
+
+.news-img-box img {
+  height: 22vh;
+}
+
 .seafood-img-box img {
   vertical-align: top;
   width: 100%;
@@ -502,9 +515,13 @@ img , .smooth{
   transform: scale(1.07);
 }
 
+.owl-item {
+  height: 100% !important;
+}
+
 .seafood-content-box {
   width: 100%;
-  height: 40%;
+  height: 50%;
   padding: 10px 0 10px;
   overflow: hidden;
   position: relative;
@@ -522,7 +539,7 @@ img , .smooth{
 
 .seafood-content-box a.seafood-title {
   font-size: 18px;
-  color: black;
+  color: var(--do);
   font-weight: 600;
   
 }
@@ -581,6 +598,7 @@ img , .smooth{
   display: inline-block;
   margin: 1px;
   border-radius: 2px;
+  width: 35px;
 }
 
 .pagination-list li.disabled,
@@ -589,19 +607,20 @@ img , .smooth{
 }
 
 .pagination-list li.disabled a,
-.pagination-list li.active a {
-  color: #555 !important;
+.pagination-list li.current a {
+  color: #fff !important;
 }
 
 .pagination-list li a {
   padding: 5px 10px;
   color: var(--xanh);
-  display: inline-block;
+  display: block;
+  width: 100%;
 }
 
-.pagination-list li a:hover {
+.pagination-list li:hover a {
   background: rgb(240, 232, 122);
-  color: black;
+  color: black !important;
 }
 
 .current {
@@ -628,11 +647,10 @@ img , .smooth{
 
 .news-title {
   color: #333333;
-  font-size: 0.9em;
+  font-size: 0.95em;
   font-weight: 600;
     display: block;
-    
-    display: block;
+
     margin-bottom: 5px;
     text-transform: uppercase;
 }
@@ -641,7 +659,7 @@ img , .smooth{
   height: 3px;
   display: block;
   background-color: rgba(0,0,255,.1);
-  margin: 1em 0 1em;
+  margin: 0.5em 0 0.5em;
   width: 100%;
   max-width: 30px;
 }
@@ -659,5 +677,5 @@ a.watch-detail {
 
 .owl-carousel {
   padding: 18px 15px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  box-shadow: rgba(10, 147, 211, 0.24) 0px 3px 8px;
 }
