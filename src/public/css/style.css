@@ -381,6 +381,14 @@ body.slider__body {
 
 /* slider-site End */
 
+/* Bestseller Start */
+
+.bestseller-box {
+  
+}
+
+/* Bestseller End */
+
 /* tool Start */
 
 .box-mid {
@@ -568,6 +576,8 @@ img , .smooth{
 .seafood-buy a {
   color: var(--xanh);
   font-weight: 600;
+  display: block;
+  width: 100px;
 }
 
 .seafood-buy:hover {
@@ -678,4 +688,37 @@ a.watch-detail {
 .owl-carousel {
   padding: 18px 15px;
   box-shadow: rgba(10, 147, 211, 0.24) 0px 3px 8px;
+}
+
+@media (max-height: 800px) {
+  body {
+    font-size: 0.85rem !important;
+  }
+
+  .container{
+    
+    max-width: 1080px !important;
+  } 
+
+  .titleL {
+    font-size: 35px;
+    height: 45px;
+  }
+
+  .seafood-title {
+    font-size: 16px !important;
+  }
+
+  .seafood-buy a {
+    padding-top: 3px;
+    font-size: 0.8rem;
+  }
+
+  .seafood-box {
+    height: 34vh;
+  }
+
+  .seafood-right-banner img {
+    height: 50%;
+  }
 }
