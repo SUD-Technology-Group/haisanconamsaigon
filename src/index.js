@@ -24,8 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use(require('cookie-parser')('abc'))
-app.use(require('express-session')())
+
 
 app.use(cookieParser('sud'))
 app.use(session({ cookie: { maxAge: 30000 } }))

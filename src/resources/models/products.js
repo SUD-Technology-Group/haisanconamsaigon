@@ -48,10 +48,6 @@ const products = new Schema({
     color_of_product: {
         type: [color]
     },
-    total_amount: {
-        type: Number,
-        required: true
-    },
     slug: {
         type: String,
         required: true
@@ -59,7 +55,11 @@ const products = new Schema({
     description: {
         type: String,
         required: true
-    }
+    },
+    classes: {
+        lv1: Number,
+        lv2: Number
+    },
 }, {
     timestamps: true
 })

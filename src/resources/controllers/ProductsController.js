@@ -1,25 +1,40 @@
 const products = require('../models/products')
-
+const slugify = require('slugify')
 const ProductController = {
     // Add product: add one
-
     postAddProduct: (req, res, next) => {
-        const user = {
+
+        const slug = slugify(req.body.product_name + ' ' + req.body.pid, {
+            replacement: '-',
+            remove: false,
+            lower: false,
+            strict: false,
+            locale: 'vi',
+            trim: true
+        })
+        let listSize = req.body.size_of_product || []
+        let listColor = req.body.color_of_product || []
+        const product = {
             pid: req.body.pid,
             product_name: req.body.product_name,
             price: req.body.price,
-            size_of_product: req.body.price,
-            color_of_product: req.body.price,
-            total_amount: req.body.total_amount,
-            slug: req.body.slug,
+            size_of_product: listSize,
+            color_of_product: listColor,
+            slug: slug,
             description: req.body.description
         }
-        res.json({ user: user })
+        return new products(product).save()
+            .then(() => {
+                res.json({ message: "Thêm sản phẩm thành công", data: product })
+            })
+            .catch(err => {
+                res.json({ message: "Thêm sản phẩm thất bại " + err })
+            })
     },
 
     // Get product: get one
-    getProductDetail: (req, res, next) => {
-        products.findOne({ slug: req.params.slug })
+    getProductDetail: async (req, res, next) => {
+        await products.findOne({ slug: req.params.slug })
             .then(product => {
                 if (!product) {
                     req.flash('error', 'Không tìm thấy sản phẩm')
@@ -27,8 +42,8 @@ const ProductController = {
                 } else {
                     let colorAmount = 0
                     let sizeAmount = 0
-                    let listSize = req.body.size_of_product || []
-                    let listColor = req.body.color_of_product || []
+                    let listSize = product.size_of_product || []
+                    let listColor = product.color_of_product || []
                     if (listColor) {
                         colorAmount = listColor.reduce((prev, next) => {
                             return prev.color_amount + next.color_amount
@@ -41,20 +56,49 @@ const ProductController = {
                     }
 
                     const data = {
-                        pid: req.body.pid,
-                        name: req.body.product_name,
-                        price: req.body.price,
-                        avatar: req.body.images[0],
-                        images: req.body.images,
-                        decs: req.body.description,
-                        slug: req.body.slug,
-                        amount: sizeAmount + colorAmount,
+                        pid: product.pid,
+                        name: product.product_name,
+                        price: product.price,
+                        avatar: product.images[0],
+                        images: product.images,
+                        decs: product.description,
+                        slug: product.slug,
                         size: listSize,
                         color: listColor
                     }
                     res.json({ data: data })
                 }
             })
+    },
+
+    // Update product: update one
+    updateProduct: async (req, res, next) => {
+        const slug = slugify(req.body.product_name + ' ' + req.body.pid, {
+            replacement: '-',
+            remove: false,
+            lower: false,
+            strict: false,
+            locale: 'vi',
+            trim: true
+        })
+        let listSize = req.body.size_of_product || []
+        let listColor = req.body.color_of_product || []
+        const product = {
+            pid: req.body.pid,
+            product_name: req.body.product_name,
+            price: req.body.price,
+            size_of_product: listSize,
+            color_of_product: listColor,
+            slug: slug,
+            description: req.body.description
+        }
+        await products.findOneAndUpdate({ slug: req.params.slug }, product, (err, doc) => {
+            if (err) {
+                res.json({ message: "update thất bại" })
+            } else {
+                res.json({ message: "update thành công", data: doc })
+            }
+        })
     }
 }
 

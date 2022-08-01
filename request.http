@@ -1,4 +1,4 @@
-GET http://localhost:8080/product/dsaf
+GET http://localhost:8080/product/Tom-Cang-Xanh-tom-01
 
 ###
 
@@ -6,6 +6,47 @@ POST http://localhost:8080/product/add
 Content-Type: application/json
 
 {
-    "name": "Trần Khải Hoàng",
-    "age": 20
+    "pid": "tom-01",
+    "product_name": "Tôm Càng Xanh",
+    "price": 900000,
+    "size_of_product": [{
+        "size_name": "10 cm",
+        "size_amount": 12
+    },{
+        "size_name": "20 cm",
+        "size_amount": 6
+    }],
+    "color_of_product": [{
+        "color_name": "xanh",
+        "color_amount": 2
+    },{
+        "color_name": "đỏ",
+        "color_amount": 6
+    }],
+    "description": "<h1>Sò mai</h1>"
+}
+
+### 
+POST http://localhost:8080/product/update/Tom-Cang-Xanh-tom-01
+Content-Type: application/json
+
+{
+    "pid": "tom-01",
+    "product_name": "Tôm Càng Đỏ",
+    "price": 500000,
+    "size_of_product": [{
+        "size_name": "10 cm",
+        "size_amount": 12
+    },{
+        "size_name": "20 cm",
+        "size_amount": 6
+    }],
+    "color_of_product": [{
+        "color_name": "xanh",
+        "color_amount": 2
+    },{
+        "color_name": "đỏ",
+        "color_amount": 6
+    }],
+    "description": "<h1>Sò mai</h1>"
 }
