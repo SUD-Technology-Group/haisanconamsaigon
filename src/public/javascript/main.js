@@ -39,5 +39,12 @@ $('.owl-carousel').owlCarousel({
     }
 })
 
+$('.hidden-phone').click(function(e) {
+    e.preventDefault();
+    console.log($(this))
+    $(this).siblings().removeClass('current');
+    $(this).addClass('current');
+})
+
 
 
