@@ -576,7 +576,7 @@ img , .smooth{
 .seafood-buy a {
   color: var(--xanh);
   font-weight: 600;
-  display: block;
+  
   width: 100px;
 }
 
@@ -710,6 +710,7 @@ a.watch-detail {
   }
 
   .seafood-buy a {
+    display: block;
     padding-top: 3px;
     font-size: 0.8rem;
   }
@@ -719,6 +720,12 @@ a.watch-detail {
   }
 
   .seafood-right-banner img {
-    height: 50%;
+    width: 90%;
   }
+
+  .navbar-item a {
+    font-size: 14px;
+  }
+
+  
 }
