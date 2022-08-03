@@ -606,7 +606,7 @@ img , .smooth{
   padding: 10px 3px 10px;
   overflow: hidden;
   position: relative;
-  text-align: left;
+  text-align: center;
 }
 
 .news-content-box {
@@ -772,6 +772,34 @@ a.watch-detail {
   top: 0px;
   position: -webkit-sticky;
 }
+
+/* Social Start */
+
+.social_fixed { position: fixed; top: 35%; right: 15px; z-index: 111; }
+.social_fixed a { display: block; width: 45px; position: relative; margin-bottom: 5px; }
+.social_fixed a img { max-width: 100%; }
+.social_fixed a:hover img, .social_fixed a:hover  { transform: scale(1.05, 1.05); }
+
+.map_list { position: absolute; right: calc(100% + 10px); top: 0; width: 100%; min-width: 140px; display: none; }
+.icon_map { position: relative; margin-bottom: 10px; cursor: pointer; }
+.map_list ul { padding: 0; width: 100%; }
+.map_list ul li { list-style: none; }
+.map_list ul li a { display: inline-block; background: #0391d4; padding: 10px 20px; border-radius: 25px; color: #fff; font-size: 14px; width: 100%; cursor: pointer; }
+.map_list ul li a:hover { background: red; }
+
+.cart {
+  background: var(--luc) url(../img/cart.png) no-repeat center;
+  padding: 0;
+  background-size: 20px;
+  border-radius: 50%;
+  box-shadow: 0 0 5px #4FD3C4;
+  height: 45px;
+}
+
+
+
+/* Social End */
+
 
 /* Product Start */
 

@@ -46,6 +46,10 @@ $('.hidden-phone').click(function(e) {
     $(this).addClass('current');
 })
 
+$(".icon_map").click(function(){
+    $(".map_list").toggle('slow');
+  });
+
 
 $(document).ready(() => {
     $(function () {
