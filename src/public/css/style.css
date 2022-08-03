@@ -544,6 +544,11 @@ img , .smooth{
   
 }
 
+.seafood-box:hover .seafood-content-box, .seafood-box-2:hover .seafood-content-box {
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+  
+}
+
 .seafood-box-2 {
   display: inline-block;
   position: relative;
@@ -566,7 +571,7 @@ img , .smooth{
   /* position: absolute; */
   z-index: 2;
   overflow: hidden;
-  border-radius: 0 2rem 0 2rem;
+  /* border-radius: 0 2rem 0 2rem; */
   /* border: 2px solid black; */
 }
 
@@ -660,6 +665,7 @@ img , .smooth{
   border-radius:0 2rem 0 2rem ;
   border: 2px solid var(--luc);
 }
+
 
 .seafood-buy:hover a {
   color: rgb(236, 236, 109);
