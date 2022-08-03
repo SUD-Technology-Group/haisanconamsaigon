@@ -37,6 +37,18 @@ app.get('/', (req, res) => {
     res.render('home')
 })
 
-app.use('/product', ProductRouter)
+app.get('/seafood', (req, res) => {
+    res.render('seafood');
+})
+
+app.get('/menu-party', (req, res) => {
+    res.render('menu-party');
+})
+
+app.get('/menu-food', (req, res) => {
+    res.render('menu-food');
+})
+
+app.use('/products', ProductRouter)
 
 app.listen(port, () => console.log('Server started'))

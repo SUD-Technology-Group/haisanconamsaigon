@@ -34,6 +34,7 @@ const ProductController = {
 
     // Get product: get one
     getProductDetail: async (req, res, next) => {
+        return res.render('detail');
         await products.findOne({ slug: req.params.slug })
             .then(product => {
                 if (!product) {
