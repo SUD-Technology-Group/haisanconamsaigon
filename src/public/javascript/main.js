@@ -1,4 +1,12 @@
 
+// $(window).scroll(function() {
+//     if ($(this).scrollTop() == 0) {
+//         console.log('passed');
+//         //Do whatever you want to do
+//         $('#page-header').addClass('d-none');
+//     }
+// });
+
 $('.cs-5').owlCarousel({
     loop: true,
     margin: 10,
