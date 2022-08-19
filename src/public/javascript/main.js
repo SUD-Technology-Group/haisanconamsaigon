@@ -58,6 +58,12 @@ $(".icon_map").click(function(){
     $(".map_list").toggle('slow');
   });
 
+$('.seafood-buy').hover(function() {
+    $(this).children('a').text('Thêm vào giỏ');
+}, function() {
+    $(this).children('a').text('Thưởng thức ngay');
+})
+
 
 $(document).ready(() => {
     $(function () {
