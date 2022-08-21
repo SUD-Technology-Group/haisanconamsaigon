@@ -485,7 +485,7 @@ body.slider__body {
     text-transform: uppercase;
     font-weight: 700;
     border-bottom: 1px dashed #d7d7d7;
- transform: translateX(50%);
+    transform: translateX(50%);
     /* border: 2px solid black; */
 }
 
@@ -541,10 +541,10 @@ img , .smooth{
 .seafood-box {
   display: inline-block;
   position: relative;
-  width: 32% !important;
+  width: 24.3% !important;
   height: 35vh; 
   margin-bottom: 20px;
-  padding: 0 20px;
+  padding: 0 10px;
   
 }
 
@@ -862,7 +862,7 @@ a.watch-detail {
 .social_fixed { position: fixed; top: 35%; right: 15px; z-index: 111; }
 .social_fixed a { display: block; width: 45px; position: relative; margin-bottom: 15px; animation: beat-2 1s ease infinite alternate; }
 .social_fixed a img { max-width: 100%; }
-.social_fixed a:hover img, .social_fixed a:hover  { transform: scale(1.05, 1.05); }
+.social_fixed a:hover img, .social_fixed a:hover  { transform: scale(1.1, 1.1); }
 
 .map_list { position: absolute; right: calc(100% + 10px); top: 0; width: 100%; min-width: 140px; display: none; }
 .icon_map { position: relative; margin-bottom: 10px; cursor: pointer; }
@@ -911,9 +911,9 @@ a.watch-detail {
 }
 
 .product-detail-main { 
-  border: 2px solid black;
+  /* border: 2px solid black; */
   width: 100%;
-  min-height: 2000px;
+  min-height: 100vh;
 }
 
 .product-image-box {
@@ -921,6 +921,90 @@ a.watch-detail {
   height: 400px;
 }
 
+.bolder {
+  font-weight: bolder;
+}
+
+.prod-price {
+  font-size: 30px;
+  color: var(--do)
+}
+
+.product-info-box {
+  height: 450px;
+  position: relative;
+}
+
+.cart-2 {
+  outline: none;
+  border: 0;
+  background: var(--luc);
+  padding: 12px;
+  color: yellow;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+  transition: 0.5s width;
+}
+.cart_clk {
+  width: calc(100% - 75px);
+}
+.crtdiv {
+  border: 1px solid var(--luc);
+  width: 250px;
+  border-radius: 4px;
+  position: absolute;
+  bottom: 0px;
+  background: #eee;
+}
+.fa {
+  font-size: 16px;
+}
+.cart-2 .fa {
+  font-size: 26px;
+  position: relative;
+  padding: 0 5px 0 0;
+}
+.cart-2 .fa:after {
+  position: absolute;
+  content: attr(data-before);
+  color: #000;
+  font-family: 'Lato', sans-serif;
+  left: 11px;
+  font-weight: bold;
+  top: 5px;
+  font-size: 12px;
+}
+.qty {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  color: var(--luc);
+}
+.dec,
+.inc {
+  cursor: pointer;
+}
+.num {
+  width: 22px;
+  display: inline-block;
+  text-align: Center;
+}
+
+.m-heading {
+  width: 100%;
+  background-color: #f4f4f0;
+  text-align: center;
+  line-height: 40px;
+  color: var(--xanh);
+}
+
+.no-padding {
+  padding: 0 !important;
+}
 
 /* Product End */
 
@@ -928,6 +1012,15 @@ a.watch-detail {
 @media (max-height: 800px) {
   body {
     font-size: 0.85rem !important;
+  }
+
+  .navbar-item {
+    padding: 1px 15px !important;
+  }
+
+  .seafood-box {
+    width: 24.3% !important;
+    padding: 0 10px !important;
   }
 
   .seafood-content-box {
@@ -957,7 +1050,7 @@ a.watch-detail {
   } 
 
   h1 {
-    font-size: 35px !important;
+    font-size: 32px !important;
   }
 
   .two {
@@ -1005,5 +1098,12 @@ a.watch-detail {
     font-size: 14px;
   }
 
-  
+  .mapouter{position:relative;text-align:right;width:100%;height:350px !important;}
+  .gmap_canvas {overflow:hidden;background:none!important;width:100%;height:350px !important;}
+  .gmap_iframe {height:350px!important;}
+}
+
+
+#footer {
+  height: 400px;
 }

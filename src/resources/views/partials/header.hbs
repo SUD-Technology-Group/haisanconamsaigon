@@ -59,7 +59,16 @@
                 <nav class="header-navbar">
                     <div class="container">
         <ul class="navbar-list">
-            <li id="home" onclick='window.location.href="/home"' class="navbar-item current smooth"><a href="/">Trang chủ</a></li>
+            <li id="home" onclick='window.location.href="/"' class="navbar-item current smooth"><a href="/">Trang chủ <i class="fas fa-angle-down"></i></a>
+                <ul class="navbar-menu">
+                    <li class="navbar-menu-item smooth">
+                        <a href="">Giới thiệu</a>
+                        
+                    </li>
+                    
+                    
+                </ul>
+            </li>
             <li id="contact" class="navbar-item">
 
                 <a href="/menu-party">Menu đặt tiệc</a>
@@ -83,25 +92,20 @@
                     
                 </ul>
             </li>
-            <li id="news" class="navbar-item"><a href="/seafood">Hải sản sống</a></li>
-            <li id="policy" class="navbar-item">
-                <a href="/policy">Chính sách <i class="fas fa-angle-down"></i></a>
-                <ul class="navbar-menu" style="width: 280px">
-                    <li class="navbar-menu-item smooth">
-                        <a href="">Chính sách giao hàng</a>
-                    </li>
-                    <li class="navbar-menu-item smooth">
-                        <a href="">Chính sách đại lý</a>
-                    </li>
-                    <li class="navbar-menu-item smooth">
-                        <a href="">Chính sách cộng tác viên</a>
-                    </li>
-                    <li class="navbar-menu-item smooth">
-                        <a href="">Chính sách bảo hành</a>
-                    </li>
-                </ul>
+            <li id="" class="navbar-item">
+                <a href="/seafood">Hải sản sống</a>
             </li>
-            <li id="discount" class="navbar-item">
+            
+            {{!-- <li id="" class="navbar-item">
+                <a href="/album">Album</a>
+            </li> --}}
+            {{!-- <li id="news" class="navbar-item">
+                <a href="/news">Tin tức</a>
+            </li> --}}
+            <li id="contact" class="navbar-item">
+                <a href="/contact">Liên hệ</a>
+            </li>
+            <li id="contact" class="navbar-item">
                 <a href="/discount">Khuyến mãi</a>
             </li>
             
