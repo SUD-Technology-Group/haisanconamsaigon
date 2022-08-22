@@ -32,7 +32,10 @@
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v14.0" nonce="CwREccpW"></script>
    {{> header}}
     {{{body}}}
-    
+    {{#if hideFooter}}
+    {{else}}
+      {{> footer}}
+    {{/if}}
     <div class="social_fixed">
   <a class="cart smooth" href="gio-hang/" data-cart="0"></a>
   {{!-- <div class="icon_map"> <img class="transition" src="/img/icon_map.png" alt="icon map">

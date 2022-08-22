@@ -1,6 +1,6 @@
 const express = require('express')
 const handlebars = require('express-handlebars')
-const port = process.env.PORT || 8080
+const port = process.env.PORT || 3000
 const app = express()
 const path = require('path')
 require('dotenv').config()
@@ -11,7 +11,6 @@ const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 
 // router
-const ProductRouter = require('./resources/routers/ProductsRouter')
 
 db.connect();
 
@@ -34,7 +33,9 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 
 app.get('/', (req, res) => {
-    res.render('home')
+    res.render('home', {
+        hideFooter: true
+    })
 })
 
 app.get('/seafood', (req, res) => {
@@ -49,6 +50,5 @@ app.get('/menu-food', (req, res) => {
     res.render('menu-food');
 })
 
-app.use('/products', ProductRouter)
 
 app.listen(port, () => console.log('Server started'))
