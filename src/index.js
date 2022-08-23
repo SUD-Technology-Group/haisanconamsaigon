@@ -50,5 +50,9 @@ app.get('/menu-food', (req, res) => {
     res.render('menu-food');
 })
 
+app.get('/admin', (req, res) => {
+    res.render('adminHome', { layout: 'admin' })
+})
+
 
 app.listen(port, () => console.log('Server started'))
