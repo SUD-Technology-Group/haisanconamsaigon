@@ -50,3 +50,5 @@ const SeafoodController = {
 
 
 }
+
+module.exports = SeafoodController;

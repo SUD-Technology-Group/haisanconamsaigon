@@ -1,5 +1,3 @@
-'use strict';
-
 let multer = require('multer');
 let fs = require('fs-extra');
 
