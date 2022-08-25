@@ -11,7 +11,7 @@ const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 
 // router
-
+const AdminRouter = require('./resources/routers/AdminRouter')
 db.connect();
 
 app.set('view engine', 'hbs')
@@ -30,7 +30,7 @@ app.use(session({ cookie: { maxAge: 30000 } }))
 app.use(flash())
 app.use(bodyParser.urlencoded({ extended: false }))
 
-
+app.use('/admin', AdminRouter)
 
 app.get('/', (req, res) => {
     res.render('home', {
@@ -50,9 +50,13 @@ app.get('/menu-food', (req, res) => {
     res.render('menu-food');
 })
 
-app.get('/admin', (req, res) => {
-    res.render('adminHome', { layout: 'admin' })
-})
+// app.get('/admin', (req, res) => {
+//     res.render('adminHome', { layout: 'admin' })
+// })
 
+
+app.get('/shopping-cart', (req, res) => {
+    res.render('shoppingCart')
+})
 
 app.listen(port, () => console.log('Server started'))
