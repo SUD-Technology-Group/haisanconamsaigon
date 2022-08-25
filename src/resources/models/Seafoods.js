@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 var slug = require('mongoose-slug-generator');
+mongoose.plugin(slug);
 
 const Seafoods = new Schema({
     name: {type: String, required: true},
@@ -9,7 +10,8 @@ const Seafoods = new Schema({
     description: {type: String},
     quantity: {type: Number},
     price: {type: Number},
-    bought: {type: Number}
+    bought: {type: Number, default: 0},
+    slug: {type: String, slug: 'name'}
 },
 {
     timestamps: true
