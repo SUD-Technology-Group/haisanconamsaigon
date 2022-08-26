@@ -1,12 +1,15 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
-const connect = async () => {
+async function connect() {
     try {
-        await mongoose.connect('mongodb+srv://sheldon124:Dung1247@cluster0.phwvla3.mongodb.net/haisaiconamsaigon?retryWrites=true&w=majority')
+        await mongoose.connect('mongodb+srv://sudTech:9999@cluster0.vlcj1l2.mongodb.net/conamsaigon?retryWrites=true&w=majority', {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        })
         console.log('Connect to DB successfully')
     } catch (error) {
-        console.log("Connect failed " + error)
+        console.log("Connect failed conamsaigon " + error)
     }
 }
 
-module.exports = { connect }
+module.exports = { connect };

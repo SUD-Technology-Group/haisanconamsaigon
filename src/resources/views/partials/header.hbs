@@ -29,93 +29,95 @@
         </div>
     </div> --}}
     <div class="header-body">
-        
-            <div class="header-body--content">
-                <div class="header-logo">
-                    <img src="http://runecom04.runtime.vn/Uploads/shop2005/images/logo.png" alt="">
-                </div>
-                    <div class="header-right-corner">
-                        <span class="header-hotline">
-                        
-                        <span style="color: crimson"><i class="fas fa-phone"></i> Hotline: 0949 515 588</span>
-                    </span>
-                        {{!-- <div class="header-search">
-                        <form class="search-form" action="">
-                            <input placeholder="Nhập từ khóa tìm kiếm" type="text">
-                            <button type="submit">Tìm ngay</button>
-                        </form>
-                    </div> --}}
-                    <ul class="header-body-list">
-                        <li class="header-body-item px-2">
-                            <i class="fas fa-user"></i>
-                            Tài khoản
+
+        <div class="header-body--content">
+            <div class="header-logo">
+                <img src="http://runecom04.runtime.vn/Uploads/shop2005/images/logo.png" alt="">
+            </div>
+            <div class="header-right-corner">
+                <span class="header-hotline">
+
+                    <span style="color: crimson"><i class="fas fa-phone"></i> Hotline: 0949 515 588</span>
+                </span>
+                {{!-- <div class="header-search">
+                    <form class="search-form" action="">
+                        <input placeholder="Nhập từ khóa tìm kiếm" type="text">
+                        <button type="submit">Tìm ngay</button>
+                    </form>
+                </div> --}}
+                <ul class="header-body-list">
+                    <li style="cursor: pointer;" onclick='window.location.href="/login"' class="header-body-item px-2">
+                        <i class="fas fa-user"></i>
+                        Tài khoản
+                    </li>
+                    <li style="cursor: pointer;" onclick='window.location.href="/shopping-cart"'
+                        class="header-body-item px-2">
+                        <i class="fas fa-shopping-cart"></i>
+                        Giỏ hàng
+                    </li>
+                </ul>
+            </div>
+            <nav class="header-navbar">
+                <div class="container">
+                    <ul class="navbar-list">
+                        <li id="home" onclick='window.location.href="/"' class="navbar-item current smooth"><a
+                                href="/">Trang chủ <i class="fas fa-angle-down"></i></a>
+                            <ul class="navbar-menu">
+                                <li class="navbar-menu-item smooth">
+                                    <a href="">Giới thiệu</a>
+
+                                </li>
+
+
+                            </ul>
                         </li>
-                        <li class="header-body-item px-2">
-                            <i class="fas fa-shopping-cart"></i>
-                            Giỏ hàng
+                        <li id="contact" class="navbar-item">
+
+                            <a href="/menu-party">Menu đặt tiệc</a>
                         </li>
+
+                        <li id="collections" class="navbar-item">
+                            <a href="/menu-food">Menu món ăn <i class="fas fa-angle-down"></i></a>
+                            <ul class="navbar-menu">
+                                <li class="navbar-menu-item smooth">
+                                    <a href="">Các môn hải sản</a>
+
+                                </li>
+                                <li class="navbar-menu-item smooth">
+                                    <a href="">Khai vị</a>
+
+                                </li>
+                                <li class="navbar-menu-item smooth">
+                                    <a href="">Đồ uống</a>
+
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li id="" class="navbar-item">
+                            <a href="/seafood">Hải sản sống</a>
+                        </li>
+
+                        {{!-- <li id="" class="navbar-item">
+                            <a href="/album">Album</a>
+                        </li> --}}
+                        {{!-- <li id="news" class="navbar-item">
+                            <a href="/news">Tin tức</a>
+                        </li> --}}
+                        <li id="contact" class="navbar-item">
+                            <a href="/contact">Liên hệ</a>
+                        </li>
+                        <li id="contact" class="navbar-item">
+                            <a href="/discount">Khuyến mãi</a>
+                        </li>
+
+                        {{!-- <li id="service" class="navbar-item"><a href="/service">Dịch vụ</a></li> --}}
+
                     </ul>
                 </div>
-                <nav class="header-navbar">
-                    <div class="container">
-        <ul class="navbar-list">
-            <li id="home" onclick='window.location.href="/"' class="navbar-item current smooth"><a href="/">Trang chủ <i class="fas fa-angle-down"></i></a>
-                <ul class="navbar-menu">
-                    <li class="navbar-menu-item smooth">
-                        <a href="">Giới thiệu</a>
-                        
-                    </li>
-                    
-                    
-                </ul>
-            </li>
-            <li id="contact" class="navbar-item">
+            </nav>
+        </div>
 
-                <a href="/menu-party">Menu đặt tiệc</a>
-            </li>
-            
-            <li id="collections" class="navbar-item">
-                <a href="/menu-food">Menu món ăn <i class="fas fa-angle-down"></i></a>
-                <ul class="navbar-menu">
-                    <li class="navbar-menu-item smooth">
-                        <a href="">Các môn hải sản</a>
-                        
-                    </li>
-                    <li class="navbar-menu-item smooth">
-                        <a href="">Khai vị</a>
-                        
-                    </li>
-                    <li class="navbar-menu-item smooth">
-                        <a href="">Đồ uống</a>
-                        
-                    </li>
-                    
-                </ul>
-            </li>
-            <li id="" class="navbar-item">
-                <a href="/seafood">Hải sản sống</a>
-            </li>
-            
-            {{!-- <li id="" class="navbar-item">
-                <a href="/album">Album</a>
-            </li> --}}
-            {{!-- <li id="news" class="navbar-item">
-                <a href="/news">Tin tức</a>
-            </li> --}}
-            <li id="contact" class="navbar-item">
-                <a href="/contact">Liên hệ</a>
-            </li>
-            <li id="contact" class="navbar-item">
-                <a href="/discount">Khuyến mãi</a>
-            </li>
-            
-            {{!-- <li id="service" class="navbar-item"><a href="/service">Dịch vụ</a></li> --}}
-            
-        </ul>
     </div>
-                </nav>
-            </div>
-        
-    </div>
-    
+
 </header>

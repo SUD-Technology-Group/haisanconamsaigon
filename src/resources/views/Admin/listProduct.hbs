@@ -1,0 +1,315 @@
+<style>
+    .form-group-container {
+        width: 100%;
+        background-color: #fff;
+        position: relative;
+        padding: 20px;
+        border-radius: 4px;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    }
+
+    input[type="file"] {
+        display: none;
+    }
+
+    .form-group-container label {
+        display: block;
+        position: relative;
+        background-color: #4283c5;
+        font-size: 18px;
+        color: #fff;
+        text-align: center;
+        width: 50%;
+        padding: 10px 0;
+        margin: auto;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .form-group-container label:hover {
+        background-color: #4283c5;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+
+    .form-group-container label i {
+        color: #fff;
+    }
+
+    .form-group-container #num-of-file {
+        text-align: center;
+        margin: 20px 0 30px 0;
+    }
+
+    #images-upload {
+        width: 90%;
+        border: 1px solid #000;
+        margin: auto;
+        position: relative;
+        display: flex;
+        justify-content: space-evenly;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .form-group-container figure {
+        width: 45%;
+    }
+
+    .form-group-container img {
+        width: 100%;
+    }
+
+    .form-group-container figcaption {
+        text-align: center;
+        font-size: 12px;
+        margin-top: 5px;
+    }
+</style>
+
+<h2 class="h-title">
+    <span>Danh sách sản phẩm</span>
+</h2>
+
+<div class="row">
+    <div class=" mx-auto">
+        <div class="bg-white rounded-lg shadow-sm p-5">
+            <!-- Credit card form tabs -->
+            <ul role="tablist" class="nav bg-light nav-pills rounded-pill nav-fill mb-3">
+                <li class="nav-item">
+                    <a data-toggle="pill" href="#nav-tab-card" class="nav-link active rounded-pill">
+                        <i class="fas fa-fish"></i>
+                        Danh sách hải sản
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a data-toggle="pill" href="#nav-tab-paypal" class="nav-link rounded-pill">
+                        <i class="fas fa-book"></i>
+                        Danh sách thực đơn
+                    </a>
+                </li>
+            </ul>
+            <!-- End -->
+
+
+            <!-- Credit card form content -->
+            <div class="tab-content">
+
+                <!-- credit card info-->
+                <div id="nav-tab-card" class="tab-pane fade show active">
+                    {{#if success}}
+                    <p class="alert alert-success">{{success}}</p>
+                    {{/if}}
+                    {{#if error}}
+                    <p class="alert alert-danger">{{error}}</p>
+                    {{/if}}
+                    <table class="table align-middle mb-0 bg-white">
+                        <thead class="bg-light">
+                            <tr>
+                                <th>Name</th>
+                                <th>Title</th>
+                                <th>Status</th>
+                                <th>Position</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" alt=""
+                                            style="width: 45px; height: 45px" class="rounded-circle" />
+                                        <div class="ms-3">
+                                            <p class="fw-bold mb-1">John Doe</p>
+                                            <p class="text-muted mb-0">john.doe@gmail.com</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="fw-normal mb-1">Software engineer</p>
+                                    <p class="text-muted mb-0">IT department</p>
+                                </td>
+                                <td>
+                                    <span class="badge badge-success rounded-pill d-inline">Active</span>
+                                </td>
+                                <td>Senior</td>
+                                <td>
+                                    <button type="button" class="btn btn-link btn-sm btn-rounded">
+                                        Edit
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img src="https://mdbootstrap.com/img/new/avatars/6.jpg" class="rounded-circle"
+                                            alt="" style="width: 45px; height: 45px" />
+                                        <div class="ms-3">
+                                            <p class="fw-bold mb-1">Alex Ray</p>
+                                            <p class="text-muted mb-0">alex.ray@gmail.com</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="fw-normal mb-1">Consultant</p>
+                                    <p class="text-muted mb-0">Finance</p>
+                                </td>
+                                <td>
+                                    <span class="badge badge-primary rounded-pill d-inline">Onboarding</span>
+                                </td>
+                                <td>Junior</td>
+                                <td>
+                                    <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold"
+                                        data-mdb-ripple-color="dark">
+                                        Edit
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle"
+                                            alt="" style="width: 45px; height: 45px" />
+                                        <div class="ms-3">
+                                            <p class="fw-bold mb-1">Kate Hunington</p>
+                                            <p class="text-muted mb-0">kate.hunington@gmail.com</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="fw-normal mb-1">Designer</p>
+                                    <p class="text-muted mb-0">UI/UX</p>
+                                </td>
+                                <td>
+                                    <span class="badge badge-warning rounded-pill d-inline">Awaiting</span>
+                                </td>
+                                <td>Senior</td>
+                                <td>
+                                    <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold"
+                                        data-mdb-ripple-color="dark">
+                                        Edit
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- End -->
+                <div id="nav-tab-paypal" class="tab-pane fade">
+                    {{#if success}}
+                    <p class="alert alert-success">{{success}}</p>
+                    {{/if}}
+                    {{#if error}}
+                    <p class="alert alert-danger">{{error}}</p>
+                    {{/if}}
+                    <table class="table align-middle mb-0 bg-white">
+                        <thead class="bg-light">
+                            <tr>
+                                <th>Name</th>
+                                <th>Title</th>
+                                <th>Status</th>
+                                <th>Position</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" alt=""
+                                            style="width: 45px; height: 45px" class="rounded-circle" />
+                                        <div class="ms-3">
+                                            <p class="fw-bold mb-1">John Doe</p>
+                                            <p class="text-muted mb-0">john.doe@gmail.com</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="fw-normal mb-1">Software engineer</p>
+                                    <p class="text-muted mb-0">IT department</p>
+                                </td>
+                                <td>
+                                    <span class="badge badge-success rounded-pill d-inline">Active</span>
+                                </td>
+                                <td>Senior</td>
+                                <td>
+                                    <button type="button" class="btn btn-link btn-sm btn-rounded">
+                                        Edit
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img src="https://mdbootstrap.com/img/new/avatars/6.jpg" class="rounded-circle"
+                                            alt="" style="width: 45px; height: 45px" />
+                                        <div class="ms-3">
+                                            <p class="fw-bold mb-1">Alex Ray</p>
+                                            <p class="text-muted mb-0">alex.ray@gmail.com</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="fw-normal mb-1">Consultant</p>
+                                    <p class="text-muted mb-0">Finance</p>
+                                </td>
+                                <td>
+                                    <span class="badge badge-primary rounded-pill d-inline">Onboarding</span>
+                                </td>
+                                <td>Junior</td>
+                                <td>
+                                    <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold"
+                                        data-mdb-ripple-color="dark">
+                                        Edit
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle"
+                                            alt="" style="width: 45px; height: 45px" />
+                                        <div class="ms-3">
+                                            <p class="fw-bold mb-1">Kate Hunington</p>
+                                            <p class="text-muted mb-0">kate.hunington@gmail.com</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="fw-normal mb-1">Designer</p>
+                                    <p class="text-muted mb-0">UI/UX</p>
+                                </td>
+                                <td>
+                                    <span class="badge badge-warning rounded-pill d-inline">Awaiting</span>
+                                </td>
+                                <td>Senior</td>
+                                <td>
+                                    <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold"
+                                        data-mdb-ripple-color="dark">
+                                        Edit
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- End -->
+
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        let menu
+        $(document).ready(function () {
+            $.ajax({
+                url: 'http://localhost:3000/menu/all',
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    console.log(data)
+                }
+            })
+        })
+    </script>

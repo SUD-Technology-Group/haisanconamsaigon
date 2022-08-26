@@ -1,0 +1,332 @@
+<style>
+    .units {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .units>.btn {
+        background: var(--xanh);
+        color: white;
+    }
+
+    .units>.number {
+        line-height: 2;
+        padding: 0 5px;
+    }
+
+    .success-order {
+        text-align: center;
+        padding: 40px 0;
+        background: #EBF0F5;
+    }
+
+    .card h1 {
+        color: #88B04B;
+        font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+        font-weight: 900;
+        font-size: 40px;
+        margin-bottom: 10px;
+    }
+
+    .card p {
+        color: #404F5E;
+        font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+        font-size: 20px;
+        margin: 0;
+    }
+
+    .card i {
+        color: #9ABC66;
+        font-size: 100px;
+        line-height: 200px;
+        margin-left: -15px;
+    }
+
+    .card {
+        background: white;
+        padding: 60px;
+        border-radius: 4px;
+        box-shadow: 0 2px 3px #C8D0D8;
+        display: inline-block;
+        margin: 0 auto;
+    }
+
+    /* cart error*/
+    .card-error h1 {
+        color: red;
+        font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+        font-weight: 900;
+        font-size: 40px;
+        margin-bottom: 10px;
+    }
+
+    .card-error p {
+        color: #404F5E;
+        font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+        font-size: 20px;
+        margin: 0;
+    }
+
+    .card-error i {
+        color: red;
+        font-size: 100px;
+        line-height: 200px;
+    }
+
+    .card-error {
+        background: white;
+        padding: 60px;
+        border-radius: 4px;
+        box-shadow: 0 2px 3px #C8D0D8;
+        display: inline-block;
+        margin: 0 auto;
+    }
+</style>
+<div class="container">
+    <h2 class="h-title">
+        <span>Giỏ hàng của tôi</span>
+    </h2>
+    {{#if error}}
+    <div class="success-order">
+        <div class="card-error">
+            <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
+                <i class="fas fa-times"></i>
+            </div>
+            <h1>Đơn hàng thất bại</h1>
+            <p>{{error}}<br /> </p>
+            <a href="/collections/Lop-Advance-Samson-1" class="btn btn-info btn-lg mt-4">Tiếp tục mua hàng</a>
+        </div>
+    </div>
+    {{/if}}
+    {{#if success}}
+    <div class="success-order">
+        <div class="card">
+            <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
+                <i class="checkmark">✓</i>
+            </div>
+            <h1>Bạn đã đặt hàng thành công</h1>
+            <p>Nhân viên sẽ liên hệ cho bạn sớm nhất;<br /> </p>
+            <a href="/collections/Lop-Advance-Samson-1" class="btn btn-info btn-lg mt-4">Tiếp tục mua hàng</a>
+        </div>
+    </div>
+
+    {{else}}
+
+    <form method="post" action="/users/reOrder">
+        <div class="row">
+            <section class="col-md-8" id="cart-container">
+                <table class="table table-hover">
+                    <thead id="thead-cart">
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Tên sản phẩm</th>
+                            <th scope="col">Giá</th>
+                            <th scope="col">Số lượng</th>
+                            <th scope="col">Thành tiền</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="body-cart">
+                        <tr style="background-color: white" class="product-item">
+                            <th scope="row">
+                                <a target="_blank" href="/products/${item.slug}">
+                                    <div style="float: left"><img style="height: 100px; width: 100px"
+                                            src="http://runecom04.runtime.vn/Uploads/shop2005/images/product/hau-sua-1_master.jpg"
+                                            alt=""></div>
+                                </a>
+                            </th>
+                            <td><a target="_blank" href="/products/${item.slug}">
+                                    Hàu sữa 50 con</a></td>
+                            <td class="total-product-price"><strong>129.000đ</strong></td>
+                            <td>
+                                <div class="units">
+                                    <div class="btn minus" onclick="changeNumberOfUnit('minus', '${item.id}')">-</div>
+                                    <div class="number">4</div>
+                                    <div class="btn plus" onclick="changeNumberOfUnit('plus', '${item.id}')">+</div>
+                                </div>
+                                <input id="${item.id}" class="product-quantity w-25 pl-1 d-none"
+                                    value="${item.numberOfUnit}" type="number">
+                            </td>
+                            <td><strong class="total-product">129.000đ</strong></td>
+                            <td>
+                                <button onclick="deleteProduct('${item.id}')" class="btn btn-danger">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </td>
+                        </tr>
+
+                        <tr style="background-color: white" class="product-item">
+                            <th scope="row">
+                                <a target="_blank" href="/products/${item.slug}">
+                                    <div style="float: left"><img style="height: 100px; width: 100px"
+                                            src="http://runecom04.runtime.vn/Uploads/shop2005/images/product/hau-sua-1_master.jpg"
+                                            alt=""></div>
+                                </a>
+                            </th>
+                            <td><a target="_blank" href="/products/${item.slug}">
+                                    Hàu sữa 50 con</a></td>
+                            <td class="total-product-price"><strong>129.000đ</strong></td>
+                            <td>
+                                <div class="units">
+                                    <div class="btn minus" onclick="changeNumberOfUnit('minus', '${item.id}')">-</div>
+                                    <div class="number">4</div>
+                                    <div class="btn plus" onclick="changeNumberOfUnit('plus', '${item.id}')">+</div>
+                                </div>
+                                <input id="${item.id}" class="product-quantity w-25 pl-1 d-none"
+                                    value="${item.numberOfUnit}" type="number">
+                            </td>
+                            <td><strong class="total-product">129.000đ</strong></td>
+                            <td>
+                                <button onclick="deleteProduct('${item.id}')" class="btn btn-danger">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                    <tbody>
+                        <tr>
+                            <td id="total-cart" colspan="6"><strong></strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <div class="col-md-4">
+                <table class="table table-hover">
+                    <thead id="thead-cart">
+                        <th scope="col">Thông tin khách hàng</th>
+                    </thead>
+                </table>
+                <div class="form-group">
+                    <input name="fullname" type="text" required="" class="form-input form-control mb-2 ml-3"
+                        value="{{fullname}}" placeholder="Tên khách hàng">
+                </div>
+                <div class="form-group">
+
+                    <input name="email" type="email" required="" class="form-input form-control mb-2 ml-3" value="{{email}}"
+                        placeholder="Email">
+                </div>
+                <div class="form-group">
+
+                    <input name="phone" type="text" required="" class="form-input form-control mb-2 ml-3" value="{{phone}}"
+                        placeholder="Số điện thoại">
+                </div>
+                <div class="form-group">
+
+                    <input name="address" type="text" required="" class="ml-3 form-input form-control mb-2"
+                        value="{{address}}" placeholder="Địa chỉ">
+                </div>
+
+                <input id="product_list" name="product_list" class="d-none" type="text">
+                <input id="total" name="total" value="{{total}}" class="d-none" type="number">
+                <input id="sale" value="chưa có sale" name="sale" placeholder="Tên sale" class="d-none" type="text">
+                <div class="col-12 mb-5 d-flex">
+                    <div class="m-auto">
+                        <a href="/collections/Lop-Advance-Samson-1" class="btn btn-info btn-lg mr-2 ">Tiếp tục mua
+                            hàng</a>
+                        <button onclick="submitFormCart()" type="submit" class="btn btn-warning btn-lg">Đặt
+                            hàng</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    {{/if}}
+</div>
+<script>
+
+
+    let shoppingCart
+    if (localStorage.getItem('shopping-cart')) {
+        shoppingCart = JSON.parse(localStorage.getItem('shopping-cart'))
+    } else {
+        shoppingCart = JSON.parse(localStorage.setItem('shopping-cart', '[]'))
+    }
+
+    const bodyCart = document.getElementById('body-cart')
+    const totalPrice = document.getElementById('total-cart')
+    //renderProductToCart()
+    //renderTotalPrice()
+    function updateShoppingCart() {
+        localStorage.setItem('shopping-cart', JSON.stringify(shoppingCart))
+        renderProductToCart()
+        renderTotalPrice()
+    }
+    function renderProductToCart() {
+        bodyCart.innerHTML = ``
+        shoppingCart.forEach(item => {
+            item = JSON.parse(item)
+            bodyCart.innerHTML += `<tr style="background-color: white" class="product-item">
+            <th scope="row">
+                <a target="_blank" href="/products/${item.slug}">
+                    <div style="float: left"><img style="height: 130px; width: 130px" src="${item.img}" alt=""></div>
+                   
+                </a>
+            </th>
+            <td><a  target="_blank" href="/products/${item.slug}">
+                    ${item.id}</a></td>
+            <td class="total-product-price"><strong>${Number(item.price).toLocaleString('vi', { style: 'currency', currency: 'VND' })}</strong></td>
+            <td>
+                <div class="units">
+                    <div class="btn minus" onclick="changeNumberOfUnit('minus', '${item.id}')">-</div>
+                    <div class="number">${item.numberOfUnit}</div>
+                    <div class="btn plus" onclick="changeNumberOfUnit('plus', '${item.id}')">+</div>           
+                </div>
+                <input id="${item.id}" class="product-quantity w-25 pl-1 d-none" value="${item.numberOfUnit}" type="number">
+            </td>
+            <td><strong class="total-product">${Number(item.price * item.numberOfUnit).toLocaleString('vi', { style: 'currency', currency: 'VND' })}</strong></td>
+            <td>
+                <button onclick="deleteProduct('${item.id}')" class="btn btn-danger">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+            </td>
+        </tr>`
+        })
+    }
+    function deleteProduct(id) {
+        console.log('onclick')
+        shoppingCart = shoppingCart.filter(item => {
+            item = JSON.parse(item)
+            return item.id != id
+        })
+        updateShoppingCart()
+    }
+    function renderTotalPrice() {
+        let total = 0
+        shoppingCart.forEach(item => {
+            item = JSON.parse(item)
+            total += item.numberOfUnit * item.price
+        })
+        totalPrice.innerHTML = `TỔNG ĐƠN HÀNG ${total.toLocaleString('vi', { style: 'currency', currency: 'VND' })}`
+    }
+    function changeNumberOfUnit(action, id) {
+        shoppingCart = shoppingCart.map(item => {
+            item = JSON.parse(item)
+            let numberOfUnit = Number(item.numberOfUnit)
+            if (item.id === id) {
+                if (action == 'minus' && numberOfUnit > 1) {
+                    numberOfUnit--
+                } else if (action == 'plus') {
+                    numberOfUnit++
+                }
+            }
+            return JSON.stringify({
+                ...item,
+                numberOfUnit: numberOfUnit
+            })
+        })
+        updateShoppingCart()
+    }
+
+    function submitFormCart() {
+        let total = 0
+        shoppingCart.forEach(item => {
+            item = JSON.parse(item)
+            total += item.numberOfUnit * item.price
+        })
+        document.getElementById('product_list').value = JSON.stringify(shoppingCart)
+        document.getElementById('total').value = total
+        localStorage.removeItem('shopping-cart')
+    }
+
+</script>
