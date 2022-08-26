@@ -12,6 +12,8 @@ const bodyParser = require('body-parser')
 
 // router
 const AdminRouter = require('./resources/routers/AdminRouter')
+const SeafoodRouter = require('./resources/routers/SeafoodRouter')
+const MenuRouter = require('./resources/routers/MenuRouter')
 db.connect();
 
 app.set('view engine', 'hbs')
@@ -31,6 +33,8 @@ app.use(flash())
 app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use('/admin', AdminRouter)
+app.use('/seafood', SeafoodRouter)
+app.use('/menu/', MenuRouter)
 
 app.get('/', (req, res) => {
     res.render('home', {
@@ -38,9 +42,9 @@ app.get('/', (req, res) => {
     })
 })
 
-app.get('/seafood', (req, res) => {
-    res.render('seafood');
-})
+// app.get('/seafood', (req, res) => {
+//     res.render('seafood');
+// })
 
 app.get('/menu-party', (req, res) => {
     res.render('menu-party');

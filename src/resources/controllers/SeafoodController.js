@@ -1,37 +1,48 @@
 const fs = require('fs')
 const Seafoods = require('../models/Seafoods');
-
+const slugify = require('slugify');
 const SeafoodController = {
-    getAddSeafood: (req, res, next) => {
-        const success = req.flash('success') || '';
-        const error = req.flash('error') || '';
-
-        return res.render('/add/seafood');
-    },
     postAddSeafood: (req, res, next) => {
-        if(!req.file) {
+        if (!req.files) {
             req.flash('error', 'Vui lòng chọn hình sản phẩm');
-            return res.redirect('/add/seafood');
+            return res.redirect('/admin/add-product');
         }
-        let file = req.file;
-        const imagePath = "/uploads/seafood/" + file.filename;
+        let listImages = []
+        const file = req.files;
         const { name, size, description, quantity, price } = req.body;
-        
+        file.map(f => {
+            let url = `/uploads/seafood/${name}/${f.filename}`
+            listImages.push(url)
+        })
+        const slug = slugify(name, {
+            replacement: '-',
+            remove: false,
+            lower: false,
+            strict: false,
+            locale: 'vi',
+            trim: true
+        })
         const seafood = {
-            name, size, description, quantity, price,
-            image: imagePath
+            name, size, description, quantity, price, slug,
+            image: listImages
         }
-
-        new Seafoods(seafood).save()
-        req.flash('success', 'Thêm sản phẩm thành công');
-        return res.redirect('/add/seafood');
+        // res.json({ seafood })
+        return new Seafoods(seafood).save()
+            .then(() => {
+                req.flash('success', 'Thêm sản phẩm thành công');
+                return res.redirect('/admin/add-product');
+            })
+            .catch(err => {
+                req.flash('error', 'Thêm sản phẩm thất bại ' + err);
+                return res.redirect('/admin/add-product');
+            })
     },
     getDeleteSeafood: (req, res, next) => {
         const id = req.params.id;
         Seafoods.findByIdAndDelete(id)
             .then(seafood => {
                 fs.unlink(`src/public/${seafood.image}`, (err) => {
-                    if(!err) {
+                    if (!err) {
                         req.flash('success', 'Xóa sản phẩm thành công');
                         return res.redirect('/delete/seafood');
                     }
@@ -47,8 +58,6 @@ const SeafoodController = {
                 return res.redirect('/delete/seafood');
             })
     }
-
-
 }
 
 module.exports = SeafoodController;
