@@ -15,6 +15,7 @@ const Seafoods = new Schema({
 },
     {
         timestamps: true
-    })
+    }
+)
 
 module.exports = mongoose.model('Seafoods', Seafoods);
