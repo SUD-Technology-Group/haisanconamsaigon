@@ -1,6 +1,7 @@
 const fs = require('fs')
 const Seafoods = require('../models/Seafoods');
 const slugify = require('slugify');
+
 const SeafoodController = {
     postAddSeafood: (req, res, next) => {
         if (!req.files) {
