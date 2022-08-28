@@ -15,6 +15,8 @@ const AdminRouter = require('./resources/routers/AdminRouter')
 const SeafoodRouter = require('./resources/routers/SeafoodRouter')
 const MenuRouter = require('./resources/routers/MenuRouter')
 const UserRouter = require('./resources/routers/UserRouters')
+const CollectionRouter = require('./resources/routers/CollectionRouter')
+
 db.connect();
 
 app.set('view engine', 'hbs')
@@ -37,6 +39,7 @@ app.use('/admin', AdminRouter)
 app.use('/seafood', SeafoodRouter)
 app.use('/menu', MenuRouter)
 app.use('/users', UserRouter)
+app.use('/collections', CollectionRouter);
 app.get('/', (req, res) => {
     res.render('Pages/Others/home', {
         hideFooter: true
@@ -55,13 +58,21 @@ app.get('/menu-food', (req, res) => {
     res.render('Pages/Products/menu-food');
 })
 
+app.get('/contact', (req, res) => {
+    res.render('Pages/Others/contact');
+})
+
+app.get('/discount', (req, res) => {
+    res.render('Pages/Others/discount');
+})
+
 // app.get('/admin', (req, res) => {
 //     res.render('adminHome', { layout: 'admin' })
 // })
 
 
 app.get('/shopping-cart', (req, res) => {
-    res.render('/Pages/Others/shoppingCart')
+    res.render('Pages/Others/shoppingCart')
 })
 
 
