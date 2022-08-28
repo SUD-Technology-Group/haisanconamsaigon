@@ -112,7 +112,7 @@
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="listSeafood">
                             <tr>
                                 <td>
                                     <div class="d-flex align-items-center">
@@ -204,79 +204,65 @@
                     <table class="table align-middle mb-0 bg-white">
                         <thead class="bg-light">
                             <tr>
-                                <th>Name</th>
-                                <th>Title</th>
+                                <th>STT</th>
+                                <th>Tên</th>
                                 <th>Status</th>
                                 <th>Position</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
+                        <tbody id="listMenu">
+
+                        </tbody>
+                    </table>
+                </div>
+                <!-- End -->
+            </div>
+        </div>
+
+        {{!-- Modal: start --}}
+        <div id="listMenuModal">
+
+        </div>
+        <div id="listSeaFoodModal">
+
+        </div>
+        {{!-- Modal: end --}}
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/ckeditor/ckeditor.js"></script>
+    <script>
+        const listMenu = document.getElementById('listMenu');
+        const listSeafood = document.getElementById('listSeafood');
+        const listSeaFoodModal = document.getElementById('listSeaFoodModal');
+        const listMenuModal = document.getElementById('listMenuModal');
+        renderMenu()
+        function renderSeaFood() {
+            $.ajax({
+                url: 'http://localhost:3000/seafood/all',
+                type: 'GET',
+                dataType: 'json',
+                success: function (data, textStatus, xhr) {
+                    listSeafood.innerHTML = ``
+                    const list = data.menuList
+                    let index = 1;
+                    list.forEach(item => {
+                        listSeafood.innerHTML += `<tr>
+                                <td>
+                                    <p class="fw-bold mb-1">${index++}</p>
+                                </td>
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" alt=""
-                                            style="width: 45px; height: 45px" class="rounded-circle" />
-                                        <div class="ms-3">
-                                            <p class="fw-bold mb-1">John Doe</p>
-                                            <p class="text-muted mb-0">john.doe@gmail.com</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="fw-normal mb-1">Software engineer</p>
-                                    <p class="text-muted mb-0">IT department</p>
-                                </td>
-                                <td>
-                                    <span class="badge badge-success rounded-pill d-inline">Active</span>
-                                </td>
-                                <td>Senior</td>
-                                <td>
-                                    <button type="button" class="btn btn-link btn-sm btn-rounded">
-                                        Edit
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <img src="https://mdbootstrap.com/img/new/avatars/6.jpg" class="rounded-circle"
+                                        <img src="${item.image}" class="rounded-circle"
                                             alt="" style="width: 45px; height: 45px" />
                                         <div class="ms-3">
-                                            <p class="fw-bold mb-1">Alex Ray</p>
-                                            <p class="text-muted mb-0">alex.ray@gmail.com</p>
+                                            <p class="fw-bold mb-1">${item.name}</p>
                                         </div>
                                     </div>
-                                </td>
-                                <td>
-                                    <p class="fw-normal mb-1">Consultant</p>
-                                    <p class="text-muted mb-0">Finance</p>
-                                </td>
-                                <td>
-                                    <span class="badge badge-primary rounded-pill d-inline">Onboarding</span>
-                                </td>
-                                <td>Junior</td>
-                                <td>
-                                    <button type="button" class="btn btn-link btn-rounded btn-sm fw-bold"
-                                        data-mdb-ripple-color="dark">
-                                        Edit
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle"
-                                            alt="" style="width: 45px; height: 45px" />
-                                        <div class="ms-3">
-                                            <p class="fw-bold mb-1">Kate Hunington</p>
-                                            <p class="text-muted mb-0">kate.hunington@gmail.com</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="fw-normal mb-1">Designer</p>
-                                    <p class="text-muted mb-0">UI/UX</p>
                                 </td>
                                 <td>
                                     <span class="badge badge-warning rounded-pill d-inline">Awaiting</span>
@@ -288,28 +274,123 @@
                                         Edit
                                     </button>
                                 </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <!-- End -->
-
-            </div>
-        </div>
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script>
-        let menu
-        $(document).ready(function () {
+                            </tr>`
+                    })
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log('Error in Operation');
+                }
+            });
+        }
+        function renderMenu() {
             $.ajax({
                 url: 'http://localhost:3000/menu/all',
-                type: "GET",
-                dataType: "json",
-                success: function (data) {
-                    console.log(data)
+                type: 'GET',
+                dataType: 'json',
+                success: function (data, textStatus, xhr) {
+                    listMenu.innerHTML = ``
+                    listMenuModal.innerHTML = ``
+                    const list = data.menuList
+                    let index = 1;
+                    list.forEach(item => {
+                        let img = ``
+                        listMenu.innerHTML += `<tr>
+                                <td>
+                                    <p class="fw-bold mb-1">${index++}</p>
+                                </td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img src="${item.image}" class="rounded-circle"
+                                            alt="" style="width: 45px; height: 45px" />
+                                        <div class="ms-3">
+                                            <p class="fw-bold mb-1">${item.name}</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="badge badge-warning rounded-pill d-inline">Awaiting</span>
+                                </td>
+                                <td>Senior</td>
+                                <td>
+                                    <button data-toggle="modal" data-target="#menuModal${item.id}" type="button" class="btn btn-link btn-rounded btn-sm fw-bold"
+                                        data-mdb-ripple-color="dark">
+                                        Edit
+                                    </button>
+                                </td>
+                            </tr>`;
+                        listMenuModal.innerHTML += `<div id="menuModal${item.id}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div style="padding: 20px" class="modal-content">
+                            <form method="post" action="/menu/add" role="form" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label for="menu_name">Tên thực đơn <i class="fas fa-signature"></i></label>
+                                    <input type="text" name="menu_name" value="${item.name}" placeholder="Nhập tên thực đơn" required=""
+                                        class="form-control">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="cardNumber">Hình ảnh thực đơn <i class="far fa-images"></i></label>
+                                    <div class="input-group">
+                                        <div class="form-group-container">
+                                            <input id="product-image${item.id}" accept="image/*" required="" name="menu-image"
+                                                class="form-control input-md" onchange="previewMenu()" type="file">
+                                            <label for="product-image${item.id}">
+                                                <i class="fas fa-upload"></i>
+                                                Chọn ảnh thực đơn &nbsp;
+                                            </label>
+                                            <p id="num-of-file${item.id}">Chưa có ảnh nào được chọn</p>
+                                            <div class="images-upload" id="menu-upload">
+                                                <figure>
+                                                    <img src="${item.image}">
+                                                </figure>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="menu_description">Mô tả chi tiết thực đơn <i
+                                            class="fas fa-align-center"></i></label>
+                                    <textarea required="" id="menu_description" name="menu_description">${item.description}</textarea>
+                                </div>
+                                <button type="submit" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm">
+                                    Thêm thực đơn </button>
+                            </form>
+                            </div>
+                        </div>
+                        </div>`;
+                        CKEDITOR.replace('menu_description')
+                    })
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log('Error in Operation');
                 }
-            })
-        })
+            });
+        }
+
+        function previewImage(id) {
+            let fileInput = document.getElementById(`product-image${id}`);
+            let imageContainer = document.getElementById(`images-upload${id}`);
+            let numOfFiles = document.getElementById(`num-of-file${id}`);
+
+            imageContainer.innerHTML = ""
+            numOfFiles.textContent = `${fileInput.files.length} ảnh đã được chọn`;
+
+            for (i of fileInput.files) {
+                let reader = new FileReader()
+                let figure = document.createElement("figure")
+                let figCap = document.createElement("figcaption")
+
+                figCap.innerText = i.name
+                figure.appendChild(figCap)
+                reader.onload = () => {
+                    let img = document.createElement("img");
+                    img.setAttribute("src", reader.result);
+                    figure.insertBefore(img, figCap);
+                }
+                imageContainer.appendChild(figure);
+                reader.readAsDataURL(i)
+            }
+        }
+
+
     </script>

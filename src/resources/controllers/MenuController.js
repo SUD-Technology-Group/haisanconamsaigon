@@ -1,7 +1,7 @@
-
 const Menus = require('../models/Menu')
 const fs = require('fs')
 const slugify = require('slugify');
+const Menu = require('../models/Menu');
 
 const MenuController = {
     postAddMenu: (req, res, next) => {
@@ -37,11 +37,12 @@ const MenuController = {
         Menus.find()
             .then(menus => {
                 if (menus.length == 0) {
-                    return res.json({ menuList: "Không có sản thực đơn nào" })
+                    return res.json({ menuList, message: "Không có sản thực đơn nào" })
                 } else {
                     let menuList = []
                     menus.forEach(item => {
                         const currentMenu = {
+                            id: item._id,
                             name: item.name,
                             image: item.image,
                             description: item.description,
@@ -49,9 +50,21 @@ const MenuController = {
                         }
                         menuList.push(currentMenu)
                     })
-                    return res.json({ menuList })
+                    return res.json({ message: "Thành công", menuList })
                 }
             })
+    },
+    updateMenu: (req, res, next) => {
+        
+        Menu.findByIdAndUpdate(req.params.id, { $set: req.body }, (err, data) => {
+            if (err) {
+                req.flash('error', 'Cập nhật sản phẩm thất bại')
+                res.redirect('/admin/list-product')
+            } else {
+                req.flash('success', 'Cập nhật sản phẩm thành công')
+                res.redirect('/admin/list-product')
+            }
+        })
     }
 }
 

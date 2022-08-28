@@ -11,9 +11,9 @@ $('.cs-5').owlCarousel({
     loop: true,
     margin: 10,
     nav: true,
-    autoplay:true,
-    autoplayTimeout:2000,
-    autoplayHoverPause:true,
+    autoplay: true,
+    autoplayTimeout: 2000,
+    autoplayHoverPause: true,
     responsive: {
         0: {
             items: 1
@@ -31,9 +31,9 @@ $('.owl-carousel').owlCarousel({
     loop: true,
     margin: 10,
     nav: true,
-    autoplay:true,
-    autoplayTimeout:2000,
-    autoplayHoverPause:true,
+    autoplay: true,
+    autoplayTimeout: 2000,
+    autoplayHoverPause: true,
     responsive: {
         0: {
             items: 1
@@ -47,20 +47,20 @@ $('.owl-carousel').owlCarousel({
     }
 })
 
-$('.hidden-phone').click(function(e) {
+$('.hidden-phone').click(function (e) {
     e.preventDefault();
     console.log($(this))
     $(this).siblings().removeClass('current');
     $(this).addClass('current');
 })
 
-$(".icon_map").click(function(){
+$(".icon_map").click(function () {
     $(".map_list").toggle('slow');
-  });
+});
 
-$('.seafood-buy').hover(function() {
+$('.seafood-buy').hover(function () {
     $(this).children('a').text('Thêm vào giỏ');
-}, function() {
+}, function () {
     $(this).children('a').text('Thưởng thức ngay');
 })
 
@@ -123,16 +123,16 @@ $(document).ready(() => {
         });
     })
 
-    $('#btn').click(function() {
+    $('#btn').click(function () {
         $('#btn').toggleClass("cart_clk");
 
     });
-    $("#btn").one("click", function() {
+    $("#btn").one("click", function () {
         $('.cart .fa').attr('data-before', '1');
     });
 
     var prnum = $('.num').text();
-    $('.inc').click(function() {
+    $('.inc').click(function () {
         if (prnum > 0) {
             prnum++;
             $('.num').text(prnum);
@@ -140,7 +140,7 @@ $(document).ready(() => {
         }
 
     });
-    $('.dec').click(function() {
+    $('.dec').click(function () {
         if (prnum > 1) {
             prnum--;
             $('.num').text(prnum);
@@ -148,8 +148,6 @@ $(document).ready(() => {
         }
 
     });
-
-    
-}) 
+})
 
 
