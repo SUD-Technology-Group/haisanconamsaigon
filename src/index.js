@@ -38,7 +38,7 @@ app.use('/seafood', SeafoodRouter)
 app.use('/menu', MenuRouter)
 app.use('/users', UserRouter)
 app.get('/', (req, res) => {
-    res.render('home', {
+    res.render('Pages/Others/home', {
         hideFooter: true
     })
 })
@@ -48,11 +48,11 @@ app.get('/', (req, res) => {
 // })
 
 app.get('/menu-party', (req, res) => {
-    res.render('menu-party');
+    res.render('Pages/Products/menu-party');
 })
 
 app.get('/menu-food', (req, res) => {
-    res.render('menu-food');
+    res.render('Pages/Products/menu-food');
 })
 
 // app.get('/admin', (req, res) => {
@@ -61,7 +61,7 @@ app.get('/menu-food', (req, res) => {
 
 
 app.get('/shopping-cart', (req, res) => {
-    res.render('shoppingCart')
+    res.render('/Pages/Others/shoppingCart')
 })
 
 
