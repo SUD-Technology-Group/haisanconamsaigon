@@ -8,5 +8,5 @@ router.get('/', (req, res) => {
 })
 
 router.post('/add', store.array('product-image'), SeafoodController.postAddSeafood)
-
+router.get('/all', SeafoodController.getAllSeafood)
 module.exports = router

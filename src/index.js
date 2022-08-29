@@ -55,13 +55,8 @@ app.get('/menu-food', (req, res) => {
     res.render('Pages/Products/menu-food');
 })
 
-// app.get('/admin', (req, res) => {
-//     res.render('adminHome', { layout: 'admin' })
-// })
-
-
 app.get('/shopping-cart', (req, res) => {
-    res.render('/Pages/Others/shoppingCart')
+    res.render('Pages/Others/shoppingCart')
 })
 
 

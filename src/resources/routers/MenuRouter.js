@@ -8,5 +8,6 @@ router.get('/', (req, res) => {
 })
 router.get('/all', MenuController.getAllMenu)
 router.post('/add', storeMenu.single('menu-image'), MenuController.postAddMenu)
-
+router.post('/edit/:id', storeMenu.single('menu-image'), MenuController.updateMenu)
+router.get('/delete/:id', MenuController.deleteMenu)
 module.exports = router

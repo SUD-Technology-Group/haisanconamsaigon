@@ -42,38 +42,43 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-sm-4">
-                                <div class="form-group mb-4">
-                                    <label data-toggle="tooltip" title="Three-digits code on the back of your card">Số
-                                        lượng
-                                        <i class="fa fa-question-circle"></i>
-                                    </label>
-                                    <input type="number" placeholder="Nhập số lượng" name="quantity"
-                                        class="form-control" required="">
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label><span class="hidden-xs">Giá <i class="fas fa-money-bill"></i></span></label>
-                                    <div class="input-group">
-                                        <input type="number" placeholder="Nhập giá" name="price" class="form-control"
-                                            required="">
+                            <div class="col-sm-12">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group mb-4">
+                                            <label data-toggle="tooltip"
+                                                title="Three-digits code on the back of your card">Số
+                                                lượng
+                                                <i class="fa fa-question-circle"></i>
+                                            </label>
+                                            <input type="number" placeholder="Nhập số lượng" name="quantity[]"
+                                                class="form-control" required="">
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label><span class="hidden-xs">Kích thước <i
-                                                class="fas fa-ruler"></i></span></label>
-                                    <div class="input-group">
-                                        <input type="text" placeholder="Nhập kích thước" name="size[]"
-                                            class="form-control" required="">
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label><span class="hidden-xs">Giá <i
+                                                        class="fas fa-money-bill"></i></span></label>
+                                            <div class="input-group">
+                                                <input type="number" placeholder="Nhập giá" name="price[]"
+                                                    class="form-control" required="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label><span class="hidden-xs">Kích thước <i
+                                                        class="fas fa-ruler"></i></span></label>
+                                            <div class="input-group">
+                                                <input type="text" placeholder="Nhập kích thước" name="size[]"
+                                                    class="form-control" required="">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div id="newRow">
-
                                 </div>
-                                <button id="addRow" type="button" class="btn btn-outline-success btn-sm"><i
+                                <button id="addRow" type="button" class="btn btn-outline-success btn-sm mb-2"><i
                                         class="fas fa-plus"></i> Thêm</button>
                             </div>
 
@@ -101,7 +106,7 @@
                             <textarea required="" id="product_description" name="description"></textarea>
                         </div>
                         <button type="submit" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm">
-                            Thêm sản phẩm </button>
+                            Thêm hải sản </button>
                     </form>
                 </div>
                 <!-- End -->

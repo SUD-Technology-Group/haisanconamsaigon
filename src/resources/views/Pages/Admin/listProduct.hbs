@@ -208,7 +208,7 @@
                                 <th>Tên</th>
                                 <th>Status</th>
                                 <th>Position</th>
-                                <th>Actions</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody id="listMenu">
@@ -227,6 +227,10 @@
         <div id="listSeaFoodModal">
 
         </div>
+
+        <div id="deleteModal">
+
+        </div>
         {{!-- Modal: end --}}
     </div>
 
@@ -240,7 +244,9 @@
         const listSeafood = document.getElementById('listSeafood');
         const listSeaFoodModal = document.getElementById('listSeaFoodModal');
         const listMenuModal = document.getElementById('listMenuModal');
+        const deleteModal = document.getElementById('deleteModal')
         renderMenu()
+        renderSeaFood()
         function renderSeaFood() {
             $.ajax({
                 url: 'http://localhost:3000/seafood/all',
@@ -248,7 +254,7 @@
                 dataType: 'json',
                 success: function (data, textStatus, xhr) {
                     listSeafood.innerHTML = ``
-                    const list = data.menuList
+                    const list = data.seaFoodList
                     let index = 1;
                     list.forEach(item => {
                         listSeafood.innerHTML += `<tr>
@@ -284,7 +290,7 @@
         }
         function renderMenu() {
             $.ajax({
-                url: 'http://localhost:3000/menu/all',
+                url: '/menu/all',
                 type: 'GET',
                 dataType: 'json',
                 success: function (data, textStatus, xhr) {
@@ -314,32 +320,34 @@
                                 <td>
                                     <button data-toggle="modal" data-target="#menuModal${item.id}" type="button" class="btn btn-link btn-rounded btn-sm fw-bold"
                                         data-mdb-ripple-color="dark">
-                                        Edit
+                                        Sửa
                                     </button>
                                 </td>
                             </tr>`;
                         listMenuModal.innerHTML += `<div id="menuModal${item.id}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                             <div style="padding: 20px" class="modal-content">
-                            <form method="post" action="/menu/add" role="form" enctype="multipart/form-data">
+                            <form method="post" action="/menu/edit/${item.id}" role="form" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label for="menu_name">Tên thực đơn <i class="fas fa-signature"></i></label>
                                     <input type="text" name="menu_name" value="${item.name}" placeholder="Nhập tên thực đơn" required=""
                                         class="form-control">
+                                    <input class="d-none" type="text" name="old_menu_name" value="${item.name}"  required="">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="cardNumber">Hình ảnh thực đơn <i class="far fa-images"></i></label>
                                     <div class="input-group">
                                         <div class="form-group-container">
-                                            <input id="product-image${item.id}" accept="image/*" required="" name="menu-image"
-                                                class="form-control input-md" onchange="previewMenu()" type="file">
+                                            <input class="d-none" type="text" value="${item.image}" name="oldImage">
+                                            <input id="product-image${item.id}" accept="image/*" name="menu-image"
+                                                class="form-control input-md" onchange="previewMenu('${item.id}')" type="file">
                                             <label for="product-image${item.id}">
                                                 <i class="fas fa-upload"></i>
                                                 Chọn ảnh thực đơn &nbsp;
                                             </label>
                                             <p id="num-of-file${item.id}">Chưa có ảnh nào được chọn</p>
-                                            <div class="images-upload" id="menu-upload">
+                                            <div class="images-upload" id="images-upload${item.id}">
                                                 <figure>
                                                     <img src="${item.image}">
                                                 </figure>
@@ -353,11 +361,32 @@
                                     <textarea required="" id="menu_description" name="menu_description">${item.description}</textarea>
                                 </div>
                                 <button type="submit" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm">
-                                    Thêm thực đơn </button>
+                                    Chỉnh sửa thực đơn </button>
+                                <button type="button"  data-toggle="modal" data-target="#deleteModal${item.id}" class="subscribe btn btn-danger btn-block rounded-pill shadow-sm">
+                                    Xóa thực đơn </button>
                             </form>
                             </div>
                         </div>
                         </div>`;
+                        deleteModal.innerHTML += `<div class="modal fade" id="deleteModal${item.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Xóa thực đơn</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Bạn có muốn xóa thực đơn <strong>${item.name}</strong>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                                <button onclick="deleteMenu('${item.id}')" type="button" class="btn btn-danger">Xóa</button>
+                            </div>
+                            </div>
+                        </div>
+                        </div>`
                         CKEDITOR.replace('menu_description')
                     })
                 },
@@ -367,7 +396,7 @@
             });
         }
 
-        function previewImage(id) {
+        function previewMenu(id) {
             let fileInput = document.getElementById(`product-image${id}`);
             let imageContainer = document.getElementById(`images-upload${id}`);
             let numOfFiles = document.getElementById(`num-of-file${id}`);
@@ -391,6 +420,8 @@
                 reader.readAsDataURL(i)
             }
         }
-
+        function deleteMenu(id) {
+            location.href = `/menu/delete/${id}`
+        }
 
     </script>

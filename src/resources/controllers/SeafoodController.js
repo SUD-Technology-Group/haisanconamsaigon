@@ -15,6 +15,13 @@ const SeafoodController = {
             let url = `/uploads/seafood/${name}/${f.filename}`
             listImages.push(url)
         })
+        priceObject = price.map((item, index) => {
+            return {
+                cost: item,
+                size: size[index],
+                quantity: quantity[index]
+            }
+        })
         const slug = slugify(name, {
             replacement: '-',
             remove: false,
@@ -24,10 +31,9 @@ const SeafoodController = {
             trim: true
         })
         const seafood = {
-            name, size, description, quantity, price, slug,
+            name, description, price: priceObject, slug,
             image: listImages
         }
-        // res.json({ seafood })
         return new Seafoods(seafood).save()
             .then(() => {
                 req.flash('success', 'Thêm sản phẩm thành công');
@@ -57,6 +63,28 @@ const SeafoodController = {
             .catch(() => {
                 req.flash('error', 'Xóa sản phẩm thất bại');
                 return res.redirect('/delete/seafood');
+            })
+    },
+    getAllSeafood: async (req, res, next) => {
+        await Seafoods.find()
+            .then(seafoods => {
+                if (seafoods.length == 0) {
+                    return res.json({ seaFoodList: {}, message: "Không có hải sản nào" })
+                } else {
+                    let seaFoodList = []
+                    seafoods.forEach(item => {
+                        const currentSeafood = {
+                            id: item._id,
+                            name: item.name,
+                            image: item.image,
+                            size: item.size,
+                            description: item.description
+                        }
+                        seaFoodList.push(currentSeafood)
+                    })
+                    return res.json({ message: "Thành công", seaFoodList })
+                }
+
             })
     }
 }
