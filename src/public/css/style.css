@@ -583,9 +583,10 @@ img,
   /* position: absolute; */
   z-index: 2;
   overflow: hidden;
-  border-radius: .5rem .5rem 0 0;
+  /* border-radius: .5rem .5rem 0 0; */
   /* border: 2px solid black; */
 }
+
 
 .news-img-box {
   width: 100%;
@@ -666,7 +667,7 @@ img,
   bottom: 0;
   border: 2px solid var(--xanh);
   /* background-color: var(--xanh); */
-  border-radius: .2rem;
+  border-radius: .2rem .2rem .5rem .5rem;
   height: 40px;
 
   text-align: center;

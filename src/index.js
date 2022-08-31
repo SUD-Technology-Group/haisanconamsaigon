@@ -16,8 +16,25 @@ const SeafoodRouter = require('./resources/routers/SeafoodRouter')
 const MenuRouter = require('./resources/routers/MenuRouter')
 const UserRouter = require('./resources/routers/UserRouters')
 const CollectionRouter = require('./resources/routers/CollectionRouter')
+const Users = require('./resources/models/Users')
 
 db.connect();
+
+Users.find({})
+    .then(users => {
+        if(users.length == 0) {
+            let admin = {
+                username: 'admin',
+                fullname: 'admin',
+                position: 'admin',
+                email: 'admin@gmail.com',
+                phone: '0767916592',
+                password: '123123'
+            }
+
+            new Users(admin).save()
+        }
+    })
 
 app.set('view engine', 'hbs')
 app.engine('hbs', handlebars.engine({
