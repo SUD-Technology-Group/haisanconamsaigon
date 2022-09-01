@@ -21,6 +21,7 @@ const NewsController = {
                     data
                 })
             })
+            .catch(next);
     },
     
 }

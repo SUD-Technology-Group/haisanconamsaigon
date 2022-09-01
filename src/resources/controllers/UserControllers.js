@@ -21,7 +21,7 @@ const UserController = {
             .then(acc => {
                 if (!acc) {
                     req.flash('error', 'Username ' + username + ' không tồn tại');
-                    res.redirect('/users/login');
+                    return res.redirect('/users/login');
                 } else {
                     account = acc
                     return bcrypt.compareSync(password, acc.password)
@@ -30,7 +30,7 @@ const UserController = {
             .then(match => {
                 if (!match) {
                     req.flash('error', 'Mật khẩu không chính xác')
-                    res.redirect('/users/login')
+                    return res.redirect('/users/login')
                 } else {
                     const JWT_SECRET = 'co5sg';
                     return jwt.sign({
@@ -42,6 +42,7 @@ const UserController = {
                             req.flash('error', 'Đăng nhập thất bại ' + err)
                             res.redirect('/users/login')
                         } else {
+                            
                             req.session.username = account.username
                             req.session.position = account.position
                             req.session.token = token

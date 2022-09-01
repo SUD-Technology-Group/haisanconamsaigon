@@ -5,7 +5,7 @@ const CollectionController = {
         Seafoods.find({}).select({description: 0}).limit(16)
             .then(seafoods => {
                 if(!seafoods) {
-                    return res.render('seafood', {
+                    return res.render('Pages/Products/seafood', {
                         data: []
                     })
                 }
@@ -20,9 +20,11 @@ const CollectionController = {
                     }
                 })
 
-                return res.render('seafood', {
+                return res.render('Pages/Products/seafood', {
                     data: data
                 })
             })
     }
 }
+
+module.exports = CollectionController;
