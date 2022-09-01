@@ -37,7 +37,7 @@ const MenuController = {
         await Menus.find()
             .then(menus => {
                 if (menus.length == 0) {
-                    return res.json({ menuList: {}, message: "Không có thực đơn nào" })
+                    return res.json({ message: "Không có thực đơn nào" })
                 } else {
                     let menuList = []
                     menus.forEach(item => {
@@ -55,7 +55,6 @@ const MenuController = {
             })
     },
     updateMenu: async (req, res, next) => {
-
         let menu
         const { menu_name, menu_description, oldImage, old_menu_name } = req.body;
         let image = oldImage

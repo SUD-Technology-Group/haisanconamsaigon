@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $('#addRow').click(function () {
-        var html = ``;
+        let html = ``;
         html += `<div id="inputFormRow" class="row">
         <div class="col-sm-4">
         <div class="form-group mb-4">
