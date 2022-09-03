@@ -16,13 +16,15 @@ const SeafoodRouter = require('./resources/routers/SeafoodRouter')
 const MenuRouter = require('./resources/routers/MenuRouter')
 const UserRouter = require('./resources/routers/UserRouters')
 const CollectionRouter = require('./resources/routers/CollectionRouter')
+const NewsRouter = require('./resources/routers/NewsRouter')
+const DiscountRouter = require('./resources/routers/DiscountRouter')
 const Users = require('./resources/models/Users')
 
 db.connect();
 
 Users.find({})
     .then(users => {
-        if(users.length == 0) {
+        if (users.length == 0) {
             let admin = {
                 username: 'admin',
                 fullname: 'admin',
@@ -38,7 +40,14 @@ Users.find({})
 
 app.set('view engine', 'hbs')
 app.engine('hbs', handlebars.engine({
-    extname: 'hbs'
+    extname: 'hbs',
+    helpers: {
+        select: function (selected, options) {
+            return options.fn(this).replace(
+                new RegExp(' value=\"' + selected + '\"'),
+                '$& selected="selected"');
+        }
+    }
 }))
 app.set('views', path.join(__dirname, 'resources/views'))
 app.use(express.static(path.join(__dirname, 'public')))
@@ -57,6 +66,8 @@ app.use('/seafood', SeafoodRouter)
 app.use('/menu', MenuRouter)
 app.use('/users', UserRouter)
 app.use('/collections', CollectionRouter);
+app.use('/news', NewsRouter)
+app.use('/discount', DiscountRouter)
 app.get('/', (req, res) => {
     res.render('Pages/Others/home', {
         hideFooter: true

@@ -25,11 +25,15 @@ const News = new Schema({
     content: {
         type: String,
         required: true
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now()
     }
 
 },
-{
-    timestamps: true
-})
+    {
+        timestamps: true
+    })
 
 module.exports = mongoose.model('News', News);
