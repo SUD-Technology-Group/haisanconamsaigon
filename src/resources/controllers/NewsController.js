@@ -36,7 +36,6 @@ const NewsController = {
 
                 return res.render('Pages/News/newsList', {
                     layout: 'admin',
-                    pageName: 'Tin tức',
                     data,
                     error,
                     success
