@@ -2,7 +2,6 @@ const News = require('../models/News');
 const slugify = require('slugify');
 const fs = require('fs');
 const moment = require('moment');
-const Menu = require('../models/Menu');
 const NewsController = {
     getNews: (req, res, next) => {
         const error = req.flash('error') || "";

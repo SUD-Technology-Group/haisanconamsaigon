@@ -41,13 +41,22 @@
                                 required="" class="form-control">
                         </div>
 
+                        {{!-- <div class="form-group">
+                            <label for="group">Loại khuyến mãi <i class="fas fa-align-justify"></i></label>
+                            <select class="form-control" id="group" name="group">
+                                <option value="">-- Chọn loại khuyến mãi --</option>
+                                <option value="news">Tin tức</option>
+                                <option value="event">Sự kiện</option>
+                            </select>
+                        </div> --}}
+
                         <div class="form-group">
                             <label for="cardNumber">Hình ảnh khuyến mãi <i class="far fa-images"></i></label>
                             <div class="input-group">
                                 <div class="form-group-container">
-                                    <input id="news-image" accept="image/*" required="" name="news-image"
+                                    <input id="discount-image" accept="image/*" required="" name="discount-image"
                                         class="form-control input-md" onchange="preview()" type="file">
-                                    <label for="news-image">
+                                    <label for="discount-image">
                                         <i class="fas fa-upload"></i>
                                         Chọn ảnh khuyến mãi &nbsp;
                                     </label>
@@ -63,7 +72,7 @@
                             <textarea required="" id="content" name="content"></textarea>
                         </div>
                         <button type="submit" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm">
-                            Thêm bài viết </button>
+                            Thêm khuyến mãi </button>
                     </form>
                 </div>
                 <!-- End -->
@@ -74,7 +83,7 @@
     <script src="/ckeditor/ckeditor.js"></script>
     <script>
 
-        let fileInput = document.getElementById("news-image")
+        let fileInput = document.getElementById("discount-image")
         let imageContainer = document.getElementById('images-upload')
         let numOfFiles = document.getElementById('num-of-file')
 

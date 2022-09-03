@@ -1,0 +1,231 @@
+<h2 class="h-title">
+    <span>Danh sách khuyến mãi</span>
+</h2>
+
+<div class="row">
+    <div class=" mx-auto">
+        <div class="bg-white rounded-lg shadow-sm p-5">
+            <!-- Credit card form tabs -->
+            <ul role="tablist" class="nav bg-light nav-pills rounded-pill nav-fill mb-3">
+                <li class="nav-item">
+                    <a data-toggle="pill" href="#nav-tab-card" class="nav-link active rounded-pill">
+                        <i class="fas fa-discountpaper"></i>
+                        Danh sách khuyến mãi
+                    </a>
+                </li>
+            </ul>
+            <!-- End -->
+
+            <!-- Credit card form content -->
+            <div class="tab-content">
+                <div id="nav-tab-card" class="tab-pane fade show active">
+                    {{#if success}}
+                    <p class="alert alert-success">{{success}}</p>
+                    {{/if}}
+                    {{#if error}}
+                    <p class="alert alert-danger">{{error}}</p>
+                    {{/if}}
+                    <table class="table align-middle mb-0 bg-white">
+                        <thead class="bg-light">
+                            <tr>
+                                <th>STT</th>
+                                <th>Tên khuyến mãi</th>
+                                <th>Đăng ngày</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="listSeafood">
+                            {{#if empty}}
+                            <td colspan="4">
+                                <p class="fw-bold mb-1">Không có tin tức nào</p>
+                            </td>
+                            {{else}}
+                            {{#each data}}
+                            <tr>
+                                <td>
+                                    <p class="fw-bold mb-1">{{index}}</p>
+                                </td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img src="{{image}}" class="rounded-circle" alt=""
+                                            style="width: 45px; height: 45px" />
+                                        <div class="ms-3">
+                                            <p class="fw-bold mb-1">{{title}}</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    {{createdAt}}
+                                </td>
+                                <td>
+                                    <button onclick="renderContent('{{id}}')" type="button" data-toggle="modal"
+                                        data-target="#discountModal{{id}}"
+                                        class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark">
+                                        Sửa
+                                    </button>
+                                </td>
+                            </tr>
+                            {{/each}}
+                            {{/if}}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        {{!-- Modal: start --}}
+        <div id="discountModal">
+            {{#each data}}
+            <div id="discountModal{{id}}" class="modal fade" tabindex="-1" role="dialog"
+                aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div style="padding: 20px" class="modal-content">
+                        <form method="post" action="/discount/edit/{{id}}" enctype="multipart/form-data">
+                            {{!-- Title --}}
+                            <div class="form-group">
+                                <label for="title">Tiêu đề <i class="fas fa-signature"></i></label>
+                                <input value="{{title}}" id="title" type="text" name="title"
+                                    placeholder="Nhập tiêu đề khuyến mãi" required="" class="form-control">
+                            </div>
+                            {{!-- Subtitle --}}
+                            <div class="form-group">
+                                <label for="subtitle">Mô tả <i class="fas fa-align-justify"></i></label>
+                                <input value="{{subtitle}}" id="subtitle" type="text" name="subtitle"
+                                    placeholder="Nhập mô tả khuyến mãi" required="" class="form-control">
+                            </div>
+                            {{!--Group --}}
+                            {{!-- <div class="form-group">
+                                <label for="group">Loại khuyến mãi <i class="fas fa-align-justify"></i></label>
+                                {{#select group}}
+                                <select class="form-control" id="group" name="group">
+                                    <option value="">-- Chọn loại khuyến mãi --</option>
+                                    <option value="discount">Tin tức</option>
+                                    <option value="event">Sự kiện</option>
+                                </select>
+                                {{/select}}
+                            </div> --}}
+                            {{!-- Image --}}
+                            <div class="form-group">
+                                <label for="cardNumber">Hình ảnh khuyến mãi <i class="far fa-images"></i></label>
+                                <div class="input-group">
+                                    <div class="form-group-container">
+                                        <input type="text" class="d-none" name="old_image" value="{{image}}">
+                                        <input id="discount-image{{id}}" accept="image/*" name="image"
+                                            class="form-control input-md" onchange="preview('{{id}}')" type="file">
+                                        <label for="discount-image{{id}}">
+                                            <i class="fas fa-upload"></i>
+                                            Chọn ảnh khuyến mãi &nbsp;
+                                        </label>
+                                        <p id="num-of-file{{id}}">Chưa có ảnh nào được chọn</p>
+                                        <div id="images-upload{{id}}">
+                                            <figure>
+                                                <img src="{{image}}" alt="">
+                                            </figure>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{!-- Content --}}
+                            <div class="form-group">
+                                <label for="content{{id}}">Nội dung khuyến mãi<i
+                                        class="fas fa-align-center"></i></label>
+                                <textarea required="" id="content{{id}}" name="content">{{content}}</textarea>
+                            </div>
+                            <button type="submit" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm">
+                                Chỉnh sửa khuyến mãi </button>
+                            <button type="button" data-toggle="modal" data-target="#deleteModal{{id}}"
+                                class="subscribe btn btn-danger btn-block rounded-pill shadow-sm">
+                                Xóa khuyến mãi </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+
+        <div id="deleteModal">
+            {{#each data}}
+            <div class="modal fade" id="deleteModal{{id}}" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Xóa khuyến mãi</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Bạn có muốn xóa khuyến mãi <strong>{{title}}</strong>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                            <button onclick="deleteDiscount('{{id}}')" type="button" class="btn btn-danger">Xóa</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        {{!-- Modal: end --}}
+    </div>
+
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="/ckeditor/ckeditor.js"></script>
+    <script>
+
+        function preview(id) {
+            let fileInput = document.getElementById(`discount-image${id}`);
+            let imageContainer = document.getElementById(`images-upload${id}`);
+            let numOfFiles = document.getElementById(`num-of-file${id}`);
+
+            imageContainer.innerHTML = ""
+            numOfFiles.textContent = `${fileInput.files.length} ảnh đã được chọn`;
+
+            for (i of fileInput.files) {
+                let reader = new FileReader()
+                let figure = document.createElement("figure")
+                let figCap = document.createElement("figcaption")
+
+                figCap.innerText = i.name
+                figure.appendChild(figCap)
+                reader.onload = () => {
+                    let img = document.createElement("img");
+                    img.setAttribute("src", reader.result);
+                    figure.insertBefore(img, figCap);
+                }
+                imageContainer.appendChild(figure);
+                reader.readAsDataURL(i)
+            }
+        }
+        function deleteDiscount(id) {
+            location.href = `/discount/delete/${id}`
+        }
+
+        function renderContent(id) {
+            CKEDITOR.replace(`content${id}`)
+            getContent(id)
+        }
+
+        function getContent(id) {
+            $.ajax({
+                url: `/discount/content/${id}`,
+                type: 'GET',
+                dataType: 'json',
+                success: function (data, textStatus, xhr) {
+                    if (!data) {
+                        console.log('err')
+                    } else {
+                        document.getElementById(`content${id}`).innerHTML = data.content;
+                    }
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log('Error in Operation');
+                }
+            });
+        }
+
+
+    </script>
