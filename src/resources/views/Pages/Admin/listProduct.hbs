@@ -25,7 +25,6 @@
 
             <!-- Credit card form content -->
             <div class="tab-content">
-
                 <!-- credit card info-->
                 <div id="nav-tab-card" class="tab-pane fade show active">
                     {{#if success}}
@@ -34,15 +33,27 @@
                     {{#if error}}
                     <p class="alert alert-danger">{{error}}</p>
                     {{/if}}
-                    <table class="table align-middle mb-0 bg-white">
+                    {{!-- <form action="">
+                        <div class="row justify-content-left">
+                            <div class="form-group col-md-4">
+                                <input placeholder="Nhập tên hải sản" type="text" name="seafoodName"
+                                    class="form-control">
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" class="subscribe btn btn-primary btn-block shadow-sm">
+                                    Tìm kiếm </button>
+                            </div>
+                        </div>
+                    </form> --}}
+                    <table id="seafoodTable" class="table align-middle mb-0 bg-white">
                         <thead class="bg-light">
                             <tr>
-                                <th>STT</th>
-                                <th>Tên sản phẩm</th>
-                                <th>Kích thước</th>
-                                <th>Giá</th>
-                                <th>Số lượng</th>
-                                <th></th>
+                                <th class="th-sm">STT</th>
+                                <th class="th-sm">Tên sản phẩm</th>
+                                <th class="th-sm">Kích thước</th>
+                                <th class="th-sm">Giá</th>
+                                <th class="th-sm">Số lượng</th>
+                                <th class="th-sm"></th>
                             </tr>
                         </thead>
                         <tbody id="listSeafood">
@@ -58,7 +69,18 @@
                     {{#if error}}
                     <p class="alert alert-danger">{{error}}</p>
                     {{/if}}
-                    <table class="table align-middle mb-0 bg-white">
+                    {{!-- <form action="">
+                        <div class="row justify-content-left">
+                            <div class="form-group col-md-4">
+                                <input placeholder="Nhập tên thực đơn" type="text" name="menuName" class="form-control">
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" class="subscribe btn btn-primary btn-block shadow-sm">
+                                    Tìm kiếm </button>
+                            </div>
+                        </div>
+                    </form> --}}
+                    <table id="menuTable" class="table align-middle mb-0 bg-white">
                         <thead class="bg-light">
                             <tr>
                                 <th>STT</th>
@@ -77,6 +99,7 @@
             </div>
         </div>
 
+
         {{!-- Modal: start --}}
         <div id="listMenuModal">
 
@@ -92,23 +115,27 @@
     </div>
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="/ckeditor/ckeditor.js"></script>
     <script>
+
         const listMenu = document.getElementById('listMenu');
         const listSeafood = document.getElementById('listSeafood');
         const listSeaFoodModal = document.getElementById('listSeaFoodModal');
         const listMenuModal = document.getElementById('listMenuModal');
         const deleteModal = document.getElementById('deleteModal')
+        const searchParams = new URLSearchParams(window.location.search)
         renderMenu()
         renderSeaFood()
+        $(document).ready(function () {
+            $('#seafoodTable').DataTable();
+            $('#menuTable').DataTable();
+        });
+
         // Get and render seafood from db
         function renderSeaFood() {
             // use ajax call api to get data
             $.ajax({
-                url: 'http://localhost:3000/seafood/all',
+                url: `/seafood/all`,
                 type: 'GET',
                 dataType: 'json',
                 success: function (data, textStatus, xhr) {
@@ -364,8 +391,9 @@
         }
         // Get and render menu from db
         function renderMenu() {
+            let name = searchParams.get('menuName')
             $.ajax({
-                url: '/menu/all',
+                url: `/menu/all?name=${name}`,
                 type: 'GET',
                 dataType: 'json',
                 success: function (data, textStatus, xhr) {
