@@ -23,21 +23,21 @@ const Users = require('./resources/models/Users')
 const BannerService = require('./resources/services/Banner')
 db.connect();
 
-Users.find({})
-    .then(users => {
-        if (users.length == 0) {
-            let admin = {
-                username: 'admin',
-                fullname: 'admin',
-                position: 'admin',
-                email: 'admin@gmail.com',
-                phone: '0767916592',
-                password: '123123'
-            }
+// Users.find({})
+//     .then(users => {
+//         if (users.length == 0) {
+//             let admin = {
+//                 username: 'admin',
+//                 fullname: 'admin',
+//                 position: 'admin',
+//                 email: 'admin@gmail.com',
+//                 phone: '0767916592',
+//                 password: '123123'
+//             }
 
-            new Users(admin).save()
-        }
-    })
+//             new Users(admin).save()
+//         }
+//     })
 
 app.set('view engine', 'hbs')
 app.engine('hbs', handlebars.engine({

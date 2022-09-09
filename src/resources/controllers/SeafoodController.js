@@ -102,7 +102,7 @@ const SeafoodController = {
     },
 
     getAllSeafood: async (req, res, next) => {
-        await SeafoodService.list()
+        await SeafoodService.list({},{})
             .then(seafoods => {
                 if (seafoods.length == 0) {
                     return res.json({ message: "Không có hải sản nào" })
@@ -122,6 +122,28 @@ const SeafoodController = {
                     return res.json({ message: "Thành công", seaFoodList })
                 }
 
+            })
+    },
+
+    // GET /seafood/:slug
+    getDetailSeafood: async (req, res, next) => {
+        const slug = req.params.slug;
+        await SeafoodService.get(slug)
+            .then(seafood => {
+                let data = {
+                    id: seafood.id,
+                    name: seafood.name,
+                    description: seafood.description,
+                    price: seafood.price,
+                    bought: seafood.bought,
+                    image: seafood.image
+                }
+
+                
+                return res.render('Pages/Products/detail', {
+                    data: data,
+                    pageName: 'Hải sản tươi sống'
+                });
             })
     }
 }

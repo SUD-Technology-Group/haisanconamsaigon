@@ -1,6 +1,6 @@
 <div class="container">
 	<div class="two alt-two">
-        <h1>Hải sản tươi sống
+        <h1>{{pageName}}
             <span>Hải sản Cô Năm Sài gòn</span>
         </h1>
     </div>
@@ -13,47 +13,22 @@
 					<div class="product-image-detail scroll">
 						<div class="col-sm-12 col-md-12">
 							<div data-toggle="modal" data-target=".bd-example-modal-lg" class="slider-for">
-							
+								{{#each data.image}}
 								<div class="product1">
-									<img data-id="0" src="/img/test/main.png" height="450vh" width="100%">
+									<img data-id="{{@index}}" src="{{this}}" height="450vh" width="100%">
 									
 								</div>
-								<div class="product1">
-									<img data-id="1" src="/img/test/s1.png" height="450vh" width="100%">
-									
-								</div>
-								<div class="product1">
-									<img data-id="2" src="/img/test/s2.png" height="450vh" width="100%">
-									
-								</div>
-								<div class="product1">
-									<img data-id="3" src="/img/test/s3.png" height="450vh" width="100%">
-									
-								</div>
-								<div class="product1">
-									<img data-id="4" src="/img/test/s4.png" height="450vh" width="100%">
-									
-								</div>
+								{{/each}}
 								
 							</div>
 							<div class="slider-nav mt-3">
 								
-						
+								{{#each data.image}}
 								<div class="product2">
-									<img src="/img/test/main.png">
+									<img src="{{this}}">
 								</div>
-								<div class="product2">
-									<img src="/img/test/s1.png">
-								</div>
-								<div class="product2">
-									<img src="/img/test/s2.png">
-								</div>
-								<div class="product2">
-									<img src="/img/test/s3.png">
-								</div>
-								<div class="product2">
-									<img src="/img/test/s4.png">
-								</div>
+								{{/each}}
+								
 						
 								
 							</div>
@@ -64,7 +39,7 @@
 
 				<div class="col-md-6 col-sm-12 col-xs-12">
 					<div class="product-info-box">
-						<h4>Cua Xanh Phan Thiết</h4>
+						<h4>{{data.name}}</h4>
 						<hr>
 						<p><span class="bolder">Mã sản phẩm: </span> SP0001</p>
 						<div class="prod-des mb-5">
