@@ -25,6 +25,13 @@
 
             <!-- Credit card form content -->
             <div class="tab-content">
+                <div class="row mb-5">
+                    <div class="col-md-12">
+                        <a type="button" href="/admin/add-product"
+                            class="subscribe btn btn-secondary btn-block rounded-pill shadow-sm">
+                            <i class="fas fa-plus"></i> Thêm sản phẩm </a>
+                    </div>
+                </div>
                 <!-- credit card info-->
                 <div id="nav-tab-card" class="tab-pane fade show active">
                     {{#if success}}
@@ -33,18 +40,6 @@
                     {{#if error}}
                     <p class="alert alert-danger">{{error}}</p>
                     {{/if}}
-                    {{!-- <form action="">
-                        <div class="row justify-content-left">
-                            <div class="form-group col-md-4">
-                                <input placeholder="Nhập tên hải sản" type="text" name="seafoodName"
-                                    class="form-control">
-                            </div>
-                            <div class="col-md-2">
-                                <button type="submit" class="subscribe btn btn-primary btn-block shadow-sm">
-                                    Tìm kiếm </button>
-                            </div>
-                        </div>
-                    </form> --}}
                     <table id="seafoodTable" class="table align-middle mb-0 bg-white">
                         <thead class="bg-light">
                             <tr>
@@ -69,24 +64,11 @@
                     {{#if error}}
                     <p class="alert alert-danger">{{error}}</p>
                     {{/if}}
-                    {{!-- <form action="">
-                        <div class="row justify-content-left">
-                            <div class="form-group col-md-4">
-                                <input placeholder="Nhập tên thực đơn" type="text" name="menuName" class="form-control">
-                            </div>
-                            <div class="col-md-2">
-                                <button type="submit" class="subscribe btn btn-primary btn-block shadow-sm">
-                                    Tìm kiếm </button>
-                            </div>
-                        </div>
-                    </form> --}}
                     <table id="menuTable" class="table align-middle mb-0 bg-white">
                         <thead class="bg-light">
                             <tr>
                                 <th>STT</th>
                                 <th>Tên</th>
-                                <th>Status</th>
-                                <th>Position</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -421,10 +403,6 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td>
-                                    <span class="badge badge-warning rounded-pill d-inline">Awaiting</span>
-                                </td>
-                                <td>Senior</td>
                                 <td>
                                     <button data-toggle="modal" data-target="#menuModal${item.id}" type="button" class="btn btn-link btn-rounded btn-sm fw-bold"
                                         data-mdb-ripple-color="dark">

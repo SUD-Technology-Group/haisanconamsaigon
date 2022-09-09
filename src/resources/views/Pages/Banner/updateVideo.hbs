@@ -1,0 +1,90 @@
+<h2 class="h-title">
+    <span>Cập nhật Banner</span>
+</h2>
+
+<div class="row">
+    <div class=" mx-auto">
+        <div class="bg-white rounded-lg shadow-sm p-5">
+            <!-- Credit card form tabs -->
+            <ul role="tablist" class="nav bg-light nav-pills rounded-pill nav-fill mb-3">
+                <li class="nav-item">
+                    <a data-toggle="pill" href="#nav-tab-card" class="nav-link active rounded-pill">
+                        <i class="fas fa-wrench"></i>
+                        Cập nhật Banner
+                    </a>
+                </li>
+            </ul>
+            <!-- End -->
+
+
+            <!-- Credit card form content -->
+            <div class="tab-content">
+
+                <!-- credit card info-->
+                <div id="nav-tab-card" class="tab-pane fade show active">
+                    {{#if success}}
+                    <p class="alert alert-success">{{success}}</p>
+                    {{/if}}
+                    {{#if error}}
+                    <p class="alert alert-danger">{{error}}</p>
+                    {{/if}}
+                    <form method="post" action="/banner/update" role="form" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="title">Banner đang sử dụng <i class="fas fa-bold"></i></label>
+                            <div class="row justify-content-center mb-3">
+                                <div class="col-md-8">
+                                    <section id="banner">
+                                        <video controls width="100%" autoplay muted loop id="myVideo">
+                                            <source src="{{video}}" type="video/mp4">
+                                        </video>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input-tag">Video Banner mới <i class="fas fa-video"></i></label>
+                            <div class="input-group">
+                                <div class="form-group-container">
+                                    <input id="input-tag" accept="video/*" name="banner-video"
+                                        class="form-control input-md" onchange="readVideo(event)" type="file">
+                                    <label for="input-tag">
+                                        <i class="fas fa-upload"></i>
+                                        Chọn video &nbsp;
+                                    </label>
+                                    <p id="num-of-file">Chưa video nào được chọn</p>
+                                    <video controls class="d-none " id="video-tag">
+                                        <source id="video-source" src="splashVideo">
+                                    </video>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm">
+                            Cập nhật banner </button>
+                    </form>
+                </div>
+                <!-- End -->
+            </div>
+        </div>
+    </div>
+
+    <script src="/ckeditor/ckeditor.js"></script>
+    <script>
+        const videoSrc = document.querySelector("#video-source");
+        const videoTag = document.querySelector("#video-tag");
+        const inputTag = document.querySelector("#input-tag");
+
+        function readVideo(event) {
+            if (event.target.files && event.target.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    videoSrc.src = e.target.result
+                    videoTag.load()
+                }.bind(this)
+                videoTag.setAttribute('class', 'd-flex mr-auto ml-auto mt-3 w-100')
+                document.getElementById("num-of-file").setAttribute('class', 'd-none')
+                reader.readAsDataURL(event.target.files[0]);
+            }
+        }
+        CKEDITOR.replace('content')
+    </script>

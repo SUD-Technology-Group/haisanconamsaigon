@@ -1,7 +1,7 @@
 const multer = require('multer')
 const fs = require('fs')
 
-let storage = multer.diskStorage({
+const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     let name = req.body.name
     let dir = `./src/public/uploads/seafood/${name}`;
@@ -16,7 +16,18 @@ let storage = multer.diskStorage({
   }
 })
 
-let storageMenu = multer.diskStorage({
+const videoStorage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, `src/public/uploads/banner/video`)
+  }, // Destination to store video 
+  filename: (req, file, cb) => {
+    let ext = file.originalname.substring(file.originalname.lastIndexOf('.'))
+    cb(null, file.fieldname + '_' + Date.now()
+      + ext)
+  }
+});
+
+const storageMenu = multer.diskStorage({
   destination: function (req, file, cb) {
     let name = req.body.menu_name
     let dir = `./src/public/uploads/menu/${name}`;
@@ -32,7 +43,7 @@ let storageMenu = multer.diskStorage({
 })
 
 
-let storageNews = multer.diskStorage({
+const storageNews = multer.diskStorage({
   destination: function (req, file, cb) {
     let name = req.body.title
     let dir = `./src/public/uploads/news/${name}`;
@@ -46,7 +57,7 @@ let storageNews = multer.diskStorage({
     cb(null, file.fieldname + '-' + Date.now() + ext)
   }
 })
-let storageDiscount = multer.diskStorage({
+const storageDiscount = multer.diskStorage({
   destination: function (req, file, cb) {
     let name = req.body.title
     let dir = `./src/public/uploads/discount/${name}`;
@@ -79,5 +90,18 @@ const storeDiscount = multer({
   limits: { fieldSize: 1024 * 1024 * 1024 }
 })
 
-module.exports = { store, storeMenu, storeNews, storeDiscount }
+const videoUpload = multer({
+  storage: videoStorage,
+  limits: {
+    fileSize: 40000000
+  },
+  fileFilter(req, file, cb) {
+    if (!file.originalname.match(/\.(mp4|MPEG-4|mkv)$/)) {
+      return cb(new Error('Please upload a video'))
+    }
+    cb(undefined, true)
+  }
+})
+
+module.exports = { store, storeMenu, storeNews, storeDiscount, videoUpload }
 

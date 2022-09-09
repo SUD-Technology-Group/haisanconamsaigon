@@ -18,8 +18,9 @@ const UserRouter = require('./resources/routers/UserRouters')
 const CollectionRouter = require('./resources/routers/CollectionRouter')
 const NewsRouter = require('./resources/routers/NewsRouter')
 const DiscountRouter = require('./resources/routers/DiscountRouter')
+const BannerRouter = require('./resources/routers/BannerRouter')
 const Users = require('./resources/models/Users')
-
+const BannerService = require('./resources/services/Banner')
 db.connect();
 
 Users.find({})
@@ -68,16 +69,23 @@ app.use('/users', UserRouter)
 app.use('/collections', CollectionRouter);
 app.use('/news', NewsRouter)
 app.use('/discount', DiscountRouter)
+app.use('/banner', BannerRouter)
 app.get('/', (req, res) => {
-    res.render('Pages/Others/home', {
-        hideFooter: true
-    })
+    BannerService.get("banner")
+        .then(b => {
+            res.render('Pages/Others/home', {
+                hideFooter: true,
+                video: b.url
+            })
+        })
+        .catch(() => {
+            res.render('Pages/Others/home', {
+                hideFooter: true
+            })
+        })
+
 })
 
-
-// app.get('/seafood', (req, res) => {
-//     res.render('seafood');
-// })
 
 app.get('/menu-party', (req, res) => {
     res.render('Pages/Products/menu-party');
