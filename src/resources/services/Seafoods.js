@@ -2,27 +2,25 @@ const Seafoods = require('../models/Seafoods');
 
 const SeafoodService = {
     get: async (slug) => {
-        return await Seafoods.findOne({slug})
+        return Seafoods.findOne({ slug })
     },
 
     list: async (options) => {
-        return await Seafoods.find({})
-            .sort({createdAt: -1})
-            .skip(options.skip || 0)
-            .limit(options.limit || false)
+        return Seafoods.find({})
+            .sort({ createdAt: -1 })
             .lean()
     },
 
     create: async (data) => {
-        return await Seafoods.create(data);
+        return Seafoods.create(data);
     },
 
     update: async (id, data) => {
-        return await Seafoods.findByIdAndUpdate(id, data);
+        return Seafoods.findByIdAndUpdate(id, { $set: data });
     },
 
     delete: async (id) => {
-        return await Seafoods.findByIdAndDelete(id);
+        return Seafoods.findByIdAndDelete(id);
     }
 }
 

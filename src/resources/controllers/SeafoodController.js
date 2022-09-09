@@ -37,7 +37,7 @@ const SeafoodController = {
                 slug,
             })
             .then(() => {
-                req.flash('success','Thêm hải sản thành công');
+                req.flash('success', 'Thêm hải sản thành công');
                 return res.redirect('/admin/add-product');
             })
             .catch((err) => {
@@ -45,13 +45,13 @@ const SeafoodController = {
                 return res.redirect('/admin/add-product');
             })
     },
-    
+
     // PUT /admin/update
     updateSeafood: async (req, res, next) => {
         const { name, size, description, quantity, price, old_name, old_image } = req.body;
         const slug = createSlug(name, {});
         const files = req.files;
-        
+
         priceObject = price.map((item, index) => {
             return {
                 cost: item,
@@ -59,9 +59,7 @@ const SeafoodController = {
                 quantity: quantity[index]
             }
         })
-
-        var listImages = handleUploads(old_name, name, src, old_image, files);
-        console.log(listImages)
+        let listImages = handleUploads(old_name, name, src, old_image, files);
         await SeafoodService
             .update(req.params.id, {
                 name: name,
@@ -77,7 +75,7 @@ const SeafoodController = {
             .catch(err => {
                 req.flash('error', 'Cập nhật hải sản thất bại ' + err)
                 res.redirect('/admin/list-product')
-            })         
+            })
     },
 
     // GET /admin/delete
