@@ -1,20 +1,25 @@
-const fs = require('fs')
+const fs = require('fs');
 const Seafoods = require('../models/Seafoods');
-const slugify = require('slugify');
+const SeafoodService = require('../services/Seafoods');
+const createSlug = require('../utils/createSlug');
+const handleUploads = require('../utils/handleUploads');
+let src = 'uploads/seafood';
+
 
 const SeafoodController = {
-    postAddSeafood: (req, res, next) => {
+    // POST /admin/add-product
+    postAddSeafood: async (req, res, next) => {
         if (!req.files) {
             req.flash('error', 'Vui lòng chọn hình sản phẩm');
             return res.redirect('/admin/add-product');
         }
-        let listImages = []
+
         const file = req.files;
         const { name, size, description, quantity, price } = req.body;
-        file.map(f => {
-            let url = `/uploads/seafood/${name}/${f.filename}`
-            listImages.push(url)
-        })
+        const slug = createSlug(name, {});
+
+        let listImages = []
+        file.map(f => { listImages.push(`/uploads/seafood/${name}/${f.filename}`) })
         priceObject = price.map((item, index) => {
             return {
                 cost: item,
@@ -22,39 +27,31 @@ const SeafoodController = {
                 quantity: quantity[index]
             }
         })
-        const slug = slugify(name, {
-            replacement: '-',
-            remove: false,
-            lower: false,
-            strict: false,
-            locale: 'vi',
-            trim: true
-        })
-        const seafood = {
-            name, description, price: priceObject, slug,
-            image: listImages
-        }
-        return new Seafoods(seafood).save()
+
+        await SeafoodService
+            .create({
+                name: name,
+                description: description,
+                price: priceObject,
+                image: listImages,
+                slug,
+            })
             .then(() => {
-                req.flash('success', 'Thêm sản phẩm thành công');
+                req.flash('success','Thêm hải sản thành công');
                 return res.redirect('/admin/add-product');
             })
-            .catch(err => {
-                req.flash('error', 'Thêm sản phẩm thất bại ' + err);
+            .catch((err) => {
+                req.flash('error', err);
                 return res.redirect('/admin/add-product');
             })
     },
+    
+    // PUT /admin/update
     updateSeafood: async (req, res, next) => {
         const { name, size, description, quantity, price, old_name, old_image } = req.body;
-        let listImages = old_image
-        const slug = slugify(name, {
-            replacement: '-',
-            remove: false,
-            lower: false,
-            strict: false,
-            locale: 'vi',
-            trim: true
-        })
+        const slug = createSlug(name, {});
+        const files = req.files;
+        
         priceObject = price.map((item, index) => {
             return {
                 cost: item,
@@ -62,47 +59,17 @@ const SeafoodController = {
                 quantity: quantity[index]
             }
         })
-        // Change seafood name
-        if (name != old_name) {
-            // Not change image
-            if (req.files.length == 0) {
-                const currentPath = `./src/public/uploads/seafood/${old_name}`
-                const newPath = `./src/public/uploads/seafood/${name}`
-                listImages = listImages.map(item => {
-                    let imageName = item.split('/').pop()
-                    return `/uploads/seafood/${name}/${imageName}`
-                })
-                fs.renameSync(currentPath, newPath)
-            } else { // Change image
-                fs.rmdir(`./src/public/uploads/seafood/${old_name}`, { recursive: true }, err => {
-                    if (err)
-                        console.log(err)
-                })
-            }
-        }
-        else if (req.files.length !== 0) {
-            old_image.forEach(item => {
-                const path = `./src/public${item}`
-                fs.unlinkSync(path, err => {
-                    if (err)
-                        console.log(err)
-                })
+
+        var listImages = handleUploads(old_name, name, src, old_image, files);
+        console.log(listImages)
+        await SeafoodService
+            .update(req.params.id, {
+                name: name,
+                description: description,
+                price: priceObject,
+                image: listImages,
+                slug
             })
-            listImages = []
-            const file = req.files;
-            file.map(f => {
-                let url = `/uploads/seafood/${name}/${f.filename}`
-                listImages.push(url)
-            })
-
-        }
-
-        const seafood = {
-            name, description, price: priceObject, slug,
-            image: listImages
-        }
-
-        await Seafoods.findByIdAndUpdate(req.params.id, { $set: seafood })
             .then(() => {
                 req.flash('success', 'Cập nhật hải sản thành công')
                 res.redirect('/admin/list-product')
@@ -110,11 +77,13 @@ const SeafoodController = {
             .catch(err => {
                 req.flash('error', 'Cập nhật hải sản thất bại ' + err)
                 res.redirect('/admin/list-product')
-            })
+            })         
     },
-    getDeleteSeafood: (req, res, next) => {
-        const id = req.params.id;
-        Seafoods.findByIdAndDelete(id)
+
+    // GET /admin/delete
+    getDeleteSeafood: async (req, res, next) => {
+        await SeafoodService
+            .delete(req.params.id)
             .then(seafood => {
                 fs.rmdir(`./src/public/uploads/seafood/${seafood.name}`, { recursive: true }, (err) => {
                     if (!err) {
@@ -133,8 +102,9 @@ const SeafoodController = {
                 return res.redirect('/admin/list-product');
             })
     },
+
     getAllSeafood: async (req, res, next) => {
-        await Seafoods.find()
+        await SeafoodService.list()
             .then(seafoods => {
                 if (seafoods.length == 0) {
                     return res.json({ message: "Không có hải sản nào" })

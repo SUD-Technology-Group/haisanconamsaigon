@@ -74,6 +74,7 @@ app.get('/', (req, res) => {
     })
 })
 
+
 // app.get('/seafood', (req, res) => {
 //     res.render('seafood');
 // })
@@ -87,6 +88,7 @@ app.get('/menu-food', (req, res) => {
 })
 
 app.get('/contact', (req, res) => {
+    console.log(__dirname);
     res.render('Pages/Others/contact');
 })
 
