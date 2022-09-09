@@ -7,6 +7,14 @@
   --luc: #4FD3C4 !important;
 }
 
+.slick-list {
+  padding: 0 !important;
+}
+
+.slick-track {
+  float: left;
+}
+
 li {
   list-style: none;
   display: inline-block;
@@ -1175,8 +1183,12 @@ a.watch-detail {
   bottom: 0;
 }
 
+.product2 {
+  width: 25%;
+}
+
 .product2 img {
-  width: 120px;
+  width: 99%;
 }
 
 /* Product End */

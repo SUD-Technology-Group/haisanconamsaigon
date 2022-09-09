@@ -8,4 +8,5 @@ router.post('/add', store.array('product-image'), SeafoodController.postAddSeafo
 router.post('/edit/:id', store.array('product-image'), SeafoodController.updateSeafood)
 router.get('/all', SeafoodController.getAllSeafood)
 router.get('/delete/:id', SeafoodController.getDeleteSeafood)
+router.get('/:slug', SeafoodController.getDetailSeafood)
 module.exports = router
