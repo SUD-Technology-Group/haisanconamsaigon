@@ -72,6 +72,21 @@ const storageDiscount = multer.diskStorage({
   }
 })
 
+const storageFood = multer.diskStorage({
+  destination: function (req, file, cb) {
+    let name = req.body.name
+    let dir = `./src/public/uploads/food/${name}`;
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
+    cb(null, `src/public/uploads/food/${name}`)
+  },
+  filename: function (req, file, cb) {
+    let ext = file.originalname.substring(file.originalname.lastIndexOf('.'))
+    cb(null, file.fieldname + '-' + Date.now() + ext)
+  }
+})
+
 const store = multer({
   storage: storage,
   limits: { fieldSize: 1024 * 1024 * 1024 }
@@ -103,5 +118,10 @@ const videoUpload = multer({
   }
 })
 
-module.exports = { store, storeMenu, storeNews, storeDiscount, videoUpload }
+const storeFood = multer({
+  storage: storageFood,
+  limits: { fieldSize: 1024 * 1024 * 1024 }
+})
+
+module.exports = { store, storeMenu, storeNews, storeDiscount, videoUpload, storeFood }
 

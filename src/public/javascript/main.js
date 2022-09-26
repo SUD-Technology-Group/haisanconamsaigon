@@ -1,12 +1,4 @@
 
-// $(window).scroll(function() {
-//     if ($(this).scrollTop() == 0) {
-//         console.log('passed');
-//         //Do whatever you want to do
-//         $('#page-header').addClass('d-none');
-//     }
-// });
-
 $('.cs-5').owlCarousel({
     loop: true,
     margin: 10,
@@ -80,7 +72,7 @@ $(document).ready(() => {
         $('.slider-nav').slick({
             slidesToShow: 4,
             slidesToScroll: 3,
-            speed: 300,         
+            speed: 300,
             asNavFor: '.slider-for',
             dots: false,
             centerMode: true,
@@ -133,12 +125,26 @@ $(document).ready(() => {
     })
 
     $('#btn').click(function () {
-        $('#btn').toggleClass("cart_clk");
+        if ($("#btn").hasClass('cart_clk')) {
+            const slug = $("input[name=slug]").val();
+            const id = $("input[name=id]").val();
+            const name = $("input[name=name]").val();
+            const image = $("input[name=image]").val();
+            const price = $("input[name=price]").val();
+            const size = $("input[name=size]").val();
+            const inventory = $("input[name=quantity]").val();
+            const quantity = $("#numOfSeafood").text();
+            addSeafoodToCart(id, name, price, size, inventory, quantity, image, slug)
+        } else {
+            $('#btn').addClass("cart_clk");
+        }
 
     });
     $("#btn").one("click", function () {
         $('.cart .fa').attr('data-before', '1');
     });
+
+
 
     var prnum = $('.num').text();
     $('.inc').click(function () {
@@ -157,11 +163,85 @@ $(document).ready(() => {
         }
 
     });
+
+
+    // Shopping cart: start
+    let shoppingCart
+    if (localStorage.getItem('shopping-cart')) {
+        shoppingCart = JSON.parse(localStorage.getItem('shopping-cart'))
+    } else {
+        shoppingCart = JSON.parse(localStorage.setItem('shopping-cart', '[]'))
+    }
+
+
+    function addSeafoodToCart(id, name, price, size, inventory, quantity, img, slug) {
+        let checkIdAndSize = shoppingCart.some(item => {
+            item = JSON.parse(item)
+            return item.id === id && item.size == size
+        })
+        if (checkIdAndSize) {
+            changeNumberOfSeafood('plus', id, size)
+            alertAddToAdminCart(name)
+        } else if (inventory != 0) {
+            const seafood = {
+                id: id,
+                name: name,
+                price: price,
+                stringPrice: Number(price).toLocaleString('vi', { style: 'currency', currency: 'VND' }),
+                img: img,
+                inventory: inventory,
+                size: size,
+                slug: slug
+            }
+            shoppingCart.push(JSON.stringify({
+                ...seafood,
+                numberOfUnit: Number(quantity)
+            }))
+            alertAddToCart(name, size)
+        }
+        updateShoppingCart()
+    }
+
+    function changeNumberOfSeafood(action, id, size) {
+        shoppingCart = shoppingCart.map(item => {
+            item = JSON.parse(item)
+            let numberOfUnit = Number(item.numberOfUnit)
+            if (item.id === id && item.size == size) {
+                if (action == 'minus' && numberOfUnit > 1) {
+                    numberOfUnit--
+                } else if (action == 'plus') {
+                    numberOfUnit++
+                }
+            }
+            return JSON.stringify({
+                ...item,
+                numberOfUnit: numberOfUnit
+            })
+        })
+        updateShoppingCart()
+    }
+
+    function updateShoppingCart() {
+        localStorage.setItem('shopping-cart', JSON.stringify(shoppingCart))
+    }
+
+    function alertAddToCart(name, size) {
+        document.getElementById('alertAddToCart').innerHTML =
+            `<div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+                    Đã thêm <strong>${name}</strong> - ${size} vào giỏ hàng
+                </div>`
+        setTimeout(function () { document.getElementById('alertAddToCart').innerHTML = ''; }, 2000);
+    }
+
+    // Shopping cart: end
+
 })
 
 
 function onClick(element) {
     document.getElementById("img01").src = element.src;
     document.getElementById("modal01").style.display = "block";
-  }
+}
+
+
 

@@ -1,8 +1,7 @@
 const fs = require('fs');
-const Seafoods = require('../models/Seafoods');
 const SeafoodService = require('../services/Seafoods');
 const createSlug = require('../utils/createSlug');
-const handleUploads = require('../utils/handleUploads');
+const { handleUploads } = require('../utils/handleUploads');
 let src = 'uploads/seafood';
 
 
@@ -20,7 +19,7 @@ const SeafoodController = {
 
         let listImages = []
         file.map(f => { listImages.push(`/uploads/seafood/${name}/${f.filename}`) })
-        priceObject = price.map((item, index) => {
+        let priceObject = price.map((item, index) => {
             return {
                 cost: item,
                 size: size[index],
@@ -52,7 +51,7 @@ const SeafoodController = {
         const slug = createSlug(name, {});
         const files = req.files;
 
-        priceObject = price.map((item, index) => {
+        let priceObject = price.map((item, index) => {
             return {
                 cost: item,
                 size: size[index],
@@ -100,9 +99,9 @@ const SeafoodController = {
                 return res.redirect('/admin/list-product');
             })
     },
-
+    // GET /seafood/all
     getAllSeafood: async (req, res, next) => {
-        await SeafoodService.list({},{})
+        await SeafoodService.list({}, {})
             .then(seafoods => {
                 if (seafoods.length == 0) {
                     return res.json({ message: "Không có hải sản nào" })
@@ -115,7 +114,8 @@ const SeafoodController = {
                             image: item.image,
                             avatar: item.image[0],
                             price: item.price,
-                            description: item.description
+                            description: item.description,
+                            slug: item.slug
                         }
                         seaFoodList.push(currentSeafood)
                     })
@@ -131,15 +131,17 @@ const SeafoodController = {
         await SeafoodService.get(slug)
             .then(seafood => {
                 let data = {
-                    id: seafood.id,
+                    id: seafood._id,
                     name: seafood.name,
                     description: seafood.description,
-                    price: seafood.price,
                     bought: seafood.bought,
-                    image: seafood.image
+                    image: seafood.image,
+                    avatar: seafood.image[0],
+                    type: seafood.price,
+                    slug: seafood.slug
                 }
 
-                
+
                 return res.render('Pages/Products/detail', {
                     data: data,
                     pageName: 'Hải sản tươi sống'

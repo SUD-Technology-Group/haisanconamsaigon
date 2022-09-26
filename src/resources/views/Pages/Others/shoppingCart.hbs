@@ -112,14 +112,14 @@
 
     {{else}}
 
-    <form method="post" action="/users/reOrder">
+    <form method="">
         <div class="row">
             <section class="col-md-8" id="cart-container">
                 <table class="table table-hover">
                     <thead id="thead-cart">
                         <tr>
-                            <th scope="col"></th>
-                            <th scope="col">Tên sản phẩm</th>
+                            <th colspan="2" scope="col">Tên sản phẩm</th>
+                            <th scope="col">Size</th>
                             <th scope="col">Giá</th>
                             <th scope="col">Số lượng</th>
                             <th scope="col">Thành tiền</th>
@@ -127,7 +127,7 @@
                         </tr>
                     </thead>
                     <tbody id="body-cart">
-                        <tr style="background-color: white" class="product-item">
+                        {{!-- <tr style="background-color: white" class="product-item">
                             <th scope="row">
                                 <a target="_blank" href="/products/${item.slug}">
                                     <div style="float: left"><img style="height: 100px; width: 100px"
@@ -181,7 +181,7 @@
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
                             </td>
-                        </tr>
+                        </tr> --}}
 
                     </tbody>
                     <tbody>
@@ -203,13 +203,13 @@
                 </div>
                 <div class="form-group">
 
-                    <input name="email" type="email" required="" class="form-input form-control mb-2 ml-3" value="{{email}}"
-                        placeholder="Email">
+                    <input name="email" type="email" required="" class="form-input form-control mb-2 ml-3"
+                        value="{{email}}" placeholder="Email">
                 </div>
                 <div class="form-group">
 
-                    <input name="phone" type="text" required="" class="form-input form-control mb-2 ml-3" value="{{phone}}"
-                        placeholder="Số điện thoại">
+                    <input name="phone" type="text" required="" class="form-input form-control mb-2 ml-3"
+                        value="{{phone}}" placeholder="Số điện thoại">
                 </div>
                 <div class="form-group">
 
@@ -222,7 +222,7 @@
                 <input id="sale" value="chưa có sale" name="sale" placeholder="Tên sale" class="d-none" type="text">
                 <div class="col-12 mb-5 d-flex">
                     <div class="m-auto">
-                        <a href="/collections/Lop-Advance-Samson-1" class="btn btn-info btn-lg mr-2 ">Tiếp tục mua
+                        <a href="/" class="btn btn-info btn-lg mr-2 ">Tiếp tục mua
                             hàng</a>
                         <button onclick="submitFormCart()" type="submit" class="btn btn-warning btn-lg">Đặt
                             hàng</button>
@@ -235,7 +235,6 @@
 </div>
 <script>
 
-
     let shoppingCart
     if (localStorage.getItem('shopping-cart')) {
         shoppingCart = JSON.parse(localStorage.getItem('shopping-cart'))
@@ -245,8 +244,8 @@
 
     const bodyCart = document.getElementById('body-cart')
     const totalPrice = document.getElementById('total-cart')
-    //renderProductToCart()
-    //renderTotalPrice()
+    renderProductToCart()
+    renderTotalPrice()
     function updateShoppingCart() {
         localStorage.setItem('shopping-cart', JSON.stringify(shoppingCart))
         renderProductToCart()
@@ -264,30 +263,30 @@
                 </a>
             </th>
             <td><a  target="_blank" href="/products/${item.slug}">
-                    ${item.id}</a></td>
+                    ${item.name}</a></td>
+            <td>${item.size}</td>
             <td class="total-product-price"><strong>${Number(item.price).toLocaleString('vi', { style: 'currency', currency: 'VND' })}</strong></td>
             <td>
                 <div class="units">
-                    <div class="btn minus" onclick="changeNumberOfUnit('minus', '${item.id}')">-</div>
+                    <div class="btn minus" onclick="changeNumberOfUnit('minus', '${item.id}', '${item.size}')">-</div>
                     <div class="number">${item.numberOfUnit}</div>
-                    <div class="btn plus" onclick="changeNumberOfUnit('plus', '${item.id}')">+</div>           
+                    <div class="btn plus" onclick="changeNumberOfUnit('plus', '${item.id}', '${item.size}')">+</div>           
                 </div>
                 <input id="${item.id}" class="product-quantity w-25 pl-1 d-none" value="${item.numberOfUnit}" type="number">
             </td>
             <td><strong class="total-product">${Number(item.price * item.numberOfUnit).toLocaleString('vi', { style: 'currency', currency: 'VND' })}</strong></td>
             <td>
-                <button onclick="deleteProduct('${item.id}')" class="btn btn-danger">
+                <button onclick="deleteProduct('${item.id}', '${item.size}')" class="btn btn-danger">
                     <i class="fas fa-trash-alt"></i>
                 </button>
             </td>
         </tr>`
         })
     }
-    function deleteProduct(id) {
-        console.log('onclick')
+    function deleteProduct(id, size) {
         shoppingCart = shoppingCart.filter(item => {
             item = JSON.parse(item)
-            return item.id != id
+            return item.id != id || item.size != size
         })
         updateShoppingCart()
     }
@@ -299,11 +298,11 @@
         })
         totalPrice.innerHTML = `TỔNG ĐƠN HÀNG ${total.toLocaleString('vi', { style: 'currency', currency: 'VND' })}`
     }
-    function changeNumberOfUnit(action, id) {
+    function changeNumberOfUnit(action, id, size) {
         shoppingCart = shoppingCart.map(item => {
             item = JSON.parse(item)
             let numberOfUnit = Number(item.numberOfUnit)
-            if (item.id === id) {
+            if (item.id === id && item.size == size) {
                 if (action == 'minus' && numberOfUnit > 1) {
                     numberOfUnit--
                 } else if (action == 'plus') {

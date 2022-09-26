@@ -2,8 +2,36 @@ const fs = require('fs');
 const path = require('path');
 const root = process.env.ENVIRONMENT == 'dev' ? './src/public' : './haisanconamsaigon/src/public';
 
+function handleUploadsSingle(last, curr, src, image, file) {
+    // Change name
+    if (last != curr) {
+        const lastPath = path.join(root, src, last);
+        const currPath = path.join(root, src, curr);
+        // and change image
+        if (file) {
+            fs.rmdir(lastPath, { recursive: true }, err => {
+                if (err) console.log(err);
+            })
+            return '/' + path.join(src, curr, file.filename)
+        }
+        else {
+            fs.renameSync(lastPath, currPath);
+            let imageName = image.split('/').pop()
+            return '/' + path.join(src, curr, imageName);
+        }
 
-module.exports = handleUploads = (last, curr, src, listImages, files) => {
+    }
+    // Change images
+    else if (file) {
+        let link = path.join(root, image);
+        fs.unlinkSync(link, err => {
+            if (err) console.log(err);
+        })
+        return '/' + path.join(src, curr, file.filename)
+    }
+}
+
+function handleUploads(last, curr, src, listImages, files) {
     // Change name
     if (last != curr) {
         const lastPath = path.join(root, src, last);
@@ -40,3 +68,5 @@ module.exports = handleUploads = (last, curr, src, listImages, files) => {
         })
     }
 }
+
+module.exports = { handleUploads, handleUploadsSingle }

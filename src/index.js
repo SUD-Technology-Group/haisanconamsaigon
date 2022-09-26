@@ -19,7 +19,9 @@ const CollectionRouter = require('./resources/routers/CollectionRouter')
 const NewsRouter = require('./resources/routers/NewsRouter')
 const DiscountRouter = require('./resources/routers/DiscountRouter')
 const BannerRouter = require('./resources/routers/BannerRouter')
+const FoodRouter = require('./resources/routers/FoodRouter')
 const Users = require('./resources/models/Users')
+const OrderRouter = require('./resources/routers/OrderRouter')
 const BannerService = require('./resources/services/Banner')
 db.connect();
 
@@ -47,6 +49,9 @@ app.engine('hbs', handlebars.engine({
             return options.fn(this).replace(
                 new RegExp(' value=\"' + selected + '\"'),
                 '$& selected="selected"');
+        },
+        toPrice: function (price) {
+            return Number(price).toLocaleString('vi', { style: 'currency', currency: 'VND' });
         }
     }
 }))
@@ -70,6 +75,8 @@ app.use('/collections', CollectionRouter);
 app.use('/news', NewsRouter)
 app.use('/discount', DiscountRouter)
 app.use('/banner', BannerRouter)
+app.use('/order', OrderRouter)
+app.use('/food', FoodRouter)
 app.get('/', (req, res) => {
     BannerService.get("banner")
         .then(b => {

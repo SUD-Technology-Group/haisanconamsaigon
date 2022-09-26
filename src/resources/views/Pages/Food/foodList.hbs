@@ -1,0 +1,253 @@
+<h2 class="h-title">
+    <span>Danh sách menu món ăn / đồ uống</span>
+</h2>
+
+<div class="row">
+    <div class=" mx-auto">
+        <div class="bg-white rounded-lg shadow-sm p-5">
+            <!-- Credit card form tabs -->
+            <ul role="tablist" class="nav bg-light nav-pills rounded-pill nav-fill mb-3">
+                <li class="nav-item">
+                    <a data-toggle="pill" href="#nav-tab-card" class="nav-link active rounded-pill">
+                        <i class="fas fa-utensils"></i>
+                        Danh sách menu món ăn / đồ uống
+                    </a>
+                </li>
+            </ul>
+            <!-- End -->
+
+            <!-- Credit card form content -->
+            <div class="tab-content">
+                <div class="row justify-content-center mb-3">
+                    <div class="col-md-6 ">
+                        <a type="button" href="/food/add-food"
+                            class="subscribe btn btn-secondary btn-block rounded-pill shadow-sm">
+                            <i class="fas fa-plus"></i> Thêm menu món ăn / đồ uống</a>
+                    </div>
+                </div>
+                <div id="nav-tab-card" class="tab-pane fade show active">
+                    {{#if success}}
+                    <p class="alert alert-success">{{success}}</p>
+                    {{/if}}
+                    {{#if error}}
+                    <p class="alert alert-danger">{{error}}</p>
+                    {{/if}}
+                    <table id="foodTable" class="table align-middle mb-0 bg-white">
+                        <thead class="bg-light">
+                            <tr>
+                                <th>STT</th>
+                                <th>Tên món</th>
+                                <th>Loại</th>
+                                <th>Giá</th>
+                                <th>Đăng ngày</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="listSeafood">
+                            {{#if empty}}
+                            <td colspan="6">
+                                <p class="fw-bold mb-1">Không có món ăn / đồ uống nào</p>
+                            </td>
+                            {{else}}
+                            {{#each data}}
+                            <tr>
+                                <td>
+                                    <p class="fw-bold mb-1">{{index}}</p>
+                                </td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img src="{{image}}" class="rounded-circle" alt=""
+                                            style="width: 45px; height: 45px" />
+                                        <div class="ms-3">
+                                            <p class="fw-bold mb-1">{{name}}</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="row mb-1">
+                                        <span class="badge badge-success rounded-pill d-inline col-8">{{type}}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="ms-3">
+                                        <p class="fw-bold mb-1">{{stringPrice}}</p>
+                                    </div>
+                                </td>
+                                <td>
+                                    {{createdAt}}
+                                </td>
+                                <td>
+                                    <button onclick="renderContent('{{id}}')" type="button" data-toggle="modal"
+                                        data-target="#newsModal{{id}}" class="btn btn-link btn-rounded btn-sm fw-bold"
+                                        data-mdb-ripple-color="dark">
+                                        Sửa
+                                    </button>
+                                </td>
+                            </tr>
+                            {{/each}}
+                            {{/if}}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        {{!-- Modal: start --}}
+        <div id="newsModal">
+            {{#each data}}
+            <div id="newsModal{{id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div style="padding: 20px" class="modal-content">
+                        <form method="post" action="/food/update/{{id}}" enctype="multipart/form-data">
+                            {{!-- Name --}}
+                            <div class="form-group">
+                                <label for="name">Tên món ăn / đồ uống <i class="fas fa-signature"></i></label>
+                                <input type="text" class="d-none" name="old_name" value="{{name}}">
+                                <input value="{{name}}" id="name" type="text" name="name"
+                                    placeholder="Nhập tên món ăn /  đồ uống" required="" class="form-control">
+                            </div>
+
+                            {{!-- Type --}}
+                            <div class="form-group">
+                                <label for="type">Loại <i class="fas fa-align-justify"></i></label>
+                                {{#select type}}
+                                <select class="form-control" id="type" name="type">
+                                    <option value="">-- Chọn loại --</option>
+                                    <option value="Món ăn">Món ăn</option>
+                                    <option value="Đồ uống">Đồ uống</option>
+                                </select>
+                                {{/select}}
+                            </div>
+                            {{!-- Price --}}
+                            <div class="form-group">
+                                <label for="price">Giá <i class="fas fa-money-bill-wave-alt"></i></label>
+                                <input value="{{price}}" id="price" type="number" name="price" placeholder="Nhập giá"
+                                    required="" class="form-control">
+                            </div>
+                            {{!-- Image --}}
+                            <div class="form-group">
+                                <label for="cardNumber">Hình ảnh món ăn / đồ uống <i class="far fa-images"></i></label>
+                                <div class="input-group">
+                                    <div class="form-group-container">
+                                        <input type="text" class="d-none" name="old_image" value="{{image}}">
+                                        <input id="news-image{{id}}" accept="image/*" name="food-image"
+                                            class="form-control input-md" onchange="preview('{{id}}')" type="file">
+                                        <label for="news-image{{id}}">
+                                            <i class="fas fa-upload"></i>
+                                            Chọn ảnh món ăn / đồ uống &nbsp;
+                                        </label>
+                                        <p id="num-of-file{{id}}">Chưa có ảnh nào được chọn</p>
+                                        <div id="images-upload{{id}}">
+                                            <figure>
+                                                <img src="{{image}}" alt="">
+                                            </figure>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{!-- Description --}}
+                            <div class="form-group">
+                                <label for="description{{id}}">Mô tả<i class="fas fa-align-center"></i></label>
+                                <textarea required="" id="description{{id}}" name="description"></textarea>
+                            </div>
+                            <button type="submit" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm">
+                                Chỉnh sửa bài viết </button>
+                            <button type="button" data-toggle="modal" data-target="#deleteModal{{id}}"
+                                class="subscribe btn btn-danger btn-block rounded-pill shadow-sm">
+                                Xóa bài viết </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+
+        <div id="deleteModal">
+            {{#each data}}
+            <div class="modal fade" id="deleteModal{{id}}" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Xóa bài viết</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Bạn có muốn xóa <strong>{{name}}</strong>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                            <button onclick="deleteFood('{{id}}')" type="button" class="btn btn-danger">Xóa</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        {{!-- Modal: end --}}
+    </div>
+
+    <script src="/ckeditor/ckeditor.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $('#foodTable').DataTable();
+        });
+
+        function preview(id) {
+            let fileInput = document.getElementById(`news-image${id}`);
+            let imageContainer = document.getElementById(`images-upload${id}`);
+            let numOfFiles = document.getElementById(`num-of-file${id}`);
+
+            imageContainer.innerHTML = ""
+            numOfFiles.textContent = `${fileInput.files.length} ảnh đã được chọn`;
+
+            for (i of fileInput.files) {
+                let reader = new FileReader()
+                let figure = document.createElement("figure")
+                let figCap = document.createElement("figcaption")
+
+                figCap.innerText = i.name
+                figure.appendChild(figCap)
+                reader.onload = () => {
+                    let img = document.createElement("img");
+                    img.setAttribute("src", reader.result);
+                    figure.insertBefore(img, figCap);
+                }
+                imageContainer.appendChild(figure);
+                reader.readAsDataURL(i)
+            }
+        }
+        function deleteFood(id) {
+            location.href = `/food/delete/${id}`
+        }
+
+        function renderContent(id) {
+            CKEDITOR.replace(`description${id}`)
+            getContent(id)
+        }
+
+        function getContent(id) {
+            $.ajax({
+                url: `/food/desc/${id}`,
+                type: 'GET',
+                dataType: 'json',
+                success: function (data, textStatus, xhr) {
+                    if (!data) {
+                        console.log('err')
+                    } else {
+                        document.getElementById(`description${id}`).innerHTML = data.description;
+                    }
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log('Error in Operation');
+                }
+            });
+        }
+
+
+    </script>

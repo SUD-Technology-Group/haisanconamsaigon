@@ -8,7 +8,7 @@ const SeafoodService = {
     list: async (condition, options) => {
         let skip = options.skip || 0;
         let limit = options.limit || 0;
-        
+
         return Seafoods.find(condition)
             .sort({ createdAt: -1 })
             .skip(skip)
