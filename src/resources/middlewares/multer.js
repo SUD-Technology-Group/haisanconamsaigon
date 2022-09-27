@@ -1,14 +1,14 @@
 const multer = require('multer')
 const fs = require('fs')
-
+const root = process.env.ENVIRONMENT == 'dev' ? './src/public/uploads' : './haisanconamsaigon/src/public/uploads';
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     let name = req.body.name
-    let dir = `./src/public/uploads/seafood/${name}`;
+    let dir = root + `/seafood/${name}`;
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir, { recursive: true });
     }
-    cb(null, `src/public/uploads/seafood/${name}`)
+    cb(null, root + `/seafood/${name}`)
   },
   filename: function (req, file, cb) {
     let ext = file.originalname.substring(file.originalname.lastIndexOf('.'))
@@ -18,7 +18,7 @@ const storage = multer.diskStorage({
 
 const videoStorage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, `src/public/uploads/banner/video`)
+    cb(null, root + `/uploads/banner/video`)
   }, // Destination to store video 
   filename: (req, file, cb) => {
     let ext = file.originalname.substring(file.originalname.lastIndexOf('.'))
@@ -30,11 +30,11 @@ const videoStorage = multer.diskStorage({
 const storageMenu = multer.diskStorage({
   destination: function (req, file, cb) {
     let name = req.body.menu_name
-    let dir = `./src/public/uploads/menu/${name}`;
+    let dir = root + `/menu/${name}`;
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir, { recursive: true });
     }
-    cb(null, `src/public/uploads/menu/${name}`)
+    cb(null, root + `/menu/${name}`)
   },
   filename: function (req, file, cb) {
     let ext = file.originalname.substring(file.originalname.lastIndexOf('.'))
@@ -46,11 +46,11 @@ const storageMenu = multer.diskStorage({
 const storageNews = multer.diskStorage({
   destination: function (req, file, cb) {
     let name = req.body.title
-    let dir = `./src/public/uploads/news/${name}`;
+    let dir = root + `/news/${name}`;
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir, { recursive: true });
     }
-    cb(null, `src/public/uploads/news/${name}`)
+    cb(null, root + `/news/${name}`)
   },
   filename: function (req, file, cb) {
     let ext = file.originalname.substring(file.originalname.lastIndexOf('.'))
@@ -60,11 +60,11 @@ const storageNews = multer.diskStorage({
 const storageDiscount = multer.diskStorage({
   destination: function (req, file, cb) {
     let name = req.body.title
-    let dir = `./src/public/uploads/discount/${name}`;
+    let dir = root + `/discount/${name}`;
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir, { recursive: true });
     }
-    cb(null, `src/public/uploads/discount/${name}`)
+    cb(null, root + `/discount/${name}`)
   },
   filename: function (req, file, cb) {
     let ext = file.originalname.substring(file.originalname.lastIndexOf('.'))
@@ -75,11 +75,11 @@ const storageDiscount = multer.diskStorage({
 const storageFood = multer.diskStorage({
   destination: function (req, file, cb) {
     let name = req.body.name
-    let dir = `./src/public/uploads/food/${name}`;
+    let dir = root + `/food/${name}`;
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir, { recursive: true });
     }
-    cb(null, `src/public/uploads/food/${name}`)
+    cb(null, root + `/food/${name}`)
   },
   filename: function (req, file, cb) {
     let ext = file.originalname.substring(file.originalname.lastIndexOf('.'))
