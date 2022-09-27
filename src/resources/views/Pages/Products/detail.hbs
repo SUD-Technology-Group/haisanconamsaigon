@@ -48,6 +48,7 @@
 							<p><span class="bolder">Quy cách: </span> Giao sống </p>
 							<p><span class="bolder">Cam kết: </span> 01 đổi 01 nếu kém chất lượng </p>
 							<p><span class="bolder">Size: </span>
+								{{#if data.type}}
 								{{#each data.type}}
 								{{#if @first}}
 								<button onclick="selectSize('{{cost}}','{{size}}','{{quantity}}',this)"
@@ -58,6 +59,10 @@
 									class="btn btn-outline-info btn-seafood-size">{{size}}</button>
 								{{/if}}
 								{{/each}}
+								{{else}}
+								<button onclick="selectSize('{{data.price}}','{{data.name}}','100',this)"
+									class="btn btn-info btn-seafood-size">{{data.name}}</button>
+								{{/if}}
 							</p>
 						</div>
 
@@ -66,7 +71,7 @@
 						<input class="d-none" name="image" value="{{data.avatar}}" type="text">
 						<input class="d-none" name="slug" value="{{data.slug}}" type="text">
 
-
+						{{#if data.type}}
 						{{#each data.type}}
 						{{#if @first}}
 						<input class="d-none" name="price" value="{{cost}}" type="text">
@@ -74,12 +79,21 @@
 						<input class="d-none" name="size" value="{{size}}" type="text">
 						{{/if}}
 						{{/each}}
+						{{else}}
+						<input class="d-none" name="price" value="{{data.price}}" type="text">
+						<input class="d-none" name="quantity" value="100" type="text">
+						<input class="d-none" name="size" value="{{data.name}}" type="text">
+						{{/if}}
 						<div id="product-price" class="prod-price mb-3">
+							{{#if data.type}}
 							{{#each data.type}}
 							{{#if @first}}
 							{{toPrice cost}}
 							{{/if}}
 							{{/each}}
+							{{else}}
+							{{toPrice data.price}}
+							{{/if}}
 						</div>
 						<div class="crtdiv">
 							<span class="qty">

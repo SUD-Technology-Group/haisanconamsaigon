@@ -10,8 +10,14 @@ router.get('/desc/:id', FoodController.getFoodDescription);
 // Get All Foods
 router.get('/all', FoodController.getAllFoods);
 router.get('/list-food', FoodController.getListFoods);
+// Get Food-Drink
+router.get('/drinks', FoodController.getDrinks)
+// Get Food-Dish
+router.get('/dish', FoodController.getDish)
 // Update Food
 router.post('/update/:id', storeFood.single('food-image'), FoodController.updateFood);
 // Delete Food
 router.get('/delete/:id', FoodController.deleteFood);
+// Get Detail
+router.get('/:slug', FoodController.getDetailFood);
 module.exports = router;

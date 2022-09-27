@@ -45,8 +45,8 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-10 mt-2">
-                        <div class="col-md-3 seafood-box">
+                    <div id="list-seafood" class="col-md-10 mt-2">
+                        {{!-- <div class="col-md-3 seafood-box">
                             <span class="sale">-20%</span>
                             <div class="seafood-img-box">
                                 <img src="/img/seafood/seafood1.png" alt="">
@@ -159,7 +159,8 @@
                                     <a href="">Thưởng thức ngay</a>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
+
                     </div>
 
                     <div class="col-md-2 seafood-right-banner mt-2">
@@ -186,7 +187,7 @@
                     Filter
                 </div> --}}
 
-                <div class="owl-carousel cs-5 owl-theme mt-5">
+                <div id="list-menu" class="owl-carousel cs-5 owl-theme mt-5">
                     <div class="item"><img src="/img/menu/menu1.png" alt="">
 
                     </div>
@@ -368,4 +369,47 @@
 
 <script>
     var mySlider = slider('.slides');
+    const listSeafood = document.getElementById('list-seafood');
+    const listMenu = document.getElementById('list-menu');
+    renderSeafood()
+    function renderSeafood() {
+        $.ajax({
+            url: `/seafood/all`,
+            type: 'GET',
+            dataType: 'json',
+            success: function (data, textStatus, xhr) {
+                if (data.seaFoodList) {
+                    listSeafood.innerHTML = ``;
+                    const list = data.seaFoodList
+                    list.forEach((item, index) => {
+                        if (index < 8)
+                            listSeafood.innerHTML += `<div class="col-md-3 seafood-box">
+                            <span class="sale">-20%</span>
+                            <div class="seafood-img-box">
+                                <img src="${item.avatar}" alt="">
+                            </div>
+
+                            <div class="seafood-content-box">
+                                <a href="/seafood/${item.slug}" class="seafood-title">${item.name}</a>
+
+                                <div class="seafood-price">
+                                    <span style="text-decoration: line-through">Giá bán: ${item.price[0].cost.toLocaleString('vi', { style: 'currency', currency: 'VND' })}</span><br> Giá
+                                    khuyến mãi:${item.price[0].cost.toLocaleString('vi', { style: 'currency', currency: 'VND' })}
+                                </div>
+
+                                <div class="seafood-buy smooth">
+                                    <a href="/seafood/${item.slug}">Thưởng thức ngay</a>
+                                </div>
+                            </div>
+                        </div>`;
+                    })
+
+                }
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.log('Error in Operation');
+            }
+        });
+    }
+
 </script>

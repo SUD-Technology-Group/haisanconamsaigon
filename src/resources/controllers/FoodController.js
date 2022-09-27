@@ -104,16 +104,17 @@ const FoodController = {
     // GET /food/:slug
     getDetailFood: async (req, res, next) => {
         const slug = req.params.slug;
-        await FoodServices.get(slug)
+        await FoodService.get(slug)
             .then(food => {
                 let data = {
                     id: food._id,
                     name: food.foodName,
                     type: food.foodType,
                     description: food.description,
-                    image: food.images,
-                    avatar: food.images[0],
-                    slug: food.slug
+                    image: [food.image],
+                    avatar: food.image,
+                    slug: food.slug,
+                    price: food.price
                 };
 
                 return res.render('Pages/Products/detail', {
@@ -172,7 +173,7 @@ const FoodController = {
     },
     // GET /food/drinks
     getDrinks: async (req, res, next) => {
-        await FoodService.list({ type: 'Đồ uống' }, {})
+        await FoodService.list({ foodType: 'Đồ uống' }, {})
             .then(drinks => {
                 if (drinks.length == 0) {
                     res.json({ message: "Thất bại" });
@@ -195,7 +196,7 @@ const FoodController = {
     },
     // GET /food/dish
     getDish: async (req, res, next) => {
-        await FoodService.list({ type: 'Món ăn' }, {})
+        await FoodService.list({ foodType: 'Món ăn' }, {})
             .then(dish => {
                 if (dish.length == 0) {
                     res.json({ message: "Thất bại" });
