@@ -104,6 +104,10 @@ app.get('/menu-food', (req, res) => {
     res.render('Pages/Products/menu-food');
 })
 
+app.get('/menu-drinks', (req, res) => {
+    res.render('Pages/Products/menu-drinks');
+})
+
 app.get('/contact', (req, res) => {
     console.log(__dirname);
     res.render('Pages/Others/contact');

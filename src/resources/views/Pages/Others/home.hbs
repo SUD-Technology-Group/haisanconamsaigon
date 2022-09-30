@@ -19,13 +19,13 @@
 
                 <div class="container">
                     <div class="owl-carousel owl-theme mt-md-1">
-                        <div class="item bestseller-box"><img src="/img/menu/menu1.png" alt="">
-                            {{!-- <div class="food-name">
-                                <h4>Ốc móng chúa</h4>
-                            </div> --}}
+                        {{#each menuList}}
+                        <div class="item bestseller-box"><img src="{{image}}" alt="">
                         </div>
-                        <div class="item bestseller-box"><img src="/img/menu/menu2.png" alt=""></div>
-                        <div class="item bestseller-box"><img src="/img/menu/menu3.png" alt=""></div>
+                        {{/each}}
+
+                        {{!-- <div class="item bestseller-box"><img src="/img/menu/menu2.png" alt=""></div>
+                        <div class="item bestseller-box"><img src="/img/menu/menu3.png" alt=""></div> --}}
 
                     </div>
                 </div>
@@ -79,7 +79,7 @@
                     </div>
                     {{/each}}
                 </div>
-                <div class="text-center w-100 d-flex justify-content-center mt-4">
+                {{!-- <div class="text-center w-100 d-flex justify-content-center mt-4">
 
                     <div class="pagination">
                         <ul class="pagination-list">
@@ -111,7 +111,7 @@
                         <input type="hidden" name="limitstart" value="0">
                     </div>
 
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>
