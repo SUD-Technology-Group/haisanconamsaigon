@@ -22,34 +22,48 @@ const OrderController = {
         OrderServices.create(order)
             .then(() => {
                 req.flash('success', 'Tạo đơn hàng thành công')
-                return res.redirect('/order/add')
+                return res.redirect('/shopping-cart')
             })
             .catch(err => {
                 req.flash('error', 'Tạo đơn hàng thất bại ' + err)
-                res.redirect('/order/add')
+                res.redirect('/shopping-cart')
             })
     },
 
     // GET /order/all
     getAllOrder: (req, res, next) => {
-        Orders.list({}, {})
-            .then(seafoods => {
-                if (seafoods.length == 0) {
-                    return res.json({ message: "Không có hải sản nào" })
+        const error = req.flash('error') || "";
+        const success = req.flash('success') || "";
+        OrderServices.list({}, {})
+            .then(order => {
+                if (order.length == 0) {
+                    return res.render('Pages/Order/orderList', {
+                        layout: 'admin',
+                        empty: true,
+                        error,
+                        success
+                    });
                 } else {
-                    let seaFoodList = []
-                    seafoods.forEach(item => {
-                        const currentSeafood = {
+                    let orderList = []
+                    order.forEach((item, index) => {
+                        const currentOrder = {
                             id: item._id,
-                            name: item.name,
-                            image: item.image,
-                            avatar: item.image[0],
-                            price: item.price,
-                            description: item.description
+                            index: index + 1,
+                            total: item.total,
+                            customer: item.Customer,
+                            product_list: JSON.parse(item.product_list),
+                            status: item.status,
+                            complete: item.complete,
+                            createdAt: item.createdAt
                         }
-                        seaFoodList.push(currentSeafood)
+                        orderList.push(currentOrder)
                     })
-                    return res.json({ message: "Thành công", seaFoodList })
+                    return res.render('Pages/Order/orderList', {
+                        layout: 'admin',
+                        data: orderList,
+                        error,
+                        success
+                    });
                 }
             })
     },

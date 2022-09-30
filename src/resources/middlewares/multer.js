@@ -18,7 +18,7 @@ const storage = multer.diskStorage({
 
 const videoStorage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, root + `/uploads/banner/video`)
+    cb(null, root + `/banner/video`)
   }, // Destination to store video 
   filename: (req, file, cb) => {
     let ext = file.originalname.substring(file.originalname.lastIndexOf('.'))
@@ -108,7 +108,7 @@ const storeDiscount = multer({
 const videoUpload = multer({
   storage: videoStorage,
   limits: {
-    fileSize: 40000000
+    fileSize: 80000000
   },
   fileFilter(req, file, cb) {
     if (!file.originalname.match(/\.(mp4|MPEG-4|mkv)$/)) {

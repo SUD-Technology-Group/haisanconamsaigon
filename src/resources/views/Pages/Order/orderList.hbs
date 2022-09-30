@@ -29,8 +29,10 @@
                         <thead class="bg-light">
                             <tr>
                                 <th>STT</th>
-                                <th>Tên đơn hàng</th>
-                                <th>Đăng ngày</th>
+                                <th>Tên khách hàng</th>
+                                <th>Trạng thái</th>
+                                <th>Ngày tạo</th>
+                                <th>Tổng giá</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -47,21 +49,19 @@
                                 </td>
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <img src="{{image}}" class="rounded-circle" alt=""
-                                            style="width: 45px; height: 45px" />
-                                        <div class="ms-3">
-                                            <p class="fw-bold mb-1">{{title}}</p>
-                                        </div>
+                                        <p class="fw-bold mb-1">{{customer.fullname}}</p>
                                     </div>
                                 </td>
+                                <td><span class="badge badge-success rounded-pill d-inline">{{status}}</span></td>
                                 <td>
                                     {{createdAt}}
                                 </td>
+                                <td>{{#toPrice total}} {{/toPrice}}</td>
                                 <td>
                                     <button onclick="renderContent('{{id}}')" type="button" data-toggle="modal"
                                         data-target="#newsModal{{id}}" class="btn btn-link btn-rounded btn-sm fw-bold"
                                         data-mdb-ripple-color="dark">
-                                        Sửa
+                                        Chi tiết
                                     </button>
                                 </td>
                             </tr>
@@ -81,52 +81,93 @@
                 aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div style="padding: 20px" class="modal-content">
-                        <form method="post" action="/news/edit/{{id}}" enctype="multipart/form-data">
-                            {{!-- Title --}}
-                            <div class="form-group">
-                                <label for="title">Tiêu đề <i class="fas fa-signature"></i></label>
-                                <input value="{{title}}" id="title" type="text" name="title"
-                                    placeholder="Nhập tiêu đề đơn hàng" required="" class="form-control">
+                        <form method="post" action="/news/edit/{{id}}" class="row" enctype="multipart/form-data">
+                            {{!-- Customer name --}}
+                            <div class="form-group col-md-6">
+                                <label for="CusName">Tên khách hàng <i class="fas fa-user"></i></label>
+                                <input value="{{customer.fullname}}" id="CusName" type="text" disabled
+                                    placeholder="Nhập mô tả đơn hàng" class="form-control">
                             </div>
-                            {{!-- Subtitle --}}
-                            <div class="form-group">
-                                <label for="subtitle">Mô tả <i class="fas fa-align-justify"></i></label>
-                                <input value="{{subtitle}}" id="subtitle" type="text" name="subtitle"
-                                    placeholder="Nhập mô tả đơn hàng" required="" class="form-control">
+                            {{!-- Customer phone --}}
+                            <div class="form-group col-md-6">
+                                <label for="cusPhone">SĐT <i class="fas fa-phone"></i></label>
+                                <input value="{{customer.phone}}" id="cusPhone" type="text" disabled
+                                    placeholder="Nhập mô tả đơn hàng" class="form-control">
                             </div>
-                            {{!--Group --}}
+                            {{!-- Customer email --}}
+                            <div class="form-group col-md-6">
+                                <label for="cusEmail">Email <i class="fas fa-envelope"></i></label>
+                                <input value="{{customer.email}}" id="cusEmail" type="text" disabled
+                                    placeholder="Nhập mô tả đơn hàng" class="form-control">
+                            </div>
+                            {{!-- Customer address --}}
+                            <div class="form-group col-md-6">
+                                <label for="subtitle">Địa chỉ <i class="fas fa-map-marked"></i></label>
+                                <input value="{{customer.address}}" id="subtitle" type="text" disabled
+                                    placeholder="Nhập mô tả đơn hàng" class="form-control">
+                            </div>
+
+                            {{!-- Customer address --}}
                             <div class="form-group">
-                                <label for="group">Loại đơn hàng <i class="fas fa-align-justify"></i></label>
-                                {{#select group}}
-                                <select class="form-control" id="group" name="group">
+                                <label for="createAt">Ngày tạo <i class="far fa-calendar-alt"></i></label>
+                                <input value="{{createdAt}}" id="createAt" type="text" disabled
+                                    placeholder="Nhập mô tả đơn hàng" class="form-control">
+                            </div>
+                            {{!-- Product list --}}
+                            <div class="form-group">
+                                <label for="cardNumber">Danh sách sản phẩm <i class="far fa-images"></i></label>
+                                <table class="table align-middle mb-0 bg-white">
+                                    <thead class="bg-light">
+                                        <tr>
+                                            <th>Tên sản phẩm</th>
+                                            <th>Loại</th>
+                                            <th>Số lượng</th>
+                                            <th>Giá</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each product_list}}
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <img src="{{}}" alt="" style="width: 45px; height: 45px"
+                                                        class="rounded-circle" />
+                                                    <div class="ms-3">
+                                                        <p class="fw-bold mb-1">{{}}</p>
+                                                        <p class="text-muted mb-0">john.doe@gmail.com</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <p class="fw-normal mb-1">Software engineer</p>
+                                                <p class="text-muted mb-0">IT department</p>
+                                            </td>
+                                            <td>
+                                                <span class="badge badge-success rounded-pill d-inline">Active</span>
+                                            </td>
+                                            <td>Senior</td>
+                                        </tr>
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                            {{!-- Total price --}}
+                            <div class="form-group">
+                                <label for="total">Tổng tiền <i class="fas fa-map-marked"></i></label>
+                                <input value="{{#toPrice total}} {{/toPrice}}" id="total" type="text" disabled
+                                    placeholder="Nhập mô tả đơn hàng" class="form-control">
+                            </div>
+                            {{!-- Status --}}
+                            <div class="form-group">
+                                <label for="status">Trạng thái <i class="fas fa-check-square"></i></label>
+                                {{#select status}}
+                                <select class="form-control" id="status" name="status">
                                     <option value="">-- Chọn loại đơn hàng --</option>
-                                    <option value="news">Tin tức</option>
-                                    <option value="event">Sự kiện</option>
+                                    <option value="Chờ xử lý">Chờ xử lý</option>
+                                    <option value="Đã xác nhận">Đã xác nhận</option>
                                 </select>
                                 {{/select}}
                             </div>
-                            {{!-- Image --}}
-                            <div class="form-group">
-                                <label for="cardNumber">Hình ảnh đơn hàng <i class="far fa-images"></i></label>
-                                <div class="input-group">
-                                    <div class="form-group-container">
-                                        <input type="text" class="d-none" name="old_image" value="{{image}}">
-                                        <input id="news-image{{id}}" accept="image/*" name="image"
-                                            class="form-control input-md" onchange="preview('{{id}}')" type="file">
-                                        <label for="news-image{{id}}">
-                                            <i class="fas fa-upload"></i>
-                                            Chọn ảnh đơn hàng &nbsp;
-                                        </label>
-                                        <p id="num-of-file{{id}}">Chưa có ảnh nào được chọn</p>
-                                        <div id="images-upload{{id}}">
-                                            <figure>
-                                                <img src="{{image}}" alt="">
-                                            </figure>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            {{!-- Content --}}
                             <button type="submit" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm">
                                 Chỉnh sửa đơn hàng </button>
                             <button type="button" data-toggle="modal" data-target="#deleteModal{{id}}"

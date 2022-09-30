@@ -25,7 +25,7 @@ const Orders = new Schema({
     complete: {
         success: { type: Boolean, default: null },
         date: Date
-    }
+    },
 },
     {
         timestamps: true

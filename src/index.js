@@ -112,7 +112,9 @@ app.get('/discount', (req, res) => {
 })
 
 app.get('/shopping-cart', (req, res) => {
-    res.render('Pages/Others/shoppingCart')
+    const error = req.flash('error') || '';
+    const success = req.flash('success') || '';
+    res.render('Pages/Others/shoppingCart', { error, success });
 })
 
 
