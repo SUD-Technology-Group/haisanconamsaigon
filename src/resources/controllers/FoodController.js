@@ -119,6 +119,7 @@ const FoodController = {
 
                 return res.render('Pages/Products/detail', {
                     data: data,
+                    food: true,
                     pageName: 'Menu món ăn'
                 });
             })

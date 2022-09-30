@@ -201,6 +201,33 @@ $(document).ready(() => {
         }
         updateShoppingCart()
     }
+    function addFoodToCart(id, name, price, size, img, slug) {
+        let checkIdAndSize = shoppingCart.some(item => {
+            item = JSON.parse(item)
+            return item.id === id
+        })
+        if (checkIdAndSize) {
+            changeNumberOfSeafood('plus', id, size)
+            alertAddToAdminCart(name)
+        } else if (inventory != 0) {
+            const seafood = {
+                id: id,
+                name: name,
+                price: price,
+                stringPrice: Number(price).toLocaleString('vi', { style: 'currency', currency: 'VND' }),
+                img: img,
+                inventory: inventory,
+                size: size,
+                slug: slug
+            }
+            shoppingCart.push(JSON.stringify({
+                ...seafood,
+                numberOfUnit: Number(quantity)
+            }))
+            alertAddToCart(name, size)
+        }
+        updateShoppingCart()
+    }
 
     function changeNumberOfSeafood(action, id, size) {
         shoppingCart = shoppingCart.map(item => {

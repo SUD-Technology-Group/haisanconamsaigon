@@ -196,9 +196,7 @@
 </div>
 
 <script>
-
     const listDrinks = document.getElementById('list-drinks');
-
     renderDrinks()
     function renderDrinks() {
         $.ajax({
@@ -226,8 +224,8 @@
                                     0949 515 588
                                 </div>
 
-                                <div class="seafood-buy smooth">
-                                    <a href="/food/${item.slug}">Mua hàng</a>
+                                <div onclick="addFoodToCart()" class="seafood-buy smooth">
+                                    <a type="button" >Mua hàng</a>
                                 </div>
                             </div>
                         </div>`;
@@ -238,5 +236,8 @@
                 console.log('Error in Operation');
             }
         });
+    }
+    function addFoodToCart() {
+        console.log("click")
     }
 </script>
