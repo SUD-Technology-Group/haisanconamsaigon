@@ -23,6 +23,7 @@ const FoodRouter = require('./resources/routers/FoodRouter')
 const Users = require('./resources/models/Users')
 const OrderRouter = require('./resources/routers/OrderRouter')
 const BannerService = require('./resources/services/Banner')
+const getMenuList = require('./resources/middlewares/getMenuList')
 db.connect();
 
 // Users.find({})
@@ -77,12 +78,13 @@ app.use('/discount', DiscountRouter)
 app.use('/banner', BannerRouter)
 app.use('/order', OrderRouter)
 app.use('/food', FoodRouter)
-app.get('/', (req, res) => {
+app.get('/', getMenuList, (req, res) => {
     BannerService.get("banner")
         .then(b => {
             res.render('Pages/Others/home', {
                 hideFooter: true,
-                video: b.url
+                video: b.url,
+                menuList: req.menuList
             })
         })
         .catch(() => {

@@ -73,20 +73,11 @@
                 </div> --}}
 
                 <div id="list-menu" class="owl-carousel cs-5 owl-theme mt-5">
-                    {{!-- <div class="item"><img src="/img/menu/menu1.png" alt="">
-                    </div> --}}
-                    {{!-- <div class="item">
-                        <img src="/img/menu/menu2.png" alt="">
-                    </div>
+                    {{#each menuList}}
                     <div class="item">
-                        <img src="/img/menu/menu3.png" alt="">
+                        <img src="{{image}}" alt="">
                     </div>
-                    <div class="item">
-                        <img src="/img/menu/menu4.png" alt="">
-                    </div> --}}
-
-
-
+                    {{/each}}
                 </div>
                 <div class="text-center w-100 d-flex justify-content-center mt-4">
 
@@ -255,7 +246,7 @@
     const listSeafood = document.getElementById('list-seafood');
     const listMenu = document.getElementById('list-menu');
     renderSeafood();
-    renderMenu;
+    //renderMenu();
     function renderSeafood() {
         $.ajax({
             url: `/seafood/all`,
@@ -297,24 +288,18 @@
     }
     function renderMenu() {
         $.ajax({
-            url: `/menu/all`,
+            url: '/menu/all',
             type: 'GET',
-            dataType: 'json',
+            contentType: 'json',
             success: function (data, textStatus, xhr) {
-                if (data.seaFoodList) {
-                    listMenu.innerHTML = ``;
-                    const list = data.seaFoodList
-                    list.forEach((item, index) => {
-                        if (index < 8)
-                            listMenu.innerHTML += `<div class="item"><img src="${item.image}" alt="">
-                    </div>`;
+                if (data.menuList) {
+                    const list = data.menuList;
+                    list.forEach(item => {
+                        $('#list-menu').append(`<div class="item"><img src="${item.image}" alt="">
+                    </div>`);
                     })
-
                 }
-            },
-            error: function (xhr, textStatus, errorThrown) {
-                console.log('Error in Operation');
             }
-        });
+        })
     }
 </script>
