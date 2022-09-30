@@ -46,121 +46,6 @@
 
                 <div class="row">
                     <div id="list-seafood" class="col-md-10 mt-2">
-                        {{!-- <div class="col-md-3 seafood-box">
-                            <span class="sale">-20%</span>
-                            <div class="seafood-img-box">
-                                <img src="/img/seafood/seafood1.png" alt="">
-                            </div>
-
-                            <div class="seafood-content-box">
-                                <a href="" class="seafood-title">Tôm Sú Biển</a>
-
-                                <div class="seafood-price">
-                                    <span style="text-decoration: line-through">Giá bán: 2.490.000 đ</span><br> Giá
-                                    khuyến mãi: 1.990.000 đ
-                                </div>
-
-                                <div class="seafood-buy smooth">
-                                    <a href="">Thưởng thức ngay</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 seafood-box">
-                            <span class="sale">-20%</span>
-                            <div class="seafood-img-box">
-                                <img src="/img/seafood/seafood2.png" alt="">
-                            </div>
-
-                            <div class="seafood-content-box">
-                                <a href="" class="seafood-title">Ghẹ Xanh Loại 2</a>
-
-                                <div class="seafood-price">
-                                    <span style="text-decoration: line-through">Giá bán: 2.490.000 đ</span><br> Giá
-                                    khuyến mãi: 1.990.000 đ
-                                </div>
-
-                                <div class="seafood-buy smooth">
-                                    <a href="">Thưởng thức ngay</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 seafood-box">
-                            <span class="sale">-20%</span>
-                            <div class="seafood-img-box">
-                                <img src="/img/seafood/seafood3.png" alt="">
-                            </div>
-
-                            <div class="seafood-content-box">
-                                <a href="" class="seafood-title">Bào Ngư Úc</a>
-
-                                <div class="seafood-price">
-                                    <span style="text-decoration: line-through">Giá bán: 2.490.000 đ</span><br> Giá
-                                    khuyến mãi: 1.990.000 đ
-                                </div>
-
-                                <div class="seafood-buy smooth">
-                                    <a href="">Thưởng thức ngay</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 seafood-box">
-                            <span class="sale">-20%</span>
-                            <div class="seafood-img-box">
-                                <img src="/img/seafood/seafood4.png" alt="">
-                            </div>
-
-                            <div class="seafood-content-box">
-                                <a href="" class="seafood-title">Cua Gạch</a>
-
-                                <div class="seafood-price">
-                                    <span style="text-decoration: line-through">Giá bán: 2.490.000 đ</span><br> Giá
-                                    khuyến mãi: 1.990.000 đ
-                                </div>
-
-                                <div class="seafood-buy smooth">
-                                    <a href="">Thưởng thức ngay</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 seafood-box">
-                            <span class="sale">-20%</span>
-                            <div class="seafood-img-box">
-                                <img src="/img/seafood/seafood5.png" alt="">
-                            </div>
-
-                            <div class="seafood-content-box">
-                                <a href="" class="seafood-title">Cá Chim Trắng</a>
-
-                                <div class="seafood-price">
-                                    <span style="text-decoration: line-through">Giá bán: 2.490.000 đ</span><br> Giá
-                                    khuyến mãi: 1.990.000 đ
-                                </div>
-
-                                <div class="seafood-buy smooth">
-                                    <a href="">Thưởng thức ngay</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 seafood-box">
-                            <span class="sale">-20%</span>
-                            <div class="seafood-img-box">
-                                <img src="/img/seafood/seafood6.png" alt="">
-                            </div>
-
-                            <div class="seafood-content-box">
-                                <a href="" class="seafood-title">Cá Tầm Khủng</a>
-
-                                <div class="seafood-price">
-                                    <span style="text-decoration: line-through">Giá bán: 2.490.000 đ</span><br> Giá
-                                    khuyến mãi: 1.990.000 đ
-                                </div>
-
-                                <div class="seafood-buy smooth">
-                                    <a href="">Thưởng thức ngay</a>
-                                </div>
-                            </div>
-                        </div> --}}
-
                     </div>
 
                     <div class="col-md-2 seafood-right-banner mt-2">
@@ -188,11 +73,9 @@
                 </div> --}}
 
                 <div id="list-menu" class="owl-carousel cs-5 owl-theme mt-5">
-                    <div class="item"><img src="/img/menu/menu1.png" alt="">
-
-                    </div>
-                    <div class="item">
-
+                    {{!-- <div class="item"><img src="/img/menu/menu1.png" alt="">
+                    </div> --}}
+                    {{!-- <div class="item">
                         <img src="/img/menu/menu2.png" alt="">
                     </div>
                     <div class="item">
@@ -200,7 +83,7 @@
                     </div>
                     <div class="item">
                         <img src="/img/menu/menu4.png" alt="">
-                    </div>
+                    </div> --}}
 
 
 
@@ -371,7 +254,8 @@
     var mySlider = slider('.slides');
     const listSeafood = document.getElementById('list-seafood');
     const listMenu = document.getElementById('list-menu');
-    renderSeafood()
+    renderSeafood();
+    renderMenu;
     function renderSeafood() {
         $.ajax({
             url: `/seafood/all`,
@@ -411,5 +295,26 @@
             }
         });
     }
+    function renderMenu() {
+        $.ajax({
+            url: `/menu/all`,
+            type: 'GET',
+            dataType: 'json',
+            success: function (data, textStatus, xhr) {
+                if (data.seaFoodList) {
+                    listMenu.innerHTML = ``;
+                    const list = data.seaFoodList
+                    list.forEach((item, index) => {
+                        if (index < 8)
+                            listMenu.innerHTML += `<div class="item"><img src="${item.image}" alt="">
+                    </div>`;
+                    })
 
+                }
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.log('Error in Operation');
+            }
+        });
+    }
 </script>
