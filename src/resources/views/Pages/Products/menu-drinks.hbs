@@ -217,11 +217,11 @@
                             <div class="seafood-content-box">
                                 <a href="" class="seafood-title title-menu">${item.name}</a>
                                 <div class="seafood-price">
-                                    Giá: ${item.price}
+                                    Giá: ${item.price.toLocaleString('vi', { style: 'currency', currency: 'VND' })}
                                 </div>
                                 <div class="seafood-contact">
                                     Liên hệ:
-                                    0949 515 588
+                                    0931 744 468
                                 </div>
 
                                 <div onclick="addFoodToCart()" class="seafood-buy smooth">
