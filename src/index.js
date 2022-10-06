@@ -42,6 +42,8 @@ db.connect();
 //         }
 //     })
 
+
+
 app.set('view engine', 'hbs')
 app.engine('hbs', handlebars.engine({
     extname: 'hbs',
@@ -124,4 +126,6 @@ app.get('/shopping-cart', (req, res) => {
 })
 
 
+
 app.listen(port, () => console.log('Server started'))
+
