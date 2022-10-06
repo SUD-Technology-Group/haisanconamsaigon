@@ -259,7 +259,7 @@
                     list.forEach((item, index) => {
                         if (index < 8)
                             listSeafood.innerHTML += `<div class="col-md-3 col-sm-4 seafood-box">
-                            <span class="sale">-20%</span>
+                            <span class="sale">-${item.price[0].discountPercent}%</span>
                             <div class="seafood-img-box">
                                 <img src="${item.avatar}" alt="">
                             </div>
@@ -268,9 +268,9 @@
                                 <a href="/seafood/${item.slug}" class="seafood-title">${item.name}</a>
 
                                 <div class="seafood-price">
-                                    <span style="text-decoration: line-through">Giá bán: ${item.price[0].cost.toLocaleString('vi', { style: 'currency', currency: 'VND' })}</span><br> Giá
-                                    khuyến mãi:${item.price[0].cost.toLocaleString('vi', { style: 'currency', currency: 'VND' })}
-                                </div>
+                                        <span style="text-decoration: line-through;">Giá bán: ${item.price[0].originPrice.toLocaleString('vi', { style: 'currency', currency: 'VND' })}</span><br> Giá khuyến mãi:
+                                        ${item.price[0].discountPrice.toLocaleString('vi', { style: 'currency', currency: 'VND' })}
+                                    </div>
 
                                 <div class="seafood-buy smooth">
                                     <a href="/seafood/${item.slug}">Thưởng thức ngay</a>

@@ -43,16 +43,34 @@
                     <p class="alert alert-danger">{{error}}</p>
                     {{/if}}
                     <form method="post" action="/seafood/add" role="form" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="name">Tên sản phẩm <i class="fas fa-signature"></i></label>
+                                    <input type="text" name="name" placeholder="Nhập tên sản phẩm" required=""
+                                        class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="productID">Mã sản phẩm <i class="fas fa-barcode"></i></label>
+                                    <input type="text" name="productID" placeholder="Nhập mã sản phẩm" required=""
+                                        class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        
+
                         <div class="form-group">
-                            <label for="name">Tên sản phẩm <i class="fas fa-signature"></i></label>
-                            <input type="text" name="name" placeholder="Nhập tên sản phẩm" required=""
+                            <label for="origin">Xuất xứ <i class="fas fa-anchor"></i></label>
+                            <input type="text" name="origin" placeholder="Nhập xuất xứ" required=""
                                 class="form-control">
                         </div>
 
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="row">
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-3">
                                         <div class="form-group mb-4">
                                             <label data-toggle="tooltip"
                                                 title="Three-digits code on the back of your card">Số
@@ -63,7 +81,7 @@
                                                 class="form-control" required="">
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-3">
                                         <div class="form-group">
                                             <label><span class="hidden-xs">Giá <i
                                                         class="fas fa-money-bill"></i></span></label>
@@ -73,7 +91,14 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label for="discount">Khuyến mãi <i class="fas fa-percentage"></i></label>
+                                            <input type="number" name="discount" placeholder="Nhập khuyến mãi (%)" required=""
+                                                class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
                                         <div class="form-group">
                                             <label><span class="hidden-xs">Kích thước <i
                                                         class="fas fa-ruler"></i></span></label>
@@ -91,6 +116,7 @@
                             </div>
 
                         </div>
+                        
                         <div class="form-group">
                             <label for="cardNumber">Hình ảnh sản phẩm <i class="far fa-images"></i></label>
                             <div class="input-group">

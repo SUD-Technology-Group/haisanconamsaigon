@@ -1,4 +1,5 @@
 const fs = require('fs');
+const { diffIndexes } = require('../models/Seafoods');
 const SeafoodService = require('../services/Seafoods');
 const createSlug = require('../utils/createSlug');
 const { handleUploads } = require('../utils/handleUploads');
@@ -14,14 +15,17 @@ const SeafoodController = {
         }
 
         const file = req.files;
-        const { name, size, description, quantity, price } = req.body;
+        const { name, size, description, quantity, price, productID, origin, discount } = req.body;
         const slug = createSlug(name, {});
 
         let listImages = []
         file.map(f => { listImages.push(`/uploads/seafood/${name}/${f.filename}`) })
         let priceObject = price.map((item, index) => {
+            const discountPrice = item - (item * Number(discount[index]/100));
             return {
-                cost: item,
+                originPrice: item,
+                discountPrice: discountPrice,
+                discountPercent: discount[index],
                 size: size[index],
                 quantity: quantity[index]
             }
@@ -30,9 +34,11 @@ const SeafoodController = {
         await SeafoodService
             .create({
                 name: name,
+                pid: productID,
                 description: description,
                 price: priceObject,
                 image: listImages,
+                origin: origin,
                 slug,
             })
             .then(() => {
@@ -47,13 +53,16 @@ const SeafoodController = {
 
     // PUT /admin/update
     updateSeafood: async (req, res, next) => {
-        const { name, size, description, quantity, price, old_name, old_image } = req.body;
+        const { name, size, description, quantity, price, old_name, old_image, origin, productID, discount } = req.body;
         const slug = createSlug(name, {});
         const files = req.files;
 
         let priceObject = price.map((item, index) => {
+            const discountPrice = item - (item * Number(discount[index]/100));
             return {
-                cost: item,
+                originPrice: item,
+                discountPrice: discountPrice,
+                discountPercent: discount[index],
                 size: size[index],
                 quantity: quantity[index]
             }
@@ -63,6 +72,8 @@ const SeafoodController = {
             .update(req.params.id, {
                 name: name,
                 description: description,
+                pid: productID,
+                origin: origin,
                 price: priceObject,
                 image: listImages,
                 slug
@@ -111,6 +122,8 @@ const SeafoodController = {
                         const currentSeafood = {
                             id: item._id,
                             name: item.name,
+                            pid: item.pid,
+                            origin: item.origin,
                             image: item.image,
                             avatar: item.image[0],
                             price: item.price,
@@ -132,6 +145,8 @@ const SeafoodController = {
             .then(seafood => {
                 let data = {
                     id: seafood._id,
+                    pid: seafood.pid,
+                    origin: seafood.origin,
                     name: seafood.name,
                     description: seafood.description,
                     bought: seafood.bought,

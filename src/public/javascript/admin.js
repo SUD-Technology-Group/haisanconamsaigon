@@ -2,13 +2,13 @@ $(document).ready(function () {
     $('#addRow').click(function () {
         let html = ``;
         html += `<div id="inputFormRow" class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-3">
         <div class="form-group mb-4">
             <input type="number" placeholder="Nhập số lượng" name="quantity[]"
                 class="form-control" required="">
                 </div>
         </div>
-        <div  class="col-sm-4">
+        <div  class="col-sm-3">
             <div class="form-group">
                 <div class="input-group">
                     <input type="number" placeholder="Nhập giá" name="price[]"
@@ -16,7 +16,13 @@ $(document).ready(function () {
                 </div>
             </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-3">
+            <div class="form-group">
+                <input type="number" name="discount[]" placeholder="Nhập khuyến mãi (%)" required=""
+                class="form-control">
+            </div>
+        </div>
+        <div class="col-sm-3">
             <div class="form-group">
                 <div class="input-group">
                     <input type="text" placeholder="Nhập kích thước" name="size[]"

@@ -154,21 +154,29 @@
                             price.forEach((p, index) => {
                                 if (index !== 0) {
                                     row += `<div id="inputFormRow${item.id}" class="row">
-                                            <div class="col-sm-4">
+                                            <div class="col-sm-3">
                                             <div class="form-group mb-4">
                                                 <input type="number" value="${Number(p.quantity)}" placeholder="Nhập số lượng" name="quantity[]"
                                                     class="form-control" required="">
                                                     </div>
                                             </div>
-                                            <div  class="col-sm-4">
+                                            <div  class="col-sm-3">
                                                 <div class="form-group">
                                                     <div class="input-group">
-                                                        <input type="number" value="${Number(p.cost)}" placeholder="Nhập giá" name="price[]"
+                                                        <input type="number" value="${Number(p.originPrice)}" placeholder="Nhập giá" name="price[]"
                                                             class="form-control" required="">
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-4">
+                                            <div  class="col-sm-3">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <input type="number" value="${Number(p.discountPercent)}" placeholder="Nhập khuyến mãi (%)" name="discount[]"
+                                                            class="form-control" required="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
                                                 <div class="form-group">
                                                     <div class="input-group">
                                                         <input type="text" value="${p.size}" placeholder="Nhập kích thước" name="size[]"
@@ -181,7 +189,7 @@
                                         </div>`
                                 }
                                 cost += `<div class="row mb-1"> 
-                                        <span class="badge badge-warning rounded-pill d-inline col-8">${p.cost.toLocaleString('vi', { style: 'currency', currency: 'VND' })}</span>
+                                        <span class="badge badge-warning rounded-pill d-inline col-8">${p.originPrice.toLocaleString('vi', { style: 'currency', currency: 'VND' })}</span>
                                     </div>`;
                                 quantity += `<div class="row mb-1"> 
                                         <span class="badge badge-primary rounded-pill d-inline col-8">${p.quantity}</span>
@@ -225,17 +233,34 @@
                             <div style="padding: 20px" class="modal-content">
                                 <form method="post" action="/seafood/edit/${item.id}" role="form" enctype="multipart/form-data">
                                     <div class="form-group">
-                                        <label for="name">Tên sản phẩm <i class="fas fa-signature"></i></label>
-                                        <input type="text" name="name" value="${item.name}" placeholder="Nhập tên sản phẩm" required=""
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="name">Tên sản phẩm <i class="fas fa-signature"></i></label>
+                                                <input type="text" name="name" value="${item.name}" placeholder="Nhập tên sản phẩm" required=""
+                                                    class="form-control">
+                                                <input type="text" name="old_name" value="${item.name}" required=""
+                                                    class="d-none">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="productID">Mã sản phẩm <i class="fas fa-barcode"></i></label>
+                                                    <input type="text" name="productID" value="${item.pid}" placeholder="Nhập mã sản phẩm" required=""
+                                                        class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="origin">Xuất xứ <i class="fas fa-anchor"></i></label>
+                                        <input value="${item.origin}" type="text" name="origin" placeholder="Nhập xuất xứ" required=""
                                             class="form-control">
-                                        <input type="text" name="old_name" value="${item.name}" required=""
-                                            class="d-none">
                                     </div>
 
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <div class="row">
-                                                <div class="col-sm-4">
+                                                <div class="col-sm-3">
                                                     <div class="form-group mb-4">
                                                         <label data-toggle="tooltip"
                                                             >Số
@@ -246,17 +271,26 @@
                                                             class="form-control" required="">
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-4">
+                                                <div class="col-sm-3">
                                                     <div class="form-group">
                                                         <label><span class="hidden-xs">Giá <i
                                                                     class="fas fa-money-bill"></i></span></label>
                                                         <div class="input-group">
-                                                            <input type="number" value="${Number(item.price[0].cost)}" placeholder="Nhập giá" name="price[]"
+                                                            <input type="number" value="${Number(item.price[0].originPrice)}" placeholder="Nhập giá" name="price[]"
                                                                 class="form-control" required="">
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-4">
+                                                <div class="col-sm-3">
+                                                    <div class="form-group">
+                                                        <label><span class="hidden-xs">Khuyến mãi <i class="fas fa-percentage"></i></span></label>
+                                                        <div class="input-group">
+                                                            <input type="number" value="${Number(item.price[0].discountPercent)}" placeholder="Nhập khuyến mãi (%)" name="discount[]"
+                                                                class="form-control" required="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
                                                     <div class="form-group">
                                                         <label><span class="hidden-xs">Kích thước <i
                                                                     class="fas fa-ruler"></i></span></label>
@@ -336,13 +370,13 @@
                             $(`#addRow${item.id}`).click(function () {
                                 let html = ``;
                                 html += `<div id="inputFormRow${item.id}" class="row">
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-3">
                                         <div class="form-group mb-4">
                                             <input type="number" placeholder="Nhập số lượng" name="quantity[]"
                                                 class="form-control" required="">
                                                 </div>
                                         </div>
-                                        <div  class="col-sm-4">
+                                        <div  class="col-sm-3">
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <input type="number" placeholder="Nhập giá" name="price[]"
@@ -350,7 +384,15 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                    <div class="input-group">
+                                                        <input type="number" placeholder="Nhập khuyến mãi (%)" name="discount[]"
+                                                                class="form-control" required="">
+                                                    </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <input type="text" placeholder="Nhập kích thước" name="size[]"

@@ -175,8 +175,8 @@
                                     <a href="/seafood/${item.slug}" class="seafood-title title-menu">${item.name}</a>
 
                                     <div class="seafood-price">
-                                        <span style="text-decoration: line-through;">Giá bán:  đ</span><br> Giá khuyến mãi:
-                                        ${item.price[0].cost.toLocaleString('vi', { style: 'currency', currency: 'VND' })}
+                                        <span style="text-decoration: line-through;">Giá bán: ${item.price[0].originPrice.toLocaleString('vi', { style: 'currency', currency: 'VND' })}</span><br> Giá khuyến mãi:
+                                        ${item.price[0].discountPrice.toLocaleString('vi', { style: 'currency', currency: 'VND' })}
                                     </div>
 
                                     <div class="seafood-buy smooth">

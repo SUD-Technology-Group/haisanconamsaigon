@@ -41,21 +41,20 @@
 					<div class="product-info-box">
 						<h4>{{data.name}}</h4>
 						<hr>
-						<p><span class="bolder">Mã sản phẩm: </span> SP0001</p>
+						<p><span class="bolder">Mã sản phẩm: </span> {{data.pid}}</p>
 						<div class="prod-des mb-5">
-							<p><span class="bolder">Cua xanh về với mỗi ngày</span></p>
-							<p><span class="bolder">Xuất xứ: </span> vùng biển Phan Thiết</p>
+							<p><span class="bolder">Xuất xứ: </span> {{data.origin}}</p>
 							<p><span class="bolder">Quy cách: </span> Giao sống </p>
 							<p><span class="bolder">Cam kết: </span> 01 đổi 01 nếu kém chất lượng </p>
 							<p><span class="bolder">Size: </span>
 								{{#if data.type}}
 								{{#each data.type}}
 								{{#if @first}}
-								<button onclick="selectSize('{{cost}}','{{size}}','{{quantity}}',this)"
+								<button onclick="selectSize('{{discountPrice}}','{{size}}','{{quantity}}',this)"
 									class="btn btn-info btn-seafood-size">{{size}}</button>
 
 								{{else}}
-								<button onclick="selectSize('{{cost}}','{{size}}','{{quantity}}',this)"
+								<button onclick="selectSize('{{discountPrice}}','{{size}}','{{quantity}}',this)"
 									class="btn btn-outline-info btn-seafood-size">{{size}}</button>
 								{{/if}}
 								{{/each}}
@@ -88,7 +87,7 @@
 							{{#if data.type}}
 							{{#each data.type}}
 							{{#if @first}}
-							{{toPrice cost}}
+							{{toPrice discountPrice}}
 							{{/if}}
 							{{/each}}
 							{{else}}
