@@ -8,6 +8,24 @@ const OrderController = {
             req.flash('error', "Vui lòng thêm sản phẩm vào giỏ")
             return res.redirect('/order/add')
         }
+        let listProduct = [];
+        const list = JSON.parse(product_list);
+        list.forEach(p => {
+            p = JSON.parse(p)
+            const product = {
+                pid : p.id,
+                name: p.name,
+                price: Number(p.price),
+                stringPrice: p.stringPrice,
+                img: p.img,
+                inventory: Number(p.inventory),
+                size: p.size,
+                slug: p.slug,
+                numberOfUnit: p.numberOfUnit
+            }
+            listProduct.push(product);
+            
+        })
         const info = {
             fullname: fullname,
             email: email,
@@ -17,8 +35,9 @@ const OrderController = {
         const order = {
             Customer: info,
             total: total,
-            product_list: product_list,
+            product_list: listProduct,
         }
+        
         OrderServices.create(order)
             .then(() => {
                 req.flash('success', 'Tạo đơn hàng thành công')
@@ -45,26 +64,46 @@ const OrderController = {
                     });
                 } else {
                     let orderList = []
+                    let successList = []
                     order.forEach((item, index) => {
                         const currentOrder = {
                             id: item._id,
                             index: index + 1,
                             total: item.total,
                             customer: item.Customer,
-                            product_list: JSON.parse(item.product_list),
+                            product_list: item.product_list,
                             status: item.status,
                             complete: item.complete,
                             createdAt: item.createdAt
                         }
-                        orderList.push(currentOrder)
+                        if (item.status == 'Chờ xử lý') {
+                            orderList.push(currentOrder);
+                        } else {
+                            successList.push(currentOrder);
+                        }
                     })
                     return res.render('Pages/Order/orderList', {
                         layout: 'admin',
                         data: orderList,
                         error,
+                        successList,
                         success
                     });
                 }
+            })
+    },
+    // POST /order/update/:id
+    editStatus: (req,res,next) => {
+        const id = req.params.id;
+        const {status} = req.body;
+        OrderServices.update(id, status)
+            .then(doc => {
+                req.flash('success', 'Cập nhật dơn hàng thành công');
+                res.redirect('/order/all');
+            })
+            .catch(err => {
+                req.flash('error', 'Cập nhật dơn hàng thất bại');
+                res.redirect('/order/all');
             })
     },
     updateOrder: (req, res, next) => {
@@ -83,7 +122,21 @@ const OrderController = {
                 OrderServices.changeStatus(id, price.size, price.quantity, status)
             })
         }
+    },
+    // GET /order/delete/:id
+    deleteOrder: (req,res,next) => {
+        OrderServices.delete(req.params.id)
+            .then(()=> {
+                req.flash('success', 'Xóa đơn hàng thành công');
+                res.redirect('/order/all');
+            })
+            .catch(err => {
+                req.flash('error', 'Xóa đơn hàng thất bại');
+                res.redirect('/order/all');
+            })
     }
+    
+    
 }
 
 module.exports = OrderController

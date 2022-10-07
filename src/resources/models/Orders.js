@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-
 const Orders = new Schema({
     Customer: {
         type: {
@@ -16,7 +15,18 @@ const Orders = new Schema({
         required: true
     },
     product_list: {
-        type: String
+        type: [{
+            pid: String,
+            name: String,
+            price: Number,
+            stringPrice: String,
+            img: String,
+            inventory: Number,
+            size: String,
+            slug: String,
+            numberOfUnit: String
+        }],
+        required: true
     },
     status: {
         type: String,

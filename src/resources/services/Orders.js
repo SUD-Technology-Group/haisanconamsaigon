@@ -21,7 +21,7 @@ const OrderServices = {
     },
 
     update: async (id, data) => {
-        return Orders.findByIdAndUpdate(id, { $set: data });
+        return Orders.findByIdAndUpdate(id, { $set: {status: data} });
     },
 
     changeStatus: async (id, size, quantity) => {
