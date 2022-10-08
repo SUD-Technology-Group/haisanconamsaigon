@@ -1,203 +1,275 @@
 <div class="container">
-	<div class="two alt-two">
-		<h1>{{pageName}}
-			<span>Hải sản Cô Năm Sài gòn</span>
-		</h1>
-	</div>
+  <div class="two alt-two">
+    <h1>{{pageName}}
+      <span>Hải sản Cô Năm Sài gòn</span>
+    </h1>
+  </div>
 
-	<div class="row product-detail-main">
+  <div class="row product-detail-main">
 
-		<div class="col-md-10 col-sm-8">
-			<div class="row">
-				<div class="col-md-6 col-sm-12 col-xs-12">
-					<div class="product-gallery">
-						<div class="product-image-detail scroll">
-							<div class="col-sm-12 col-md-12">
-								<div data-toggle="modal" data-target=".bd-example-modal-lg" class="slider-for">
-									{{#each data.image}}
-									<div class="product1">
-										<img data-id="{{@index}}" src="{{this}}" height="450vh" width="100%">
-									</div>
-									{{/each}}
+    <div class="col-md-10 col-sm-8">
+      <div class="row">
+        <div class="col-md-6 col-sm-12 col-xs-12">
+          <div class="product-gallery">
+            <div class="product-image-detail scroll">
+              <div class="col-sm-12 col-md-12">
+                <div
+                  data-toggle="modal"
+                  data-target=".bd-example-modal-lg"
+                  class="slider-for"
+                >
+                  {{#each data.image}}
+                    <div class="product1">
+                      <img
+                        data-id="{{@index}}"
+                        src="{{this}}"
+                        height="450vh"
+                        width="100%"
+                      />
+                    </div>
+                  {{/each}}
 
-								</div>
-								<div class="slider-nav mt-3">
+                </div>
+                <div class="slider-nav mt-3">
 
-									{{#each data.image}}
-									<div class="product2">
-										<img src="{{this}}">
-									</div>
-									{{/each}}
+                  {{#each data.image}}
+                    <div class="product2">
+                      <img src="{{this}}" />
+                    </div>
+                  {{/each}}
 
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
+        <div class="col-md-6 col-sm-12 col-xs-12">
+          <div class="product-info-box">
+            <h4>{{data.name}}</h4>
+            <hr />
+            <p><span class="bolder">Mã sản phẩm: </span> {{data.pid}}</p>
+            <div class="prod-des mb-5">
+              <p><span class="bolder">Xuất xứ: </span> {{data.origin}}</p>
+              <p><span class="bolder">Quy cách: </span> Giao sống </p>
+              <p><span class="bolder">Cam kết: </span>
+                01 đổi 01 nếu kém chất lượng
+              </p>
+              <p><span class="bolder">Size: </span>
+                {{#if data.type}}
+                  {{#each data.type}}
+                    {{#if @first}}
+                      <button
+                        onclick="selectSize('{{discountPrice}}','{{size}}','{{quantity}}',this)"
+                        class="btn btn-info btn-seafood-size"
+                      >{{size}}</button>
 
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+                    {{else}}
+                      <button
+                        onclick="selectSize('{{discountPrice}}','{{size}}','{{quantity}}',this)"
+                        class="btn btn-outline-info btn-seafood-size"
+                      >{{size}}</button>
+                    {{/if}}
+                  {{/each}}
+                {{else}}
+                  <button
+                    onclick="selectSize('{{data.price}}','{{data.name}}','100',this)"
+                    class="btn btn-info btn-seafood-size"
+                  >{{data.name}}</button>
+                {{/if}}
+              </p>
+            </div>
 
-				<div class="col-md-6 col-sm-12 col-xs-12">
-					<div class="product-info-box">
-						<h4>{{data.name}}</h4>
-						<hr>
-						<p><span class="bolder">Mã sản phẩm: </span> {{data.pid}}</p>
-						<div class="prod-des mb-5">
-							<p><span class="bolder">Xuất xứ: </span> {{data.origin}}</p>
-							<p><span class="bolder">Quy cách: </span> Giao sống </p>
-							<p><span class="bolder">Cam kết: </span> 01 đổi 01 nếu kém chất lượng </p>
-							<p><span class="bolder">Size: </span>
-								{{#if data.type}}
-								{{#each data.type}}
-								{{#if @first}}
-								<button onclick="selectSize('{{discountPrice}}','{{size}}','{{quantity}}',this)"
-									class="btn btn-info btn-seafood-size">{{size}}</button>
+            <input class="d-none" name="id" value="{{data.id}}" type="text" />
+            <input
+              class="d-none"
+              name="name"
+              value="{{data.name}}"
+              type="text"
+            />
+            <input
+              class="d-none"
+              name="image"
+              value="{{data.avatar}}"
+              type="text"
+            />
+            <input
+              class="d-none"
+              name="slug"
+              value="{{data.slug}}"
+              type="text"
+            />
 
-								{{else}}
-								<button onclick="selectSize('{{discountPrice}}','{{size}}','{{quantity}}',this)"
-									class="btn btn-outline-info btn-seafood-size">{{size}}</button>
-								{{/if}}
-								{{/each}}
-								{{else}}
-								<button onclick="selectSize('{{data.price}}','{{data.name}}','100',this)"
-									class="btn btn-info btn-seafood-size">{{data.name}}</button>
-								{{/if}}
-							</p>
-						</div>
+            {{#if data.type}}
+              {{#each data.type}}
+                {{#if @first}}
+                  <input
+                    class="d-none"
+                    name="price"
+                    value="{{cost}}"
+                    type="text"
+                  />
+                  <input
+                    class="d-none"
+                    name="quantity"
+                    value="{{quantity}}"
+                    type="text"
+                  />
+                  <input
+                    class="d-none"
+                    name="size"
+                    value="{{size}}"
+                    type="text"
+                  />
+                {{/if}}
+              {{/each}}
+            {{else}}
+              <input
+                class="d-none"
+                name="price"
+                value="{{data.price}}"
+                type="text"
+              />
+              <input class="d-none" name="quantity" value="100" type="text" />
+              <input
+                class="d-none"
+                name="size"
+                value="{{data.name}}"
+                type="text"
+              />
+            {{/if}}
+            <div id="product-price" class="prod-price mb-3">
+              {{#if data.type}}
+                {{#each data.type}}
+                  {{#if @first}}
+                    {{toPrice discountPrice}}
+                  {{/if}}
+                {{/each}}
+              {{else}}
+                {{toPrice data.price}}
+              {{/if}}
+            </div>
+            <div class="crtdiv">
+              <span class="qty">
+                <span class="dec">
+                  <i class="fa fa-minus-square" aria-hidden="true"></i>
+                </span>
+                <span id="numOfSeafood" class="num">
+                  1
+                </span>
+                <span class="inc">
+                  <i class="fa fa-plus-square" aria-hidden="true"></i>
+                </span>
+              </span>
+              <button id="btn" type="button" class="cart-2">
+                Thêm vào giỏ</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 mt-5">
+          <ul class="nav nav-tabs mb-3" id="ex-with-icons" role="tablist">
+            <li class="nav-item" role="presentation">
+              <a
+                class="nav-link active"
+                id="ex-with-icons-tab-1"
+                data-mdb-toggle="tab"
+                href="#ex-with-icons-tabs-1"
+                role="tab"
+                aria-controls="ex-with-icons-tabs-1"
+                aria-selected="true"
+              ><i class="fas fa-fish"></i> Mô tả</a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a
+                class="nav-link"
+                id="ex-with-icons-tab-2"
+                data-mdb-toggle="tab"
+                href="#ex-with-icons-tabs-2"
+                role="tab"
+                aria-controls="ex-with-icons-tabs-2"
+                aria-selected="false"
+              ><i class="fas fa-chart-line fa-fw me-2"></i>Đánh giá</a>
+            </li>
+          </ul>
+          <!-- Tabs navs -->
 
-						<input class="d-none" name="id" value="{{data.id}}" type="text">
-						<input class="d-none" name="name" value="{{data.name}}" type="text">
-						<input class="d-none" name="image" value="{{data.avatar}}" type="text">
-						<input class="d-none" name="slug" value="{{data.slug}}" type="text">
+          <!-- Tabs content -->
+          <div class="tab-content" id="ex-with-icons-content">
+            <div
+              class="tab-pane fade show active"
+              id="ex-with-icons-tabs-1"
+              role="tabpanel"
+              aria-labelledby="ex-with-icons-tab-1"
+            >
+              {{{data.description}}}
+            </div>
+            <div
+              class="tab-pane fade"
+              id="ex-with-icons-tabs-2"
+              role="tabpanel"
+              aria-labelledby="ex-with-icons-tab-2"
+            >
+              <div
+                class="fb-comments"
+                data-href="https://haisanco5saigon.com/seafood/{{data.slug}}"
+                data-width=""
+                data-numposts="5"
+              ></div>
+            </div>
+          </div>
+          <!-- Tabs content -->
+        </div>
+      </div>
+    </div>
 
-						{{#if data.type}}
-						{{#each data.type}}
-						{{#if @first}}
-						<input class="d-none" name="price" value="{{cost}}" type="text">
-						<input class="d-none" name="quantity" value="{{quantity}}" type="text">
-						<input class="d-none" name="size" value="{{size}}" type="text">
-						{{/if}}
-						{{/each}}
-						{{else}}
-						<input class="d-none" name="price" value="{{data.price}}" type="text">
-						<input class="d-none" name="quantity" value="100" type="text">
-						<input class="d-none" name="size" value="{{data.name}}" type="text">
-						{{/if}}
-						<div id="product-price" class="prod-price mb-3">
-							{{#if data.type}}
-							{{#each data.type}}
-							{{#if @first}}
-							{{toPrice discountPrice}}
-							{{/if}}
-							{{/each}}
-							{{else}}
-							{{toPrice data.price}}
-							{{/if}}
-						</div>
-						<div class="crtdiv">
-							<span class="qty">
-								<span class="dec">
-									<i class="fa fa-minus-square" aria-hidden="true"></i>
-								</span>
-								<span id="numOfSeafood" class="num">
-									1
-								</span>
-								<span class="inc">
-									<i class="fa fa-plus-square" aria-hidden="true"></i>
-								</span>
-							</span>
-							<button id="btn" type="button" class="cart-2"> Thêm vào giỏ</button>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-12 mt-5">
-					<ul class="nav nav-tabs mb-3" id="ex-with-icons" role="tablist">
-						<li class="nav-item" role="presentation">
-							<a class="nav-link active" id="ex-with-icons-tab-1" data-mdb-toggle="tab"
-								href="#ex-with-icons-tabs-1" role="tab" aria-controls="ex-with-icons-tabs-1"
-								aria-selected="true"><i class="fas fa-fish"></i> Mô tả</a>
-						</li>
-						<li class="nav-item" role="presentation">
-							<a class="nav-link" id="ex-with-icons-tab-2" data-mdb-toggle="tab"
-								href="#ex-with-icons-tabs-2" role="tab" aria-controls="ex-with-icons-tabs-2"
-								aria-selected="false"><i class="fas fa-chart-line fa-fw me-2"></i>Đánh giá</a>
-						</li>
-					</ul>
-					<!-- Tabs navs -->
+    <div class="no-padding col-md-2 col-sm-4 right-test">
+      <div class="m-heading">
+        Sản phẩm liên quan
+      </div>
 
-					<!-- Tabs content -->
-					<div class="tab-content" id="ex-with-icons-content">
-						<div class="tab-pane fade show active" id="ex-with-icons-tabs-1" role="tabpanel"
-							aria-labelledby="ex-with-icons-tab-1">
-							{{{data.description}}}
-						</div>
-						<div class="tab-pane fade" id="ex-with-icons-tabs-2" role="tabpanel"
-							aria-labelledby="ex-with-icons-tab-2">
-							<div class="fb-comments" data-href="https://haisanco5saigon.com/seafood/{{data.slug}}"
-								data-width="" data-numposts="5"></div>
-						</div>
-					</div>
-					<!-- Tabs content -->
-				</div>
-			</div>
-		</div>
+      <div class="r-prod-box mb-3">
+        <div class="r-prod-img-box">
+          <img src="/img/test/main.png" alt="" class="w-100" />
+        </div>
+        <div class="r-prod-info-box">
+          <div class="px-2 py-1">Cua Xanh Phan Thiết</div>
+          <div style="color: #D82148" class="px-2">395.000đ</div>
 
-		<div class="no-padding col-md-2 col-sm-4 right-test">
-			<div class="m-heading">
-				Sản phẩm liên quan
-			</div>
+          <div class="bottom-place w-100">
+            <div class="cart-2 py-2 text-center">Thêm vào giỏ</div>
+          </div>
+        </div>
+      </div>
+      <div class="r-prod-box mb-3">
+        <div class="r-prod-img-box">
+          <img src="/img/test/main.png" alt="" class="w-100" />
+        </div>
+        <div class="r-prod-info-box">
+          <div class="px-2 py-1">Cua Xanh Phan Thiết</div>
+          <div style="color: #D82148" class="px-2">395.000đ</div>
 
-			<div class="r-prod-box mb-3">
-				<div class="r-prod-img-box">
-					<img src="/img/test/main.png" alt="" class="w-100">
-				</div>
-				<div class="r-prod-info-box">
-					<div class="px-2 py-1">Cua Xanh Phan Thiết</div>
-					<div style="color: #D82148" class="px-2">395.000đ</div>
+          <div class="bottom-place w-100">
+            <div class="cart-2 py-2 text-center">Thêm vào giỏ</div>
+          </div>
+        </div>
+      </div>
 
-					<div class="bottom-place w-100">
-						<div class="cart-2 py-2 text-center">Thêm vào giỏ</div>
-					</div>
-				</div>
-			</div>
-			<div class="r-prod-box mb-3">
-				<div class="r-prod-img-box">
-					<img src="/img/test/main.png" alt="" class="w-100">
-				</div>
-				<div class="r-prod-info-box">
-					<div class="px-2 py-1">Cua Xanh Phan Thiết</div>
-					<div style="color: #D82148" class="px-2">395.000đ</div>
-
-					<div class="bottom-place w-100">
-						<div class="cart-2 py-2 text-center">Thêm vào giỏ</div>
-					</div>
-				</div>
-			</div>
-
-		</div>
-	</div>
+    </div>
+  </div>
 </div>
 
 <script>
-	function selectSize(price, size, quantity, object) {
-		document.getElementById('product-price').innerHTML = Number(price).toLocaleString('vi', { style: 'currency', currency: 'VND' })
-		const docPrice = document.querySelector('input[name=price]');
-		const docSize = document.querySelector('input[name=size]');
-		const docQuantity = document.querySelector('input[name=quantity]');
-		docPrice.value = price;
-		docSize.value = size;
-		docQuantity.value = quantity;
-		const listSize = document.getElementsByClassName('btn-seafood-size');
-		for (let i = 0; i < listSize.length; i++) {
-			let size = listSize[i];
-			if (size == object) {
-				size.classList.remove('btn-outline-info');
-				size.classList.add('btn-info')
-			} else {
-				size.classList.remove('btn-info');
-				size.classList.add('btn-outline-info');
-			}
-		}
-	}
+  function selectSize(price, size, quantity, object) {
+  document.getElementById('product-price').innerHTML =
+  Number(price).toLocaleString('vi', { style: 'currency', currency: 'VND' })
+  const docPrice = document.querySelector('input[name=price]'); const docSize =
+  document.querySelector('input[name=size]'); const docQuantity =
+  document.querySelector('input[name=quantity]'); docPrice.value = price;
+  docSize.value = size; docQuantity.value = quantity; const listSize =
+  document.getElementsByClassName('btn-seafood-size'); for (let i = 0; i <
+  listSize.length; i++) { let size = listSize[i]; if (size == object) {
+  size.classList.remove('btn-outline-info'); size.classList.add('btn-info') }
+  else { size.classList.remove('btn-info');
+  size.classList.add('btn-outline-info'); } } }
 
 </script>

@@ -259,10 +259,12 @@ $(document).ready(() => {
                 </div>`
         setTimeout(function () { document.getElementById('alertAddToCart').innerHTML = ''; }, 2000);
     }
+    
 
     // Shopping cart: end
 
 })
+
 
 
 function onClick(element) {
