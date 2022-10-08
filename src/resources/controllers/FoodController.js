@@ -109,7 +109,7 @@ const FoodController = {
                 let data = {
                     id: food._id,
                     name: food.foodName,
-                    type: food.foodType,
+                    foodType: food.foodType,
                     description: food.description,
                     image: [food.image],
                     avatar: food.image,
