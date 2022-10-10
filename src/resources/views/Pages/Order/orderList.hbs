@@ -13,12 +13,14 @@
                         Danh sách chờ xác nhận
                     </a>
                 </li>
+
                 <li class="nav-item">
                     <a data-toggle="pill" href="#nav-tab" class="nav-link rounded-pill">
                         <i class="fas fa-newspaper"></i>
                         Danh sách đã hoàn thành
                     </a>
                 </li>
+
             </ul>
             <!-- End -->
 
@@ -77,6 +79,7 @@
                         </tbody>
                     </table>
                 </div>
+
                 <div id="nav-tab" class="tab-pane fade active">
                     {{#if success}}
                     <p class="alert alert-success">{{success}}</p>
@@ -130,6 +133,7 @@
                         </tbody>
                     </table>
                 </div>
+
             </div>
         </div>
 
@@ -140,7 +144,7 @@
                 aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div style="padding: 20px" class="modal-content">
-                        <form method="post" action="/order/update/{{id}}" class="row" >
+                        <form method="post" action="/order/update/{{id}}" class="row">
                             {{!-- Customer name --}}
                             <div class="form-group col-md-6">
                                 <label for="CusName">Tên khách hàng <i class="fas fa-user"></i></label>
@@ -198,10 +202,11 @@
                                             </td>
                                             <td>
                                                 <p class="fw-normal mb-1">{{size}}</p>
-                                                
+
                                             </td>
                                             <td>
-                                                <span class="badge badge-success rounded-pill d-inline">{{numberOfUnit}}</span>
+                                                <span
+                                                    class="badge badge-success rounded-pill d-inline">{{numberOfUnit}}</span>
                                             </td>
                                             <td>{{stringPrice}}</td>
                                         </tr>
@@ -216,6 +221,7 @@
                                     placeholder="Nhập mô tả đơn hàng" class="form-control">
                             </div>
                             {{!-- Status --}}
+
                             <div class="form-group">
                                 <label for="status">Trạng thái <i class="fas fa-check-square"></i></label>
                                 {{#select status}}
@@ -226,11 +232,14 @@
                                 </select>
                                 {{/select}}
                             </div>
+
+
                             <button type="submit" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm">
                                 Chỉnh sửa đơn hàng </button>
                             <button type="button" data-toggle="modal" data-target="#deleteModal{{id}}"
                                 class="subscribe btn btn-danger btn-block rounded-pill shadow-sm">
                                 Xóa đơn hàng </button>
+
                         </form>
                     </div>
                 </div>
@@ -241,7 +250,7 @@
                 aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div style="padding: 20px" class="modal-content">
-                        <form method="post" action="/order/update/{{id}}" class="row" >
+                        <form method="post" action="/order/update/{{id}}" class="row">
                             {{!-- Customer name --}}
                             <div class="form-group col-md-6">
                                 <label for="CusName">Tên khách hàng <i class="fas fa-user"></i></label>
@@ -299,10 +308,11 @@
                                             </td>
                                             <td>
                                                 <p class="fw-normal mb-1">{{size}}</p>
-                                                
+
                                             </td>
                                             <td>
-                                                <span class="badge badge-success rounded-pill d-inline">{{numberOfUnit}}</span>
+                                                <span
+                                                    class="badge badge-success rounded-pill d-inline">{{numberOfUnit}}</span>
                                             </td>
                                             <td>{{stringPrice}}</td>
                                         </tr>
@@ -323,6 +333,7 @@
                                 <select class="form-control" id="status" name="status">
                                     <option value="Chờ xử lý">Chờ xử lý</option>
                                     <option value="Đã xác nhận">Đã xác nhận</option>
+                                    <option value="Hoàn thành">Hoàn thành</option>
                                     <option value="Hủy bỏ">Hủy bỏ</option>
                                 </select>
                                 {{/select}}
@@ -385,6 +396,7 @@
             </div>
             {{/each}}
         </div>
+
         {{!-- Modal: end --}}
     </div>
 
@@ -398,24 +410,6 @@
 
         function deleteOrder(id) {
             location.href = `/order/delete/${id}`
-        }
-
-        function getContent(id) {
-            $.ajax({
-                url: `/news/content/${id}`,
-                type: 'GET',
-                dataType: 'json',
-                success: function (data, textStatus, xhr) {
-                    if (!data) {
-                        console.log('err')
-                    } else {
-                        document.getElementById(`content${id}`).innerHTML = data.content;
-                    }
-                },
-                error: function (xhr, textStatus, errorThrown) {
-                    console.log('Error in Operation');
-                }
-            });
         }
 
     </script>

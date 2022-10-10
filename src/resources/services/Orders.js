@@ -21,7 +21,14 @@ const OrderServices = {
     },
 
     update: async (id, data) => {
-        return Orders.findByIdAndUpdate(id, { $set: {status: data} });
+        let success = null;
+        if (data == "Hoàn thành") {
+            success = true
+        }
+        else if (data == "Hủy bỏ") {
+            success = false
+        }
+        return Orders.findByIdAndUpdate(id, { $set: {status: data, "complete.success": success}});
     },
 
     changeStatus: async (id, size, quantity) => {

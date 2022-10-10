@@ -1,0 +1,195 @@
+<h2 class="h-title">
+    <span>Lịch sử đơn hàng</span>
+</h2>
+
+<div class="row">
+    <div class=" mx-auto">
+        <div class="bg-white rounded-lg shadow-sm p-5">
+            <!-- Credit card form tabs -->
+            <ul role="tablist" class="nav bg-light nav-pills rounded-pill nav-fill mb-3">
+                <li class="nav-item">
+                    <a data-toggle="pill" href="#nav-tab-card" class="nav-link active rounded-pill">
+                        <i class="fas fa-newspaper"></i>
+                        Lịch sử
+                    </a>
+                </li>
+
+            </ul>
+            <!-- End -->
+
+            <!-- Credit card form content -->
+            <div class="tab-content">
+                <div id="nav-tab-card" class="tab-pane fade show active">
+                    {{#if success}}
+                    <p class="alert alert-success">{{success}}</p>
+                    {{/if}}
+                    {{#if error}}
+                    <p class="alert alert-danger">{{error}}</p>
+                    {{/if}}
+                    <table id="orderTable" class="table align-middle mb-0 bg-white">
+                        <thead class="bg-light">
+                            <tr>
+                                <th>STT</th>
+                                <th>Tên khách hàng</th>
+                                <th>Trạng thái</th>
+                                <th>Ngày tạo</th>
+                                <th>Tổng giá</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="listSeafood">
+                            {{#if empty}}
+                            <td colspan="4">
+                                <p class="fw-bold mb-1">Không có đơn hàng nào</p>
+                            </td>
+                            {{else}}
+                            {{#each data}}
+                            <tr>
+                                <td>
+                                    <p class="fw-bold mb-1">{{index}}</p>
+                                </td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <p class="fw-bold mb-1">{{customer.fullname}}</p>
+                                    </div>
+                                </td>
+                                <td><span
+                                        class="badge {{#if complete.success}} badge-success {{else}} badge-warning {{/if}}  rounded-pill d-inline">{{status}}</span>
+                                </td>
+                                <td>
+                                    {{createdAt}}
+                                </td>
+                                <td>{{#toPrice total}} {{/toPrice}}</td>
+                                <td>
+                                    <button onclick="renderContent('{{id}}')" type="button" data-toggle="modal"
+                                        data-target="#newsModal{{id}}" class="btn btn-link btn-rounded btn-sm fw-bold"
+                                        data-mdb-ripple-color="dark">
+                                        Chi tiết
+                                    </button>
+                                </td>
+                            </tr>
+                            {{/each}}
+                            {{/if}}
+
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+            </div>
+        </div>
+
+        {{!-- Modal: start --}}
+        <div id="newsModal">
+            {{#each data}}
+            <div id="newsModal{{id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div style="padding: 20px" class="modal-content">
+                        <form method="post" action="/order/update/{{id}}" class="row">
+                            {{!-- Customer name --}}
+                            <div class="form-group col-md-6">
+                                <label for="CusName">Tên khách hàng <i class="fas fa-user"></i></label>
+                                <input value="{{customer.fullname}}" id="CusName" type="text" disabled
+                                    placeholder="Nhập mô tả đơn hàng" class="form-control">
+                            </div>
+                            {{!-- Customer phone --}}
+                            <div class="form-group col-md-6">
+                                <label for="cusPhone">SĐT <i class="fas fa-phone"></i></label>
+                                <input value="{{customer.phone}}" id="cusPhone" type="text" disabled
+                                    placeholder="Nhập mô tả đơn hàng" class="form-control">
+                            </div>
+                            {{!-- Customer email --}}
+                            <div class="form-group col-md-6">
+                                <label for="cusEmail">Email <i class="fas fa-envelope"></i></label>
+                                <input value="{{customer.email}}" id="cusEmail" type="text" disabled
+                                    placeholder="Nhập mô tả đơn hàng" class="form-control">
+                            </div>
+                            {{!-- Customer address --}}
+                            <div class="form-group col-md-6">
+                                <label for="subtitle">Địa chỉ <i class="fas fa-map-marked"></i></label>
+                                <input value="{{customer.address}}" id="subtitle" type="text" disabled
+                                    placeholder="Nhập mô tả đơn hàng" class="form-control">
+                            </div>
+
+                            {{!-- Customer address --}}
+                            <div class="form-group">
+                                <label for="createAt">Ngày tạo <i class="far fa-calendar-alt"></i></label>
+                                <input value="{{createdAt}}" id="createAt" type="text" disabled
+                                    placeholder="Nhập mô tả đơn hàng" class="form-control">
+                            </div>
+                            {{!-- Product list --}}
+                            <div class="form-group">
+                                <label for="cardNumber">Danh sách sản phẩm <i class="far fa-images"></i></label>
+                                <table class="table align-middle mb-0 bg-white">
+                                    <thead class="bg-light">
+                                        <tr>
+                                            <th>Tên sản phẩm</th>
+                                            <th>Loại</th>
+                                            <th>Số lượng</th>
+                                            <th>Giá</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{#each product_list}}
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <img src="{{this.img}}" alt="" style="width: 45px; height: 45px"
+                                                        class="rounded-circle" />
+                                                    <div class="ms-3">
+                                                        <p class="fw-bold mb-1">{{name}}</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <p class="fw-normal mb-1">{{size}}</p>
+
+                                            </td>
+                                            <td>
+                                                <span
+                                                    class="badge badge-success rounded-pill d-inline">{{numberOfUnit}}</span>
+                                            </td>
+                                            <td>{{stringPrice}}</td>
+                                        </tr>
+                                        {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                            {{!-- Total price --}}
+                            <div class="form-group">
+                                <label for="total">Tổng tiền <i class="fas fa-map-marked"></i></label>
+                                <input value="{{#toPrice total}} {{/toPrice}}" id="total" type="text" disabled
+                                    placeholder="Nhập mô tả đơn hàng" class="form-control">
+                            </div>
+                            {{!-- Status --}}
+
+                            <div class="form-group">
+                                <label for="status">Trạng thái <i class="fas fa-check-square"></i></label>
+                                {{#select status}}
+                                <select disabled class="form-control" id="status" name="status">
+                                    <option value="Hoàn thành">Hoàn thành</option>
+                                    <option value="Hủy bỏ">Hủy bỏ</option>
+                                </select>
+                                {{/select}}
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+
+        </div>
+
+        {{!-- Modal: end --}}
+    </div>
+
+    <script src="/ckeditor/ckeditor.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $('#orderTable').DataTable();
+        });
+
+    </script>
