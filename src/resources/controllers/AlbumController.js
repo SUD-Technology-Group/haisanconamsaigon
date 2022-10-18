@@ -1,6 +1,6 @@
 const AlbumService = require("../services/Album");
 const fs = require('fs');
-const root = process.env.ENVIRONMENT == 'dev' ? './scr/public/uploads' : './haisanconamsaigon/src/public/uploads';
+const root = process.env.ENVIRONMENT == 'dev' ? './src/public/uploads' : './haisanconamsaigon/src/public/uploads';
 
 const AlbumController = {
     // GET /album/list
@@ -69,15 +69,13 @@ const AlbumController = {
     deleteAlbum: async (req,res,next) => {
         await AlbumService.delete(req.params.id)
             .then(album => {
-                fs.rmdirSync(`${root}/album/${album.name}`, {recursive: true}, err => {
+                fs.rm(`${root}/album/${album.name}`, { recursive: true }, err => {
                     if (!err) {
                         req.flash('success', 'Xóa ảnh trong album thành công');
                         return res.redirect('/album/all');
-                    } else {
-                        req.flash('error', 'Xóa ảnh trong album thất bại');
-                        return res.redirect('/album/all');
                     }
                 })
+                
             })
             .catch(err => {
                 req.flash('error', 'Xóa ảnh trong album thất bại ' + err);

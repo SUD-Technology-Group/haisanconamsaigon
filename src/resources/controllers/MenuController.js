@@ -2,7 +2,7 @@ const Menus = require('../models/Menu')
 const fs = require('fs')
 const slugify = require('slugify');
 const Menu = require('../models/Menu');
-const root = process.env.ENVIRONMENT == 'dev' ? '${root}' : './haisanconamsaigon/src/public/uploads';
+const root = process.env.ENVIRONMENT == 'dev' ? './src/public/uploads' : './haisanconamsaigon/src/public/uploads';
 const MenuController = {
     postAddMenu: (req, res, next) => {
         if (!req.file) {
