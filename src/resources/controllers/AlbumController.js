@@ -1,6 +1,6 @@
 const AlbumService = require("../services/Album");
 const fs = require('fs');
-const root = process.env.ENVIRONMENT == 'dev' ? '${root}' : './haisanconamsaigon/src/public/uploads';
+const root = process.env.ENVIRONMENT == 'dev' ? './scr/public/uploads' : './haisanconamsaigon/src/public/uploads';
 
 const AlbumController = {
     // GET /album/list
@@ -46,7 +46,7 @@ const AlbumController = {
     postAddAlbum: async (req,res,next) => {
         const file = req.file;
         if (file) {
-            const url = `/uploads/album/${file.filename}`;
+            const url = `/uploads/album/${req.body.name}/${file.filename}`;
             const album = {
                 name: req.body.name,
                 url
@@ -72,6 +72,9 @@ const AlbumController = {
                 fs.mkdirSync(`${root}/album/${album.name}`, {recursive: true}, err => {
                     if (!err) {
                         req.flash('success', 'Xóa ảnh trong album thành công');
+                        return res.redirect('/album/all');
+                    } else {
+                        req.flash('error', 'Xóa ảnh trong album thất bại');
                         return res.redirect('/album/all');
                     }
                 })
