@@ -69,7 +69,7 @@ const AlbumController = {
     deleteAlbum: async (req,res,next) => {
         await AlbumService.delete(req.params.id)
             .then(album => {
-                fs.mkdirSync(`${root}/album/${album.name}`, {recursive: true}, err => {
+                fs.rmdirSync(`${root}/album/${album.name}`, {recursive: true}, err => {
                     if (!err) {
                         req.flash('success', 'Xóa ảnh trong album thành công');
                         return res.redirect('/album/all');
