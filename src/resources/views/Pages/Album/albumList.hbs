@@ -1,0 +1,160 @@
+<h2 class="h-title">
+    <span>Danh sách ảnh</span>
+</h2>
+
+<div class="row">
+    <div class=" mx-auto">
+        <div class="bg-white rounded-lg shadow-sm p-5">
+            <!-- Credit card form tabs -->
+            <ul role="tablist" class="nav bg-light nav-pills rounded-pill nav-fill mb-3">
+                <li class="nav-item">
+                    <a data-toggle="pill" href="#nav-tab-card" class="nav-link active rounded-pill">
+                        <i class="far fa-images"></i>
+                        Danh sách ảnh
+                    </a>
+                </li>
+            </ul>
+            <!-- End -->
+
+            <!-- Credit card form content -->
+            <div class="tab-content">
+                <div class="row justify-content-center mb-3">
+                    <div class="col-md-6 ">
+                        <a type="button" href="/album/add"
+                            class="subscribe btn btn-secondary btn-block rounded-pill shadow-sm">
+                            <i class="fas fa-plus"></i> Thêm ảnh vào album </a>
+                    </div>
+                </div>
+                <div id="nav-tab-card" class="tab-pane fade show active">
+                    {{#if success}}
+                    <p class="alert alert-success">{{success}}</p>
+                    {{/if}}
+                    {{#if error}}
+                    <p class="alert alert-danger">{{error}}</p>
+                    {{/if}}
+                    <table id="newsTable" class="table align-middle mb-0 bg-white">
+                        <thead class="bg-light">
+                            <tr>
+                                <th>STT</th>
+                                <th>Tên ảnh</th>
+                                <th>Đăng ngày</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="listSeafood">
+                            {{#if empty}}
+                            <td colspan="4">
+                                <p class="fw-bold mb-1">Không có hình ảnh nào</p>
+                            </td>
+                            {{else}}
+                            {{#each data}}
+                            <tr>
+                                <td>
+                                    <p class="fw-bold mb-1">{{index}}</p>
+                                </td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <img src="{{url}}" class="rounded-circle" alt=""
+                                            style="width: 45px; height: 45px" />
+                                        <div class="ms-3">
+                                            <p class="fw-bold mb-1">{{name}}</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    {{createdAt}}
+                                </td>
+                                <td>
+                                    <button type="button" data-toggle="modal" data-target="#newsModal{{id}}"
+                                        class="btn btn-link btn-rounded btn-sm fw-bold" data-mdb-ripple-color="dark">
+                                        Sửa
+                                    </button>
+                                </td>
+                            </tr>
+                            {{/each}}
+                            {{/if}}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        {{!-- Modal: start --}}
+        <div id="newsModal">
+            {{#each data }}
+            <div id="newsModal{{id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div style="padding: 20px" class="modal-content">
+                        <form method="post" action="/news/edit/{{id}}" enctype="multipart/form-data">
+                            {{!-- Title --}}
+                            <div class="form-group">
+                                <label for="name">Tên ảnh <i class="fas fa-signature"></i></label>
+                                <input value="{{name}}" id="name" type="text" name="name" disabled class="form-control">
+                            </div>
+
+                            {{!-- Image --}}
+                            <div class="form-group">
+                                <label for="cardNumber">Hình ảnh bài viết <i class="far fa-images"></i></label>
+                                <div class="input-group">
+                                    <div class="form-group-container">
+                                        <input type="text" class="d-none" name="old_image" value="{{image}}">
+                                        <input id="news-image{{id}}" accept="image/*" name="image"
+                                            class="form-control input-md" onchange="preview('{{id}}')" type="file">
+                                        <div id="images-upload{{id}}">
+                                            <figure>
+                                                <img src="{{url}}" alt="">
+                                            </figure>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" data-toggle="modal" data-target="#deleteModal{{id}}"
+                                class="subscribe btn btn-danger btn-block rounded-pill shadow-sm">
+                                Xóa ảnh </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+
+        <div id="deleteModal">
+            {{#each data}}
+            <div class="modal fade" id="deleteModal{{id}}" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Xóa ảnh</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Bạn có muốn xóa ảnh <strong>{{name}}</strong>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                            <button onclick="deleteImage('{{id}}')" type="button" class="btn btn-danger">Xóa</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        {{!-- Modal: end --}}
+    </div>
+
+    <script src="/ckeditor/ckeditor.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $('#newsTable').DataTable();
+        });
+
+        function deleteImage(id) {
+            location.href = `/album/delete/${id}`
+        }
+    </script>

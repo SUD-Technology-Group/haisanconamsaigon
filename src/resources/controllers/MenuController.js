@@ -2,7 +2,7 @@ const Menus = require('../models/Menu')
 const fs = require('fs')
 const slugify = require('slugify');
 const Menu = require('../models/Menu');
-
+const root = process.env.ENVIRONMENT == 'dev' ? '${root}' : './haisanconamsaigon/src/public/uploads';
 const MenuController = {
     postAddMenu: (req, res, next) => {
         if (!req.file) {
@@ -68,8 +68,8 @@ const MenuController = {
         })
         if (old_menu_name != menu_name) {
             if (!req.file) {
-                const currentPath = `./src/public/uploads/menu/${old_menu_name}`;
-                const newPath = `./src/public/uploads/menu/${menu_name}`;
+                const currentPath = `${root}/menu/${old_menu_name}`;
+                const newPath = `${root}/menu/${menu_name}`;
                 let imageName = oldImage.split('/').pop()
                 image = `/uploads/menu/${menu_name}/${imageName}`
                 fs.renameSync(currentPath, newPath)
@@ -77,7 +77,7 @@ const MenuController = {
                 let imageName = oldImage.split("/")
                 let folderName = imageName[imageName.length - 2]
                 image = `/uploads/menu/${menu_name}/${req.file.filename}`
-                fs.rmdir(`./src/public/uploads/menu/${folderName}`, { recursive: true }, err => {
+                fs.rmdir(`${root}/menu/${folderName}`, { recursive: true }, err => {
                     if (err)
                         console.log(err)
                 })
@@ -107,7 +107,7 @@ const MenuController = {
     deleteMenu: async (req, res, next) => {
         await Menus.findByIdAndDelete(req.params.id)
             .then(data => {
-                fs.rmdir(`./src/public/uploads/menu/${data.name}`, { recursive: true }, err => {
+                fs.rmdir(`${root}/menu/${data.name}`, { recursive: true }, err => {
                     if (!err) {
                         req.flash('success', `Xóa ${data.name} thành công`)
                         res.redirect('/admin/list-product')

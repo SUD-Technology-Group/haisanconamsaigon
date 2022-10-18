@@ -22,6 +22,7 @@ const BannerRouter = require("./resources/routers/BannerRouter");
 const FoodRouter = require("./resources/routers/FoodRouter");
 const Users = require("./resources/models/Users");
 const OrderRouter = require("./resources/routers/OrderRouter");
+const AlbumRouter = require("./resources/routers/AlbumRouter");
 const BannerService = require("./resources/services/Banner");
 const getMenuList = require("./resources/middlewares/getMenuList");
 db.connect();
@@ -86,6 +87,7 @@ app.use("/discount", DiscountRouter);
 app.use("/banner", BannerRouter);
 app.use("/order", OrderRouter);
 app.use("/food", FoodRouter);
+app.use("/album", AlbumRouter);
 app.get("/", getMenuList, (req, res) => {
   BannerService.get("banner")
     .then((b) => {
