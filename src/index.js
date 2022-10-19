@@ -24,6 +24,7 @@ const Users = require("./resources/models/Users");
 const OrderRouter = require("./resources/routers/OrderRouter");
 const AlbumRouter = require("./resources/routers/AlbumRouter");
 const BannerService = require("./resources/services/Banner");
+const {sendMail} = require('./resources/utils/sendMail');
 const getMenuList = require("./resources/middlewares/getMenuList");
 db.connect();
 
@@ -104,6 +105,27 @@ app.get("/", getMenuList, (req, res) => {
     });
 });
 
+app.post('/mail', (req,res) => {
+  const customerInfo = {
+    name: req.body.fullname || '',
+    phone: req.body.phone || '',
+    address: req.body.address || '',
+    email: req.body.email || '',
+    note: req.body.note || ''
+  }
+  sendMail(customerInfo)
+    .then(result => {
+      console.log('Email is sent...', result);
+      res.redirect('/');
+    })
+    .catch(error => {
+      console.log(error)
+      res.redirect('/');
+    })
+
+  
+});
+
 app.get("/menu-party", (req, res) => {
   res.render("Pages/Products/menu-party");
 });
@@ -137,5 +159,6 @@ app.get("/shopping-cart", (req, res) => {
   //   });
   res.render("Pages/Others/shoppingCart", { error, success, list });
 });
+
 
 app.listen(port, () => console.log("Server started"));

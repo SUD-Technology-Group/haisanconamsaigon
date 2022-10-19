@@ -64,6 +64,24 @@ h1 {
   text-transform: uppercase !important;
 }
 
+.modal-header {
+  text-align: center !important;
+}
+
+.modal-title {
+  position: relative;
+  padding: 0;
+  margin-top: 0;
+  font-weight: 600 !important;
+  font-size: 25px !important;
+  color: var(--luc);
+  -webkit-transition: all 0.4s ease 0s;
+  -o-transition: all 0.4s ease 0s;
+  transition: all 0.4s ease 0s;
+  text-transform: uppercase !important;
+}
+
+
 h1 span {
   display: block;
   font-size: 0.5em;
