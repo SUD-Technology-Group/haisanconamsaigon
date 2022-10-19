@@ -17,6 +17,7 @@ const NewsService = {
             .select({ subtitle: 1 })
             .select({ createdAt: 1 })
             .select({ content: 1 })
+            .select({ slug: 1 })
     }
 }
 

@@ -169,6 +169,7 @@ const NewsController = {
                     title: news.title,
                     subtitle: news.subtitle,
                     createdAt: moment(news.createdAt).format('LLLL'),
+                    slug: news.slug
                 }
                 res.render('Pages/News/newsDetail', {data : currentNews})
             })
