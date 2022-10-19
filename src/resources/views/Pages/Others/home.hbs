@@ -128,23 +128,21 @@
                 </div>
 
                 <div class="album-main-box">
-                    <div class="owl-carousel cs-5 owl-theme mt-3">
-                        <div class="item"><img src="/img/album/img4.png" alt="">
-
+                    <div id="list-album1" class="owl-carousel cs-5 owl-theme mt-3">
+                        {{!-- <div class="item"><img src="/img/album/img4.png" alt="">
                         </div>
                         <div class="item">
-
                             <img src="/img/album/img5.png" alt="">
                         </div>
                         <div class="item">
                             <img src="/img/album/img6.png" alt="">
-                        </div>
+                        </div> --}}
 
 
                     </div>
 
-                    <div class="owl-carousel cs-5 owl-theme mt-4">
-                        <div class="item"><img src="/img/album/img1.png" alt="">
+                    <div id="list-album2" class="owl-carousel cs-5 owl-theme mt-4">
+                        {{!-- <div class="item"><img src="/img/album/img1.png" alt="">
 
                         </div>
                         <div class="item">
@@ -156,7 +154,7 @@
                         </div>
                         <div class="item">
                             <img src="/img/album/img7.png" alt="">
-                        </div>
+                        </div> --}}
 
 
                     </div>
@@ -179,8 +177,8 @@
                     </h1>
                 </div>
 
-                <div class="owl-carousel owl-theme mt-5">
-                    <div class="item news-box">
+                <div id="list-news" class="owl-carousel owl-theme mt-5">
+                    {{!-- <div class="item news-box">
                         <div class="news-img-box">
                             <img src="/img/news/news1.png" alt="">
                         </div>
@@ -226,7 +224,7 @@
                             <p>Chương trình ưu đãi tặng đến 500,000đ mỗi đơn hàng Tiếp nối chương trình ưu[...]</p>
                             <a href="" class="watch-detail px-3 py-2">Xem thêm</a>
                         </div>
-                    </div>
+                    </div> --}}
 
                 </div>
             </div>
@@ -242,11 +240,14 @@
 </div>
 
 <script>
+
     var mySlider = slider('.slides');
     const listSeafood = document.getElementById('list-seafood');
     const listMenu = document.getElementById('list-menu');
+
     renderSeafood();
-    //renderMenu();
+    renderAlbum();
+    renderNews();
     function renderSeafood() {
         $.ajax({
             url: `/seafood/all`,
@@ -302,4 +303,65 @@
             }
         })
     }
+    function renderAlbum() {
+        $.ajax({
+            url: '/album/list',
+            type: 'GET',
+            contentType: 'json',
+            success: (data, textStatus, xhr) => {
+                if (data.listAlbum) {
+                    const list = data.listAlbum;
+                    list.forEach((item, index) => {
+                        if (index < list.length / 2) {
+                            $('#list-album1').trigger('add.owl.carousel', ['<div class="item"> <img src ="' + item.url + '"> </div>'])
+                                .trigger('refresh.owl.carousel');
+                        } else {
+                            $('#list-album2').trigger('add.owl.carousel', ['<div class="item"> <img src ="' + item.url + '"> </div>'])
+                                .trigger('refresh.owl.carousel');
+                        }
+                    })
+                }
+
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.log('Error in Operation');
+            }
+        })
+    }
+    function renderNews() {
+        $.ajax({
+            url: '/news/list',
+            type: 'GET',
+            contentType: 'json',
+            success: (data, textStatus, xhr) => {
+                if (data.listNews) {
+                    const list = data.listNews;
+                    list.forEach((item, index) => {
+                        $('#list-news').trigger('add.owl.carousel', [`<div class="item new-box">
+                        <div class="news-img-box">
+                            <img src="${item.image}" alt="">
+                        </div>
+
+                        <div class="news-content-box">
+                            <div class="news-title-box">
+                                <a class="news-title" href="" alt="">${item.title}</a>
+
+                            </div>
+                            <div class="is-divider"></div>
+                            <p>${item.subtitle}</p>
+                            <a href="/news/${item.slug}" class="watch-detail px-3 py-2">Xem thêm</a>
+                        </div>
+                    </div>`])
+                            .trigger('refresh.owl.carousel');
+                    })
+                }
+
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.log('Error in Operation');
+            }
+        })
+    }
+
+
 </script>

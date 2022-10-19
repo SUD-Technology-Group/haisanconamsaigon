@@ -2,7 +2,32 @@ const News = require('../models/News');
 const slugify = require('slugify');
 const fs = require('fs');
 const moment = require('moment');
+const NewsService = require('../services/News');
 const NewsController = {
+    getList: async (req,res,next) => {
+        await NewsService.list({},{})
+            .then(news => {
+                if (news.length > 0) {
+                    let listNews = []
+                    news.forEach((item,index) => {
+                        const currentNews = {
+                            id: item._id,
+                            index: index,
+                            title: item.title,
+                            subtitle: item.subtitle,
+                            createdAt: moment(item.createdAt).format('LLLL'),
+                            image: item.image,
+                            slug: item.slug,
+                            group: item.group
+                        }
+                        listNews.push(currentNews);
+                    })
+                    res.json({listNews: listNews})
+                } else {
+                    res.json({listNews: "error"})
+                }
+            })
+    },
     getNews: (req, res, next) => {
         const error = req.flash('error') || "";
         const success = req.flash('success') || "";
@@ -135,6 +160,9 @@ const NewsController = {
                 req.flash('error', `Xóa tin thất bại ` + err)
                 res.redirect('/news/all')
             })
+    },
+    getDetail: (req,res,next) => {
+        
     }
 
 }
