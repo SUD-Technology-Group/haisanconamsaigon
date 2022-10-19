@@ -245,9 +245,11 @@
     const listSeafood = document.getElementById('list-seafood');
     const listMenu = document.getElementById('list-menu');
 
-    renderSeafood();
-    renderAlbum();
-    renderNews();
+    $(document).ready(() => {
+        renderSeafood();
+        renderAlbum();
+        renderNews();
+    })
     function renderSeafood() {
         $.ajax({
             url: `/seafood/all`,
@@ -344,12 +346,12 @@
 
                         <div class="news-content-box">
                             <div class="news-title-box">
-                                <a class="news-title" href="" alt="">${item.title}</a>
+                                <a class="news-title" href="/news/detail/${item.slug}" alt="">${item.title}</a>
 
                             </div>
                             <div class="is-divider"></div>
                             <p>${item.subtitle}</p>
-                            <a href="/news/${item.slug}" class="watch-detail px-3 py-2">Xem thêm</a>
+                            <a href="/news/detail/${item.slug}" class="watch-detail px-3 py-2">Xem thêm</a>
                         </div>
                     </div>`])
                             .trigger('refresh.owl.carousel');

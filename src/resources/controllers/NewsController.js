@@ -161,8 +161,20 @@ const NewsController = {
                 res.redirect('/news/all')
             })
     },
-    getDetail: (req,res,next) => {
-        
+    getDetail: async (req,res,next) => {
+        await NewsService.detail(req.params.slug)
+            .then(news => {
+                const currentNews = {
+                    content: news.content,
+                    title: news.title,
+                    subtitle: news.subtitle,
+                    createdAt: moment(news.createdAt).format('LLLL'),
+                }
+                res.render('Pages/News/newsDetail', {data : currentNews})
+            })
+            .catch(err => {
+                res.render('Pages/News/newsDetail', {error: err})
+            })
     }
 
 }

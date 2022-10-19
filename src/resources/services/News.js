@@ -13,6 +13,10 @@ const NewsService = {
     },
     detail: async (slug) => {
         return News.findOne({slug: slug})
+            .select({ title: 1 })
+            .select({ subtitle: 1 })
+            .select({ createdAt: 1 })
+            .select({ content: 1 })
     }
 }
 
