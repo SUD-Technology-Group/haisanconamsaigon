@@ -27,7 +27,7 @@ async function sendMail(data) {
 
         const mailOption = {
             from: 'SUD-Technology <sudtechnology.group@gmail.com>',
-            to: 'hoangbo74@gmail.com',
+            to: 'info.trankhaihoang@gmail.com',
             subject: 'Thông tin khách hàng',
             text: 'Đây là thông tin của khách hàng',
             html: `<!DOCTYPE HTML
@@ -467,8 +467,8 @@ async function sendMail(data) {
                                                 <tr style="vertical-align: top">
                                                   <td align="left" valign="middle"
                                                     style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
-                                                    <a href="https://facebook.com/" title="Facebook" target="_blank">
-                                                      <img src="/images/image-2.png" alt="Facebook" title="Facebook" width="32"
+                                                    <a href="https://facebook.com/haisanco5saigon" title="Facebook" target="_blank">
+                                                      <img src="https://img.icons8.com/color/452/facebook-new.png" alt="Facebook" title="Facebook" width="32"
                                                         style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
                                                     </a>
                                                   </td>
@@ -484,8 +484,8 @@ async function sendMail(data) {
                                                 <tr style="vertical-align: top">
                                                   <td align="left" valign="middle"
                                                     style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
-                                                    <a href="https://twitter.com/" title="Twitter" target="_blank">
-                                                      <img src="/images/image-1.png" alt="Twitter" title="Twitter" width="32"
+                                                    <a href="https://zalo.me/0902315318" title="Zalo" target="_blank">
+                                                      <img src="https://img.icons8.com/color/344/zalo.png" alt="Zalo" title="Zalo" width="32"
                                                         style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
                                                     </a>
                                                   </td>
@@ -501,8 +501,8 @@ async function sendMail(data) {
                                                 <tr style="vertical-align: top">
                                                   <td align="left" valign="middle"
                                                     style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
-                                                    <a href="https://linkedin.com/" title="LinkedIn" target="_blank">
-                                                      <img src="/images/image-4.png" alt="LinkedIn" title="LinkedIn" width="32"
+                                                    <a href="https://www.youtube.com/channel/UCr8XTth3Y8QbnAMslgn5gXQ" title="Youtube" target="_blank">
+                                                      <img src="https://img.icons8.com/color/344/youtube-play.png" alt="Youtube" title="Youtube" width="32"
                                                         style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
                                                     </a>
                                                   </td>
@@ -518,8 +518,8 @@ async function sendMail(data) {
                                                 <tr style="vertical-align: top">
                                                   <td align="left" valign="middle"
                                                     style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
-                                                    <a href="https://instagram.com/" title="Instagram" target="_blank">
-                                                      <img src="images/image-3.png" alt="Instagram" title="Instagram" width="32"
+                                                    <a href="tel:090 231 53 18" title="phone" target="_blank">
+                                                      <img src="https://img.icons8.com/color/344/apple-phone.png" alt="phone" title="phone" width="32"
                                                         style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block !important;border: none;height: auto;float: none;max-width: 32px !important">
                                                     </a>
                                                   </td>
