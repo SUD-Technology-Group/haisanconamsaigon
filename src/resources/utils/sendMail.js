@@ -1,10 +1,10 @@
 const nodemailer = require('nodemailer');
 const {google} = require('googleapis');
 
-const CLIENT_ID = '400390964430-knl34snbtqnddrjgupuqs6ht1p0s59m2.apps.googleusercontent.com';
-const CLIENT_SECRET = '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';
+const CLIENT_ID = '287883694576-0kvdb06t6ll2papdt19s39cac7m109cf.apps.googleusercontent.com';
+const CLIENT_SECRET = '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';
 const REDIRECT_URI = 'https://developers.google.com/oauthplayground';
-const REFRESH_TOKEN = '1//04yn7dvWvYTi5CgYIARAAGAQSNwF-L9IrlZ8ePw_vQpxkxm4OJaEREs9SmjS0TZdDdn4CgPvG6QswZ-64YcrxKxrrx_U4cgPLx50';
+const REFRESH_TOKEN = '1//04Jqbs3GNgffGCgYIARAAGAQSNwF-L9Iry_Zj0lMRabWTnTqHVmlvvb7NCX3OodZUqRdfAl04shZOB-Dy_HqyiTgeNYznrKpMeN4';
 
 
 const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
@@ -17,7 +17,7 @@ async function sendMail(data) {
             service: 'gmail',
             auth: {
                 type: 'OAuth2',
-                user: 'info.trankhaihoang@gmail.com',
+                user: 'sudtechnology.group@gmail.com',
                 clientId: CLIENT_ID,
                 clientSecret: CLIENT_SECRET,
                 refreshToken: REFRESH_TOKEN,
@@ -26,7 +26,7 @@ async function sendMail(data) {
         });
 
         const mailOption = {
-            from: 'SUD-Technology <sudtechnology@gmail.com>',
+            from: 'SUD-Technology <sudtechnology.group@gmail.com>',
             to: 'hoangbo74@gmail.com',
             subject: 'Thông tin khách hàng',
             text: 'Đây là thông tin của khách hàng',
