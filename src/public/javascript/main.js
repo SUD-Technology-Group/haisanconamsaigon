@@ -266,7 +266,7 @@ $(document).ready(() => {
             `<div class="alert alert-success alert-dismissible fade show text-center" role="alert">
                     <strong>Sản phẩm đã có trong giỏ hàng</strong>, quý khách vui lòng vào giỏ hàng để cập nhật số lượng sản phẩm
                 </div>`
-        setTimeout(function () { document.getElementById('alertAddToCart').innerHTML = ''; }, 2000);
+        setTimeout(function () { document.getElementById('alertAddToCart').innerHTML = ''; }, 5000);
     }
     
 
