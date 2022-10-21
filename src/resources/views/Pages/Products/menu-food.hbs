@@ -26,7 +26,7 @@
                     list.forEach(item => {
                         let priceHtml = `Giá: ${item.price.toLocaleString('vi', { style: 'currency', currency: 'VND' })}`;
                         if (item.price == 0)
-                            priceHtml = `Giá: Theo thời vụ`;
+                            priceHtml = `Giá: Theo thời giá`;
                         listDish.innerHTML += `
                         <div class="col-md-3 col-sm-4 col-xs-6 seafood-box-2">
                             <div class="seafood-img-box">
