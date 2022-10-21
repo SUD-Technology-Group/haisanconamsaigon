@@ -260,7 +260,12 @@
                     listSeafood.innerHTML = ``;
                     const list = data.seaFoodList
                     list.forEach((item, index) => {
-                        if (index < 8)
+                        if (index < 6) {
+                            let priceHtml = `<span style="text-decoration: line-through;">Giá bán: ${item.price[0].originPrice.toLocaleString('vi', { style: 'currency', currency: 'VND' })}</span><br> Giá khuyến mãi:
+                                        ${item.price[0].discountPrice.toLocaleString('vi', { style: 'currency', currency: 'VND' })}`;
+                            if (Number(item.price[0].discountPrice) == 0)
+                                priceHtml = `<span style="text-decoration: line-through;"> </span><br> Giá bán:
+                                        Theo thời giá`;
                             listSeafood.innerHTML += `<div class="col-md-3 col-sm-4 seafood-box">
                             <span class="sale">-${item.price[0].discountPercent}%</span>
                             <div class="seafood-img-box">
@@ -271,8 +276,7 @@
                                 <a href="/seafood/${item.slug}" class="seafood-title">${item.name}</a>
 
                                 <div class="seafood-price">
-                                        <span style="text-decoration: line-through;">Giá bán: ${item.price[0].originPrice.toLocaleString('vi', { style: 'currency', currency: 'VND' })}</span><br> Giá khuyến mãi:
-                                        ${item.price[0].discountPrice.toLocaleString('vi', { style: 'currency', currency: 'VND' })}
+                                        ${priceHtml}
                                     </div>
 
                                 <div class="seafood-buy smooth">
@@ -280,6 +284,7 @@
                                 </div>
                             </div>
                         </div>`;
+                        }
                     })
 
                 }
