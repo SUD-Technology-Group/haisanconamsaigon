@@ -24,6 +24,9 @@
                     const list = data.listDish;
                     listDish.innerHTML = ``;
                     list.forEach(item => {
+                        let priceHtml = `Giá: ${item.price.toLocaleString('vi', { style: 'currency', currency: 'VND' })}`;
+                        if (item.price == 0)
+                            priceHtml = `Giá: Theo thời vụ`;
                         listDish.innerHTML += `
                         <div class="col-md-3 col-sm-4 col-xs-6 seafood-box-2">
                             <div class="seafood-img-box">
@@ -34,7 +37,7 @@
                                 <a href="" class="seafood-title title-menu">${item.name}</a>
 
                                 <div class="seafood-price">
-                                    Giá: ${item.price.toLocaleString('vi', { style: 'currency', currency: 'VND' })}
+                                    ${priceHtml}
                                 </div>
 
                                 <div class="seafood-contact">

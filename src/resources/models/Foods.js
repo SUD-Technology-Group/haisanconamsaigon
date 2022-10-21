@@ -7,7 +7,7 @@ const Foods = new Schema({
     foodName: { type: String, required: true },
     foodType: { type: String, required: true },
     image: { type: String, required: true },
-    price: { type: Number, required: true },
+    price: { type: Number, default: 0, required: true },
     description: { type: String },
     slug: { type: String, slug: 'name' },
     createdAt: { type: Date, default: Date.now() }

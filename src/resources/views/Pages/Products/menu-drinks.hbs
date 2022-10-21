@@ -6,7 +6,7 @@
             </h1>
         </div>
         <div id="list-drinks" class="row mt-5">
-            
+
         </div>
     </section>
 
@@ -25,6 +25,9 @@
                     const list = data.listDrinks;
                     listDrinks.innerHTML = ``;
                     list.forEach(item => {
+                        let priceHtml = `Giá: ${item.price.toLocaleString('vi', { style: 'currency', currency: 'VND' })}`;
+                        if (item.price == 0)
+                            priceHtml = `Giá: Đang cập nhật`;
                         listDrinks.innerHTML += `
                         <div class="col-md-3 col-sm-4 col-xs-6 seafood-box-2">
                             <div class="seafood-img-box">
@@ -34,7 +37,7 @@
                             <div class="seafood-content-box">
                                 <a href="" class="seafood-title title-menu">${item.name}</a>
                                 <div class="seafood-price">
-                                    Giá: ${item.price.toLocaleString('vi', { style: 'currency', currency: 'VND' })}
+                                   ${priceHtml}
                                 </div>
                                 <div class="seafood-contact">
                                     Liên hệ:
@@ -62,20 +65,20 @@
         shoppingCart = JSON.parse(localStorage.setItem('shopping-cart', '[]'))
     }
 
-    function addDrinkToCart(id,name,price, quantity, img, slug) {
+    function addDrinkToCart(id, name, price, quantity, img, slug) {
         let checkID = shoppingCart.some(item => {
             item = JSON.parse(item);
             return item.id === id;
         })
         if (checkID) {
-            changeNumberOfDrink('plus',id);
+            changeNumberOfDrink('plus', id);
             alertAddToAdminCart(name);
         } else {
             const drink = {
                 id: id,
                 name: name,
                 price: price,
-                stringPrice: Number(price).toLocaleString('vi', {style: "currency", currency: "VND"}),
+                stringPrice: Number(price).toLocaleString('vi', { style: "currency", currency: "VND" }),
                 img: img,
                 size: '',
                 inventory: 1000,
@@ -120,5 +123,5 @@
                 </div>`
         setTimeout(function () { document.getElementById('alertAddToCart').innerHTML = ''; }, 2000);
     }
-    
+
 </script>

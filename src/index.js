@@ -59,6 +59,8 @@ app.engine(
           );
       },
       toPrice: function (price) {
+        if (Number(price) == 0)
+          return "Theo thời giá"
         return Number(price).toLocaleString("vi", {
           style: "currency",
           currency: "VND",

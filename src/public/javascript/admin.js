@@ -11,14 +11,14 @@ $(document).ready(function () {
         <div  class="col-sm-3">
             <div class="form-group">
                 <div class="input-group">
-                    <input type="number" placeholder="Nhập giá" name="price[]"
+                    <input type="number" placeholder="Nhập giá" value="0"  name="price[]"
                         class="form-control" required="">
                 </div>
             </div>
         </div>
         <div class="col-sm-3">
             <div class="form-group">
-                <input type="number" name="discount[]" placeholder="Nhập khuyến mãi (%)" required=""
+                <input type="number" name="discount[]" value="0" placeholder="Nhập khuyến mãi (%)" required=""
                 class="form-control">
             </div>
         </div>

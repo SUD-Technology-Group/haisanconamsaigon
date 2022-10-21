@@ -5,9 +5,9 @@ mongoose.plugin(slug);
 
 const Price = new Schema({
     size: { type: String, required: true },
-    discountPercent: {type: Number, required: true},
-    discountPrice: {type: Number, required: true},
-    originPrice: {type: Number, required: true},
+    discountPercent: {type: Number, default: 0, required: true},
+    discountPrice: {type: Number, default: 0, required: true},
+    originPrice: {type: Number, default: 0, required: true},
     quantity: { type: Number, required: true }
 })
 

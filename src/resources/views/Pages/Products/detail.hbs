@@ -179,8 +179,11 @@
 
 <script>
   function selectSize(price, size, quantity, object) {
-    document.getElementById('product-price').innerHTML =
-      Number(price).toLocaleString('vi', { style: 'currency', currency: 'VND' })
+    if (Number(price) == 0)
+      document.getElementById('product-price').innerHTML = 'Theo thời giá'
+    else
+      document.getElementById('product-price').innerHTML =
+        Number(price).toLocaleString('vi', { style: 'currency', currency: 'VND' })
     const docPrice = document.querySelector('input[name=price]'); const docSize =
       document.querySelector('input[name=size]'); const docQuantity =
         document.querySelector('input[name=quantity]'); docPrice.value = price;
