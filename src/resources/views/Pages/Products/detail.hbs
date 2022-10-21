@@ -41,9 +41,12 @@
           <div class="product-info-box">
             <h4>{{data.name}}</h4>
             <hr>
-
+            {{!-- <p><span class="bolder">Mã sản phẩm: </span> {{data.pid}}</p> --}}
             <div class="prod-des mb-5">
-              <p><span class="{{#if food}} d-none {{/if}} bolder">Size: </span>
+              {{!-- <p><span class="bolder">Xuất xứ: </span> {{data.origin}}</p>
+              <p><span class="bolder">Quy cách: </span> Giao sống </p>
+              <p><span class="bolder">Cam kết: </span> 01 đổi 01 nếu kém chất lượng </p> --}}
+              {{#unless food}} <p><span class="bolder">Size: </span> {{/unless}}
                 {{#if data.type}}
                 {{#each data.type}}
                 {{#if @first}}
@@ -57,7 +60,7 @@
                 {{/each}}
                 {{else}}
                 <button onclick="selectSize('{{data.price}}','{{data.name}}','100',this)"
-                  class="btn btn-info btn-seafood-size {{#if food}} d-none {{/if}}">{{data.name}}</button>
+                  class="btn btn-info btn-seafood-size {{#if food}}d-none{{/if}}">{{data.name}}</button>
                 {{/if}}
               </p>
             </div>
@@ -70,7 +73,7 @@
             {{#if data.type}}
             {{#each data.type}}
             {{#if @first}}
-            <input class="d-none" name="price" value="{{cost}}" type="text">
+            <input class="d-none" name="price" value="{{discountPrice}}" type="text">
             <input class="d-none" name="quantity" value="{{quantity}}" type="text">
             <input class="d-none" name="size" value="{{size}}" type="text">
             {{/if}}

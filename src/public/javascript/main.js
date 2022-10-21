@@ -180,7 +180,8 @@ $(document).ready(() => {
             return item.id === id && item.size == size
         })
         if (checkIdAndSize) {
-            changeNumberOfSeafood('plus', id, size)
+            //changeNumberOfSeafood('plus', id, size)
+            alertProductInCart()
             alertAddToAdminCart(name)
         } else if (inventory != 0) {
             const seafood = {
@@ -256,6 +257,14 @@ $(document).ready(() => {
         document.getElementById('alertAddToCart').innerHTML =
             `<div class="alert alert-success alert-dismissible fade show text-center" role="alert">
                     Đã thêm <strong>${name}</strong> - ${size} vào giỏ hàng
+                </div>`
+        setTimeout(function () { document.getElementById('alertAddToCart').innerHTML = ''; }, 2000);
+    }
+
+    function alertProductInCart() {
+        document.getElementById('alertAddToCart').innerHTML =
+            `<div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+                    <strong>Sản phẩm đã có trong giỏ hàng</strong>, quý khách vui lòng vào giỏ hàng để cập nhật số lượng sản phẩm
                 </div>`
         setTimeout(function () { document.getElementById('alertAddToCart').innerHTML = ''; }, 2000);
     }
