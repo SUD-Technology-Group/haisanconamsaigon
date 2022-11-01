@@ -3,7 +3,7 @@
 :root {
   --xanh: #3AB4F2 !important;
   /*9C9EFE*/
-  --do: #d82480 !important;
+  --do: crimson !important;
   --luc: #4FD3C4 !important;
 }
 
@@ -646,7 +646,7 @@ img,
 .news-box:hover img,
 .seafood-box:hover img,
 .seafood-box-2:hover img {
-  transform: scale(1.15);
+  transform: scale(1.4);
 }
 
 .owl-item {
