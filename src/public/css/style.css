@@ -21,6 +21,10 @@ li {
   text-decoration: none;
 }
 
+.connect-box img {
+  border-radius: 50% !important;
+}
+
 ul {
   list-style-type: none;
 }
