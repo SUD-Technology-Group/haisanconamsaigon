@@ -585,7 +585,7 @@ img,
   height: 35vh;
   margin-bottom: 20px;
   padding: 0 10px;
-
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 .seafood-box:hover .seafood-content-box,
@@ -1235,7 +1235,7 @@ a.watch-detail {
   .seafood-box {
     width: 24.3% !important;
     padding: 0 10px !important;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    
   }
 
   .product2 img {
