@@ -1,5 +1,82 @@
 /* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {}
+@media only screen and (max-width: 600px) {
+    .navbar-list {
+        display: none;
+    }
+
+    .navbar-item {
+        line-height: 14px;
+    }
+
+    .header-right-corner {
+        display: none;
+    }
+
+    .header-logo {
+        text-align: center;
+    }
+
+    .header-logo img {
+        width: 80%;
+    }
+
+    .navbar-btn {
+        border-style: none;
+        background-color: transparent;
+        font-size: 18px;
+    }
+
+    .header-sidebar {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        background-color: var(--xanh);
+        width: 50%;
+        padding: 0 !important;
+        font-size: 14px;
+        color: #fff !important;
+        margin-bottom: 0 !important;
+        z-index: 99;
+    }
+
+    #navBtn1,
+    #navBtn1 {
+        position: relative;
+    }
+
+    #left-sidebar {
+        top: 0;
+        left: -190px;
+        border-top-right-radius: 30px;
+
+    }
+
+    .sidebar-item {
+        padding: 5px 5px;
+    }
+
+    .sidebar-item:hover {
+        background-color: var(--luc);
+    }
+
+    .sidebar-item a {
+        color: #fff !important;
+
+    }
+
+    #left-sidebar .item-first {
+        border-top-right-radius: 30px;
+        background-color: #fff;
+        display: flex;
+        justify-content: end;
+    }
+
+    #close-btn1 i {
+        padding: 5px;
+        margin-right: 10px;
+    }
+
+}
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {}
