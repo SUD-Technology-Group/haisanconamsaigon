@@ -114,8 +114,8 @@
 
     <form method="post" action="order/add">
         <div class="row">
-            <section class="col-md-8" id="cart-container">
-                <table class="table table-hover">
+            <div class="col-md-9 col-sm-12" style="overflow-x: auto;" id="cart-container">
+                <table style=" white-space: nowrap;" class="table table-hover">
                     <thead id="thead-cart">
                         <tr>
                             <th colspan="2" scope="col">Tên sản phẩm</th>
@@ -136,8 +136,8 @@
                         </tr>
                     </tbody>
                 </table>
-            </section>
-            <div class="col-md-4">
+            </div>
+            <div class="col-md-3 col-sm-12">
                 <table class="table table-hover">
                     <thead id="thead-cart">
                         <th scope="col">Thông tin khách hàng</th>
@@ -168,7 +168,7 @@
                 <input id="sale" value="chưa có sale" name="sale" placeholder="Tên sale" class="d-none" type="text">
                 <div class="col-12 mb-5 d-flex">
                     <div class="m-auto">
-                        <a href="/" class="btn btn-info btn-lg mr-2 ">Tiếp tục mua
+                        <a href="/" class="btn btn-info btn-lg mr-2 mb-2">Tiếp tục mua
                             hàng</a>
                         <button onclick="submitFormCart()" type="submit" class="btn btn-warning btn-lg">Đặt
                             hàng</button>
@@ -222,7 +222,7 @@
             </td>
             <td><strong class="total-product">${Number(item.price * item.numberOfUnit).toLocaleString('vi', { style: 'currency', currency: 'VND' })}</strong></td>
             <td>
-                <button onclick="deleteProduct('${item.id}', '${item.size}')" class="btn btn-danger">
+                <button onclick="deleteProduct('${item.id}', '${item.size}')" class="btn btn-danger removeItem-btn">
                     <i class="fas fa-trash-alt"></i>
                 </button>
             </td>
