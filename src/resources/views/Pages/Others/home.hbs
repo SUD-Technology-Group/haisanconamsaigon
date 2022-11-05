@@ -23,10 +23,6 @@
                         <div class="item bestseller-box"><img src="{{image}}" alt="">
                         </div>
                         {{/each}}
-
-                        {{!-- <div class="item bestseller-box"><img src="/img/menu/menu2.png" alt=""></div>
-                        <div class="item bestseller-box"><img src="/img/menu/menu3.png" alt=""></div> --}}
-
                     </div>
                 </div>
             </div>
@@ -72,46 +68,14 @@
                     Filter
                 </div> --}}
 
-                <div id="list-menu" class="owl-carousel cs-5 owl-theme mt-5">
+                <div id="list-menu" class="owl-carousel cs-4 owl-theme ">
                     {{#each menuList}}
                     <div class="item">
                         <img src="{{image}}" alt="">
                     </div>
                     {{/each}}
                 </div>
-                {{!-- <div class="text-center w-100 d-flex justify-content-center mt-4">
 
-                    <div class="pagination">
-                        <ul class="pagination-list">
-
-                            <li class="prevPage" style="visibility: hidden;"><a title="Trang trước" href=""
-                                    class="pagenav"><i class="fa fa-chevron-left"></i></a></li>
-
-                            <li class="hidden-phone current"><a title="1" href="" class="pagenav">1</a></li>
-
-
-
-                            <li class="hidden-phone"><a title="2" href="" class="pagenav">2</a></li>
-
-
-
-                            <li class="hidden-phone"><a title="3" href="" class="pagenav">3</a></li>
-
-
-
-                            <li class="hidden-phone "><a title="4" href="" class="pagenav">4</a></li>
-
-
-
-
-                            <li class="nextPage"><a title="Trang sau" href="" class="pagenav"><i
-                                        class="fa fa-chevron-right"></i></a></li>
-
-                        </ul>
-                        <input type="hidden" name="limitstart" value="0">
-                    </div>
-
-                </div> --}}
             </div>
         </div>
     </section>
@@ -141,7 +105,7 @@
 
                     </div>
 
-                    <div id="list-album2" class="owl-carousel cs-5 owl-theme mt-4">
+                    <div id="list-album2" class="owl-carousel cs-5 owl-theme">
                         {{!-- <div class="item"><img src="/img/album/img1.png" alt="">
 
                         </div>
@@ -178,53 +142,6 @@
                 </div>
 
                 <div id="list-news" class="owl-carousel owl-theme mt-5">
-                    {{!-- <div class="item news-box">
-                        <div class="news-img-box">
-                            <img src="/img/news/news1.png" alt="">
-                        </div>
-
-                        <div class="news-content-box">
-                            <div class="news-title-box">
-                                <a class="news-title" href="" alt="">Thực phẩm cao cấp bồi dưỡng sức khoẻ đang có giá
-                                    cực tốt, tặng đến 500K cho Khách hàng</a>
-                            </div>
-                            <div class="is-divider"></div>
-                            <p>Chương trình ưu đãi tặng đến 500,000đ mỗi đơn hàng Tiếp nối chương trình ưu[...]</p>
-                            <a href="" class="watch-detail px-3 py-2">Xem thêm</a>
-
-                        </div>
-                    </div>
-                    <div class="item news-box">
-                        <div class="news-img-box">
-                            <img src="/img/news/news2.png" alt="">
-                        </div>
-
-                        <div class="news-content-box">
-                            <div class="news-title-box">
-                                <a class="news-title" href="" alt="">Sashimi Bạch tuộc Nhật I-Wadako</a>
-                            </div>
-                            <div class="is-divider"></div>
-                            <p>Chương trình ưu đãi tặng đến 500,000đ mỗi đơn hàng Tiếp nối chương trình ưu[...]</p>
-                            <a href="" class="watch-detail px-3 py-2">Xem thêm</a>
-
-                        </div>
-                    </div>
-                    <div class="item news-box">
-                        <div class="news-img-box">
-                            <img src="/img/news/news3.png" alt="">
-                        </div>
-
-                        <div class="news-content-box">
-                            <div class="news-title-box">
-                                <a class="news-title" href="" alt="">Ưu đãi 102 – Chân cua Hoàng Đế Alaska gía chỉ còn
-                                    1,790,000đ (Áp dụng từ 26/03 – 28/03/2022)</a>
-
-                            </div>
-                            <div class="is-divider"></div>
-                            <p>Chương trình ưu đãi tặng đến 500,000đ mỗi đơn hàng Tiếp nối chương trình ưu[...]</p>
-                            <a href="" class="watch-detail px-3 py-2">Xem thêm</a>
-                        </div>
-                    </div> --}}
 
                 </div>
             </div>
@@ -266,7 +183,7 @@
                             if (Number(item.price[0].discountPrice) == 0)
                                 priceHtml = `<span style="text-decoration: line-through;"> </span><br> Giá bán:
                                         Theo thời giá`;
-                            listSeafood.innerHTML += `<div class="col-md-3 col-sm-4 seafood-box">
+                            listSeafood.innerHTML += `<div class="col-lg-4 col-sm-4 seafood-box">
                             <span class="sale">-${item.price[0].discountPercent}%</span>
                             <div class="seafood-img-box">
                                 <img src="${item.avatar}" alt="">
