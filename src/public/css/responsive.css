@@ -1,5 +1,10 @@
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
+    .container {
+        width: 85% !important;
+    }
+
+
     .navbar-list {
         display: none;
     }
@@ -75,6 +80,59 @@
         padding: 5px;
         margin-right: 10px;
     }
+
+    /* Home page */
+    .two h1 {
+        font-size: 22px !important;
+    }
+
+    .seafood-right-banner {
+        display: none !important;
+    }
+
+    /* Product card */
+    .seafood-price,
+    .seafood-contact {
+        font-size: 12px !important;
+    }
+
+    .seafood-img-box {
+        height: 45% !important;
+    }
+
+    .seafood-content-box {
+        height: 50% !important;
+    }
+
+    .seafood-box {
+        width: 50% !important;
+        height: 34vh !important;
+        margin-bottom: 10px !important;
+    }
+
+    .seafood-title {
+        font-size: 12px !important;
+    }
+
+    .seafood-buy {
+        height: 25px !important;
+        width: 70% !important;
+    }
+
+    .seafood-buy a {
+        font-size: 10px !important;
+    }
+
+    .last-seafood {
+        display: none !important;
+    }
+
+    /* Albums */
+    #list-album1 {
+        padding-bottom: 0 !important;
+    }
+
+
 
 }
 
@@ -158,16 +216,30 @@
     /* Product card */
     .seafood-price,
     .seafood-contact {
-        font-size: 9px !important;
+        font-size: 12px !important;
+    }
+
+    .seafood-img-box {
+        height: 50% !important;
     }
 
     .seafood-box {
         width: 33.333% !important;
-        height: 32vh !important;
+        height: 34vh !important;
+        margin-bottom: 10px !important;
     }
 
     .seafood-title {
         font-size: 12px !important;
+    }
+
+    .seafood-buy {
+        height: 25px !important;
+        width: 70% !important;
+    }
+
+    .seafood-buy a {
+        font-size: 10px !important;
     }
 
     h1 {
@@ -184,18 +256,28 @@
         height: 90px !important;
     }
 
-    /* Owl carosel */
-    #list-album1,
-    #list-album {
-        margin-top: 0 !important;
+    .container {
+        width: 65% !important;
     }
 
-    .owl-carousel {
-        padding: 0px 20px !important;
+    /* News box */
+    .news-content-box p {
+        font-size: 12px !important;
     }
 
-    #list-menu {
-        margin-top: 0 !important;
+    /* Product cart */
+    #body-cart th {
+        padding: 5px !important;
     }
 
+    #body-cart th img {
+        height: 80px !important;
+        width: 80px !important;
+    }
+
+    #body-cart td {
+        font-size: 12px !important;
+    }
+
+    /*  */
 }

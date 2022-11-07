@@ -1,7 +1,7 @@
 
 $('.cs-4').owlCarousel({
     loop: true,
-    margin: 10,
+    margin: 5,
     nav: true,
     autoplay: true,
     autoplayTimeout: 2000,
@@ -11,7 +11,7 @@ $('.cs-4').owlCarousel({
             items: 1
         },
         600: {
-            items: 3
+            items: 4
         },
         1000: {
             items: 3
@@ -21,7 +21,7 @@ $('.cs-4').owlCarousel({
 
 $('.cs-5').owlCarousel({
     loop: true,
-    margin: 10,
+    margin: 5,
     nav: true,
     autoplay: true,
     autoplayTimeout: 2000,

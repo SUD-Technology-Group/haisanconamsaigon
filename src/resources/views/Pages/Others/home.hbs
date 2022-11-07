@@ -16,14 +16,11 @@
                         <div class="icon"></div>
                     </h1>
                 </div>
-
-                <div class="container">
-                    <div class="owl-carousel owl-theme mt-md-1">
-                        {{#each menuList}}
-                        <div class="item bestseller-box"><img src="{{image}}" alt="">
-                        </div>
-                        {{/each}}
+                <div class="owl-carousel cs-4 owl-theme">
+                    {{#each menuList}}
+                    <div class="item bestseller-box"><img src="{{image}}" alt="">
                     </div>
+                    {{/each}}
                 </div>
             </div>
         </div>
@@ -41,7 +38,7 @@
                 </div>
 
                 <div class="row">
-                    <div id="list-seafood" class="col-md-10 mt-2">
+                    <div id="list-seafood" class="list-seafood col-md-10 mt-2">
                     </div>
 
                     <div class="col-md-2 seafood-right-banner mt-2">
@@ -64,9 +61,6 @@
                     </h1>
                 </div>
 
-                {{!-- <div class="text-center filter-menu mt-5">
-                    Filter
-                </div> --}}
 
                 <div id="list-menu" class="owl-carousel cs-4 owl-theme ">
                     {{#each menuList}}
@@ -93,33 +87,10 @@
 
                 <div class="album-main-box">
                     <div id="list-album1" class="owl-carousel cs-5 owl-theme mt-3">
-                        {{!-- <div class="item"><img src="/img/album/img4.png" alt="">
-                        </div>
-                        <div class="item">
-                            <img src="/img/album/img5.png" alt="">
-                        </div>
-                        <div class="item">
-                            <img src="/img/album/img6.png" alt="">
-                        </div> --}}
-
 
                     </div>
 
                     <div id="list-album2" class="owl-carousel cs-5 owl-theme">
-                        {{!-- <div class="item"><img src="/img/album/img1.png" alt="">
-
-                        </div>
-                        <div class="item">
-
-                            <img src="/img/album/img2.png" alt="">
-                        </div>
-                        <div class="item">
-                            <img src="/img/album/img3.png" alt="">
-                        </div>
-                        <div class="item">
-                            <img src="/img/album/img7.png" alt="">
-                        </div> --}}
-
 
                     </div>
                 </div>
@@ -183,7 +154,8 @@
                             if (Number(item.price[0].discountPrice) == 0)
                                 priceHtml = `<span style="text-decoration: line-through;"> </span><br> Giá bán:
                                         Theo thời giá`;
-                            listSeafood.innerHTML += `<div class="col-lg-4 col-sm-4 seafood-box">
+                            if (index >= 4) {
+                                listSeafood.innerHTML += `<div class="col-lg-4 col-sm-4 seafood-box last-seafood">
                             <span class="sale">-${item.price[0].discountPercent}%</span>
                             <div class="seafood-img-box">
                                 <img src="${item.avatar}" alt="">
@@ -201,6 +173,26 @@
                                 </div>
                             </div>
                         </div>`;
+                            } else {
+                                listSeafood.innerHTML += `<div class="col-lg-4 col-sm-4 seafood-box">
+                            <span class="sale">-${item.price[0].discountPercent}%</span>
+                            <div class="seafood-img-box">
+                                <img src="${item.avatar}" alt="">
+                            </div>
+
+                            <div class="seafood-content-box">
+                                <a href="/seafood/${item.slug}" class="seafood-title">${item.name}</a>
+
+                                <div class="seafood-price">
+                                        ${priceHtml}
+                                    </div>
+
+                                <div class="seafood-buy smooth">
+                                    <a href="/seafood/${item.slug}">Thưởng thức ngay</a>
+                                </div>
+                            </div>
+                        </div>`;
+                            }
                         }
                     })
 
@@ -286,6 +278,5 @@
             }
         })
     }
-
 
 </script>
