@@ -67,6 +67,13 @@ h1 {
   transition: all 0.4s ease 0s;
   text-transform: uppercase !important;
 }
+#left-sidebar,
+#right-sidebar,
+#navBtn1,
+#navBtn2 {
+  display: none;
+}
+
 
 .modal-header {
   text-align: center !important;

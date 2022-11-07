@@ -165,10 +165,18 @@ $(document).ready(() => {
     });
     
     $('#navBtn1').click(function (){
+        $("#right-sidebar").animate({ right: "-200px" });
         $("#left-sidebar").animate({ left: "0px" });
     })
+    $('#navBtn2').click(function (){
+        $("#left-sidebar").animate({ left: "-200px" });
+        $("#right-sidebar").animate({ right: "0px" });
+    })
     $('#close-btn1').click(function (){
-        $("#left-sidebar").animate({ left: "-190px" });
+        $("#left-sidebar").animate({ left: "-200px" });
+    })
+    $('#close-btn2').click(function (){
+        $("#right-sidebar").animate({ right: "-200px" });
     })
 
 
