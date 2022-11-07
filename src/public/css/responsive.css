@@ -61,14 +61,14 @@
 
     #right-sidebar {
         top: 10%;
-        right: -200px;
+        right: -250px;
         border-top-left-radius: 30px;
         border-bottom-left-radius: 10px;
     }
 
     #left-sidebar {
         top: 10%;
-        left: -200px;
+        left: -250px;
         border-top-right-radius: 30px;
         border-bottom-right-radius: 10px;
     }
