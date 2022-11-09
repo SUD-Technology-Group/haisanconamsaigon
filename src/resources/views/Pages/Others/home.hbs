@@ -148,7 +148,7 @@
                     listSeafood.innerHTML = ``;
                     const list = data.seaFoodList
                     list.forEach((item, index) => {
-                        if (index < 6) {
+                        if (index < 8) {
                             let priceHtml = `<span style="text-decoration: line-through;">Giá bán: ${item.price[0].originPrice.toLocaleString('vi', { style: 'currency', currency: 'VND' })}</span><br> Giá khuyến mãi:
                                         ${item.price[0].discountPrice.toLocaleString('vi', { style: 'currency', currency: 'VND' })}`;
                             if (Number(item.price[0].discountPrice) == 0)
