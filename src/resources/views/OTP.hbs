@@ -1,0 +1,80 @@
+<style>
+  .card { width: 350px; padding: 10px; border-radius: 20px; background: #fff; border: none; height: 350px; position:
+  relative; } .form-control { margin-right: 12px; } .form-control:focus { color: #495057; background-color: #fff;
+  border-color: #ff8880; outline: 0; box-shadow: none; } .cursor { cursor: pointer; }
+</style>
+<div class=''>
+  <div class='container'>
+    <div class='h-100 my-5'>
+
+      <div class='d-flex justify-content-center align-items-center container'>
+        <div class='card py-5 px-3'>
+          <h1>Enter Code</h1>
+          <p>
+            A 4-digit verification code has been sent to your email. Please enter this code to proceed or
+            <a href='#'>request a new code</a>.
+          </p>
+
+          <form id='otp-form' accept-charset='utf-8' class='flow'>
+            <div class='otp-container d-flex flex-row mt-5'>
+              <div class='mx-2'>
+                <label for='first-digit' class='sr-only'>First Digit</label>
+                <input
+                  class='form-control'
+                  type='text'
+                  name='first'
+                  required=''
+                  id='first-digit'
+                  inputmode='numeric'
+                  maxlength='1'
+                  autofocus=''
+                />
+              </div>
+              <div class='mx-2'>
+                <label for='second-digit' class='sr-only'>Second digit</label>
+                <input
+                  class='form-control'
+                  type='text'
+                  name='second'
+                  inputmode='numeric'
+                  required=''
+                  pattern='\\d{1}'
+                  id='second-digit'
+                  maxlength='1'
+                />
+              </div>
+
+              <div class='mx-2'>
+                <label for='third-digit' class='sr-only'>Third digit</label>
+                <input
+                  class='form-control'
+                  type='text'
+                  name='third'
+                  required=''
+                  id='third-digit'
+                  inputmode='numeric'
+                  maxlength='1'
+                />
+              </div>
+              <div class='mx-2'>
+                <label for='fourth-digit' class='sr-only'>Fourth digit</label>
+                <input
+                  class='form-control'
+                  type='text'
+                  inputmode='numeric'
+                  name='fourth'
+                  required=''
+                  id='fourth-digit'
+                  maxlength='1'
+                />
+                <input type='hidden' name='state' id='state' value='${state}' />
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<script type='text/javascript' src='/javascript/otp.js'></script>
