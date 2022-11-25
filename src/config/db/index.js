@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+require('dotenv').config();
 async function connect() {
 
     let env = process.env.ENVIRONTMENT == 'production' 

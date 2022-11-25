@@ -80,6 +80,9 @@ app.use(session({ cookie: { maxAge: 30000 } }));
 app.use(flash());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+
+
+
 app.use("/admin", AdminRouter);
 app.use("/seafood", SeafoodRouter);
 app.use("/menu", MenuRouter);
