@@ -104,7 +104,6 @@ const DiscountController = {
         }
 
 
-
         Discounts.findByIdAndUpdate(req.params.id, { $set: discount })
             .then(() => {
                 req.flash('success', 'Cập nhật khuyến mãi thành công')
