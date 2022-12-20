@@ -170,6 +170,10 @@ $(document).ready(() => {
             $("#right-sidebar").animate({ right: "-250px" });
             $("#left-sidebar").animate({ left: "0px" });
         })
+        $('#navBtn1').click(function (){
+            $("#right-sidebar").animate({ right: "-250px" });
+            $("#left-sidebar").animate({ left: "0px" });
+        })
         $('#navBtn2').click(function (){
             $("#left-sidebar").animate({ left: "-250px" });
             $("#right-sidebar").animate({ right: "0px" });
@@ -312,26 +316,7 @@ $(document).ready(() => {
 
 })
 
-// jquery mobile 
-$(document).bind('pageinit', function(){
-    // $('.publications').vclick(function() {
-    //     $('#filter_wrapper').show();
-    // });
-    $('#navBtn1').vclick(function (){
-        $("#right-sidebar").animate({ right: "-250px" });
-        $("#left-sidebar").animate({ left: "0px" });
-    })
-    $('#navBtn2').vclick(function (){
-        $("#left-sidebar").animate({ left: "-250px" });
-        $("#right-sidebar").animate({ right: "0px" });
-    })
-    $('#close-btn1').vclick(function (){
-        $("#left-sidebar").animate({ left: "-250px" });
-    })
-    $('#close-btn2').vclick(function (){
-        $("#right-sidebar").animate({ right: "-250px" });
-    })
- });
+
 
 
 function onClick(element) {
