@@ -164,20 +164,24 @@ $(document).ready(() => {
         $('.cart .fa').attr('data-before', '1');
     });
     
-    $('#navBtn1').click(function (){
-        $("#right-sidebar").animate({ right: "-250px" });
-        $("#left-sidebar").animate({ left: "0px" });
+
+    $(function (){
+        $('#navBtn1').click(function (){
+            $("#right-sidebar").animate({ right: "-250px" });
+            $("#left-sidebar").animate({ left: "0px" });
+        })
+        $('#navBtn2').click(function (){
+            $("#left-sidebar").animate({ left: "-250px" });
+            $("#right-sidebar").animate({ right: "0px" });
+        })
+        $('#close-btn1').click(function (){
+            $("#left-sidebar").animate({ left: "-250px" });
+        })
+        $('#close-btn2').click(function (){
+            $("#right-sidebar").animate({ right: "-250px" });
+        })
     })
-    $('#navBtn2').click(function (){
-        $("#left-sidebar").animate({ left: "-250px" });
-        $("#right-sidebar").animate({ right: "0px" });
-    })
-    $('#close-btn1').click(function (){
-        $("#left-sidebar").animate({ left: "-250px" });
-    })
-    $('#close-btn2').click(function (){
-        $("#right-sidebar").animate({ right: "-250px" });
-    })
+    
 
 
     var prnum = $('.num').text();
