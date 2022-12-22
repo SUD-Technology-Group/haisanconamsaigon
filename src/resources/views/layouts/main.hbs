@@ -60,88 +60,84 @@
   <div id="alertAddToCart">
   </div>
   {{{body}}}
-  <div class="container">
-    <div class="modal fade" id="staticBackdrop" data-mdb-backdrop="static" data-mdb-keyboard="false" tabindex="-1"
-      aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <form method="post" action="/mail">
-            <div class="modal-header">
-              <h5 class="modal-title" id="staticBackdropLabel">Đăng ký nhận tin</h5>
-              <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-
-              <!-- 2 column grid layout with text inputs for the first and last names -->
-              <div class="row mb-4">
-                <div class="col">
-                  <div class="form-outline">
-                    <input name="fullname" type="text" id="form3Example1" required="" class="form-control" />
-                    <label class="form-label" for="form3Example1">Họ và tên</label>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="form-outline">
-                    <input name="phone" type="phone" id="form3Example2" required="" class="form-control" />
-                    <label class="form-label" for="form3Example2">Số điện thoại</label>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Email input -->
-              <div class="form-outline mb-4">
-                <input name="email" type="email" id="form3Example3" required="Vui lòng nhập" class="form-control" />
-                <label class="form-label" for="form3Example3">Email</label>
-              </div>
-
-              <!-- Address input -->
-              <div class="form-outline mb-4">
-                <input name="address" type="text" id="form3Example4" class="form-control" />
-                <label class="form-label" for="form3Example4">Địa chỉ</label>
-              </div>
-
-              <!-- Note input -->
-              <div class="form-outline mb-4">
-                <textarea name="note" class="form-control" id="textAreaExample" rows="4"></textarea>
-                <label class="form-label" for="textAreaExample">Ghi chú</label>
-              </div>
-              <!-- Submit button -->
-              {{!-- <button type="submit" class="btn btn-primary btn-block mb-4">Đăng ký</button> --}}
-
-              <!-- Register buttons -->
-              <div class="text-center">
-                <p>Liên hệ với chúng tôi:</p>
-                <a target="_blank" href="https://www.facebook.com/haisanco5saigon/" class="btn text-white"
-                  style="background-color: #3b5998;" role="button">
-                  <i class="fab fa-facebook-f"></i>
-                </a>
-
-                <a class="btn text-white" style="background-color: #ed302f;" target="_blank"
-                  href="https://www.youtube.com/channel/UCr8XTth3Y8QbnAMslgn5gXQ" role="button">
-                  <i class="fab fa-youtube"></i>
-                </a>
-
-                <a class="btn text-white" style="background-color: #25d366;" href="tel:090 231 53 18" role="button">
-                  <i class="fas fa-phone"></i>
-                </a>
-
-              </div>
-
-            </div>
-            <div class="modal-footer">
-              <button type="submit" class="btn btn-info btn-rounded w-100">Đăng ký</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
   {{#if hideFooter}}
   {{else}}
   {{> footer}}
   {{/if}}
+  <div class="modal fade" id="staticBackdrop" data-mdb-backdrop="static" data-mdb-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <form method="post" action="/mail">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Đăng ký nhận tin</h5>
+            <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
 
+            <!-- 2 column grid layout with text inputs for the first and last names -->
+            <div class="row mb-4">
+              <div class="col">
+                <div class="form-outline">
+                  <input name="fullname" type="text" id="form3Example1" required="" class="form-control" />
+                  <label class="form-label" for="form3Example1">Họ và tên</label>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-outline">
+                  <input name="phone" type="phone" id="form3Example2" required="" class="form-control" />
+                  <label class="form-label" for="form3Example2">Số điện thoại</label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+              <input name="email" type="email" id="form3Example3" required="Vui lòng nhập" class="form-control" />
+              <label class="form-label" for="form3Example3">Email</label>
+            </div>
+
+            <!-- Address input -->
+            <div class="form-outline mb-4">
+              <input name="address" type="text" id="form3Example4" class="form-control" />
+              <label class="form-label" for="form3Example4">Địa chỉ</label>
+            </div>
+
+            <!-- Note input -->
+            <div class="form-outline mb-4">
+              <textarea name="note" class="form-control" id="textAreaExample" rows="4"></textarea>
+              <label class="form-label" for="textAreaExample">Ghi chú</label>
+            </div>
+            <!-- Submit button -->
+            {{!-- <button type="submit" class="btn btn-primary btn-block mb-4">Đăng ký</button> --}}
+
+            <!-- Register buttons -->
+            <div class="text-center">
+              <p>Liên hệ với chúng tôi:</p>
+              <a target="_blank" href="https://www.facebook.com/haisanco5saigon/" class="btn text-white"
+                style="background-color: #3b5998;" role="button">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+
+              <a class="btn text-white" style="background-color: #ed302f;" target="_blank"
+                href="https://www.youtube.com/channel/UCr8XTth3Y8QbnAMslgn5gXQ" role="button">
+                <i class="fab fa-youtube"></i>
+              </a>
+
+              <a class="btn text-white" style="background-color: #25d366;" href="tel:090 231 53 18" role="button">
+                <i class="fas fa-phone"></i>
+              </a>
+
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-info btn-rounded w-100">Đăng ký</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
   <div class="social_fixed">
     <a class="cart smooth" href="/shopping-cart" data-cart="0"></a>
     {{!-- <div class="icon_map"> <img class="transition" src="/img/icon_map.png" alt="icon map">
@@ -184,8 +180,7 @@
       class="btn"> <img src="https://web.cmbliss.com/webtools/hotline/images/icon-call.png" alt="Gọi điện thoại"> <span
         class="hotline-hero-text dial">0931 744 4687</span></a> <span class="particles-circle"></span> <span
       class="particles-circle"></span> <span class="particles-circle"></span> <span class="particles-circle"></span>
-    <span class="particles-circle"></span> <span class="particles-circle"></span>
-  </div>
+    <span class="particles-circle"></span> <span class="particles-circle"></span> </div>
 
 
 
@@ -226,7 +221,7 @@
         if ($(window).width() > 600) {
           setTimeout(function () {
             $('#staticBackdrop').modal('show');
-          }, 300)
+          }, 30000)
         }
       });
 
