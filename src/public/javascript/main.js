@@ -164,6 +164,24 @@ $(document).ready(() => {
         $('.cart .fa').attr('data-before', '1');
     });
     
+    document.getElementById("navBtn1").addEventListener('touchend', function(e)  {
+        e.preventDefault();
+        $("#right-sidebar").animate({ right: "-250px" });
+        $("#left-sidebar").animate({ left: "0px" });
+    })
+    document.getElementById("navBtn2").addEventListener('touchend', function(e)  {
+        e.preventDefault();
+        $("#left-sidebar").animate({ left: "-250px" });
+        $("#right-sidebar").animate({ right: "0px" });
+    })
+    document.getElementById("close-btn1").addEventListener('touchend', function(e)  {
+        e.preventDefault();
+        $("#left-sidebar").animate({ left: "-250px" });
+    })
+    document.getElementById("close-btn2").addEventListener('touchend', function(e)  {
+        e.preventDefault();
+        $("#right-sidebar").animate({ right: "-250px" });
+    })
 
     $(function (){
         $('#navBtn1').click(function (){
