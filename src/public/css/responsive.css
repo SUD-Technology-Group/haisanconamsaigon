@@ -200,9 +200,19 @@
         padding-bottom: 0 !important;
     }
 
+    /* Detail product */
+    .product-image-detail img {
+        height: auto !important;
+    }
 
+    .product-info-box {
+        height: 240px !important;
+    }
 
-
+    .tab-content img {
+        height: auto !important;
+        width: 100% !important;
+    }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -238,7 +248,7 @@
 }
 
 
-@media (min-height: 540px) and (max-height: 668px) {
+@media (min-height: 540px) and (max-height: 668px) and (min-width: 768px) {
     .seafood-box-2 {
         height: 43vh;
     }

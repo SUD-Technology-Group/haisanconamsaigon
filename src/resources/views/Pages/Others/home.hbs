@@ -155,7 +155,7 @@
                                 priceHtml = `<span style="text-decoration: line-through;"> </span><br> Giá bán:
                                         Theo thời giá`;
                             if (index >= 4) {
-                                listSeafood.innerHTML += `<div class="col-lg-4 col-sm-4 seafood-box last-seafood">
+                                listSeafood.innerHTML += `<div class="col-lg-4 seafood-box last-seafood">
                             <span class="sale">-${item.price[0].discountPercent}%</span>
                             <div class="seafood-img-box">
                                 <img src="${item.avatar}" alt="">
@@ -174,7 +174,7 @@
                             </div>
                         </div>`;
                             } else {
-                                listSeafood.innerHTML += `<div class="col-lg-4 col-sm-4 seafood-box">
+                                listSeafood.innerHTML += `<div class="col-lg-4 seafood-box">
                             <span class="sale">-${item.price[0].discountPercent}%</span>
                             <div class="seafood-img-box">
                                 <img src="${item.avatar}" alt="">
