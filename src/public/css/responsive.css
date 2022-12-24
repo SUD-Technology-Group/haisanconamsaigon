@@ -4,6 +4,10 @@
         width: 85% !important;
     }
 
+    #page-header {
+        position: fixed !important;
+    }
+
     #navBtn1,
     #navBtn2 {
         display: inline-block;
@@ -165,10 +169,37 @@
         display: none !important;
     }
 
+    /* Banner */
+    #banner {
+        padding-top: 60%;
+    }
+
+    /* Best seller */
+    #bestseller {
+        padding-top: 25%;
+    }
+
+    #seafood {
+        padding-top: 25%;
+    }
+
+    #menu {
+        padding-top: 25%;
+    }
+
+    #album {
+        padding-top: 25%;
+    }
+
+    #news {
+        padding-top: 25%;
+    }
+
     /* Albums */
     #list-album1 {
         padding-bottom: 0 !important;
     }
+
 
 
 
