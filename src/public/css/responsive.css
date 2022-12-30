@@ -176,23 +176,23 @@
 
     /* Best seller */
     #bestseller {
-        padding-top: 25%;
+        padding-top: 5%;
     }
 
     #seafood {
-        padding-top: 25%;
+        padding-top: 5%;
     }
 
     #menu {
-        padding-top: 25%;
+        padding-top: 5%;
     }
 
     #album {
-        padding-top: 25%;
+        padding-top: 5%;
     }
 
     #news {
-        padding-top: 25%;
+        padding-top: 5%;
     }
 
     /* Albums */
@@ -229,18 +229,19 @@
     }
 
     .col-fb-page {
-        margin-top: 100px !important;
+        margin-top: 70px !important;
     }
 
     .footer-img {
-        left: 127px !important;
-        bottom: 108px !important;
+        left: 130px !important;
+        bottom: 80px !important;
     }
 
     .connect-box {
-        bottom: -10% !important;
+        bottom: -12% !important;
         right: 0 !important;
         width: 100% !important;
+        margin-top: 10px !important;
     }
 }
 
@@ -317,9 +318,11 @@
     .connect-box {
         bottom: -10% !important;
     }
+
     .connect-box img {
         width: 14% !important;
     }
+
     .form-tu-van button {
         width: 50%;
     }
