@@ -201,6 +201,10 @@
     }
 
     /* Detail product */
+    .alt-two {
+        margin-top: 120px !important;
+    }
+
     .product-image-detail img {
         height: auto !important;
     }
@@ -211,6 +215,31 @@
 
     .tab-content img {
         height: auto !important;
+        width: 100% !important;
+    }
+
+    /* Product list */
+    .seafood-buy a {
+        line-height: 26px !important;
+    }
+
+    /* Footer */
+    .col-menu {
+        margin-top: 15px !important;
+    }
+
+    .col-fb-page {
+        margin-top: 100px !important;
+    }
+
+    .footer-img {
+        left: 127px !important;
+        bottom: 108px !important;
+    }
+
+    .connect-box {
+        bottom: -10% !important;
+        right: 0 !important;
         width: 100% !important;
     }
 }
@@ -249,6 +278,15 @@
 
 
 @media (min-height: 540px) and (max-height: 668px) and (min-width: 768px) {
+    /* .last-seafood:nth-child(2) {
+        display: none !important;
+    } */
+
+    #list-seafood .last-seafood:nth-child(8),
+    #list-seafood .last-seafood:nth-child(7) {
+        display: none !important;
+    }
+
     .seafood-box-2 {
         height: 43vh;
     }
@@ -262,12 +300,13 @@
     }
 
     footer {
-        height: 200%;
+        height: fit-content;
         font-size: 12px;
+        padding-bottom: 60px;
     }
 
     .footer-img {
-        left: 190px !important;
+        left: 132px !important;
         bottom: -78px !important;
     }
 
@@ -276,7 +315,13 @@
     }
 
     .connect-box {
-        bottom: -18% !important;
+        bottom: -10% !important;
+    }
+    .connect-box img {
+        width: 14% !important;
+    }
+    .form-tu-van button {
+        width: 50%;
     }
 
 
@@ -358,5 +403,6 @@
         font-size: 12px !important;
     }
 
-    /*  */
+    /* footer  */
+
 }

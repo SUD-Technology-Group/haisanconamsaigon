@@ -66,6 +66,7 @@ h1 {
   transition: all 0.4s ease 0s;
   text-transform: uppercase !important;
 }
+
 #left-sidebar,
 #right-sidebar,
 #navBtn1,
@@ -178,8 +179,7 @@ h1 em {
   cursor: pointer;
 }
 
-.header-body {
-}
+.header-body {}
 
 .header-body--content {
   display: flex;
@@ -242,8 +242,7 @@ h1 em {
   padding: 1px;
 }
 
-.header-navbar {
-}
+.header-navbar {}
 
 /* Header: end */
 
@@ -312,7 +311,7 @@ h1 em {
   text-transform: uppercase;
 }
 
-.navbar-list > .navbar-item > a:hover {
+.navbar-list>.navbar-item>a:hover {
   color: yellow !important;
 }
 
@@ -350,7 +349,7 @@ h1 em {
   margin: 0 12px;
 }
 
-.navbar-item:hover > .navbar-menu {
+.navbar-item:hover>.navbar-menu {
   visibility: visible;
   opacity: 1;
 }
@@ -477,8 +476,7 @@ body.slider__body {
 
 /* Bestseller Start */
 
-.bestseller-box {
-}
+.bestseller-box {}
 
 /* Bestseller End */
 
@@ -902,8 +900,7 @@ img,
   color: black !important;
 }
 
-.current {
-}
+.current {}
 
 .current a.sidebar-item-link {
   color: white !important;
@@ -1336,6 +1333,11 @@ a.watch-detail {
 
 #footer {
   height: 400px;
+}
+
+.connect-box {
+  width: 50% !important;
+  bottom: 25% !important;
 }
 
 /* Shopping cart: start */
