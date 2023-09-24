@@ -28,21 +28,6 @@ const {sendMail} = require('./resources/utils/sendMail');
 const getMenuList = require("./resources/middlewares/getMenuList");
 db.connect();
 
-// Users.find({})
-//     .then(users => {
-//         if (users.length == 0) {
-//             let admin = {
-//                 username: 'admin',
-//                 fullname: 'admin',
-//                 position: 'admin',
-//                 email: 'admin@gmail.com',
-//                 phone: '0767916592',
-//                 password: '123123'
-//             }
-
-//             new Users(admin).save()
-//         }
-//     })
 
 app.set("view engine", "hbs");
 app.engine(
@@ -157,11 +142,7 @@ app.get("/shopping-cart", (req, res) => {
   const success = req.flash("success") || "";
   let list = req.flash("list") || "";
   let listProduct = [];
-  //   list = JSON.parse(list);
-  //   list.forEach((item) => {
-  //     item = JSON.parse(item);
-  //     listProduct.push(item);
-  //   });
+  
   res.render("Pages/Others/shoppingCart", { error, success, list });
 });
 
