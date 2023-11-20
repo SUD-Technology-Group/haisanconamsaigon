@@ -6,7 +6,7 @@
 ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
 ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
 
-The website's mission is to assist customers in accessing a wide range of promotional programs and valuable product information, enabling them to make informed purchases. Additionally, it aids business owners in managing their entire online sales system.
+The mission of the website is to assist customers in viewing the menu of available dishes at the restaurant for direct ordering on-site or adding products to the cart and placing orders online. Additionally, it helps the store manage inventory, promotions, and online orders.
 
 ![](src/public/img/logo.png)
 
