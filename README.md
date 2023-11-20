@@ -12,46 +12,25 @@ The mission of the website is to assist customers in viewing the menu of availab
 
 ## Features
 
-_The website serves four main user groups: Customers, Accountants, Sales staff, and System administrators._
+_The website serves four main user groups: Customers, and System administrators._
 
 -   Customer:
 
-    -   View products on the homepage.
+    -   View products or menu on the homepage.
     -   Access promotional programs and news related to the products.
     -   Add products to their shopping cart and request orders.
     -   Subscribe to receive product information.
 
--   Accountants:
-
-    -   View the list of products in stock.
-    -   Create inventory receipts (product entry).
-    -   View a list of all orders and complete orders.
-
--   Sales staff:
-
-    -   View information and prices of products in stock, as well as the quantity in inventory.
-    -   View the list of orders, receive orders.
-    -   Create orders, confirm orders.
-    -   View the history of received orders.
-
 -   System administrators:
-    -   Has all the functions of Sales Staff and Accountants.
-    -   Manage employees, add, edit, or delete employee records.
-    -   Add, edit, or delete content for news, promotions, services, policies, interface images.
-    -   Manage the list of partners.
-    -   Manage recruitment information and the list of job vacancies.
+    -   CURD content for news, menu, products, albums, interface images.
+    -   View the list of products in stock.
     -   View the entire transaction history of the system
+    -   View the list of orders, receive orders.
 
 ## Usage
 
-The current website is online at this address [Namthinh.trankhaihoang.com][demo-link] Here are some sample accounts for you to explore the functions of each user:
+The current website is online at this address [Seafood.trankhaihoang.com][demo-link] Here are some sample accounts for you to explore the functions of each user:
 
--   Accountants:
-    -   Username: accountant
-    -   Password: 123456
--   Sales staff:
-    -   Username: sale123
-    -   Password: 123456
 -   System administrators:
     -   Username: admin
     -   Password: 123456
