@@ -1,6 +1,6 @@
-# E-Commerce website: Nam Thinh
+# E-Commerce website: haisanconamsaigon
 
-> An online platform for selling trucks and related products. Built using NodeJS (ExpressJS), Mongodb, and Handlebars technologies.
+> An online platform for selling seafood and drink. Built using NodeJS (ExpressJS), Mongodb, and Handlebars technologies.
 
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
@@ -8,7 +8,7 @@
 
 The website's mission is to assist customers in accessing a wide range of promotional programs and valuable product information, enabling them to make informed purchases. Additionally, it aids business owners in managing their entire online sales system.
 
-![](src/public/img/icon.png)
+![](src/public/img/logo.png)
 
 ## Features
 
