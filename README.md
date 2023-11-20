@@ -8,7 +8,7 @@
 
 The website's mission is to assist customers in accessing a wide range of promotional programs and valuable product information, enabling them to make informed purchases. Additionally, it aids business owners in managing their entire online sales system.
 
-![](src/public/img/logo2.png)
+![](src/public/img/icon.png)
 
 ## Features
 
